@@ -1,4 +1,8 @@
 import $ from 'jquery';
+console.log('====>',$);
+'danny';
+import bootstrap from 'bootstrap';
+
 
 $(() => {
   const convertRgbToHex = (color) => {
@@ -7,7 +11,7 @@ $(() => {
       // if the hex value is < 10, add a leading 0
       return hexValue.length === 1 ? '0'+hexValue : hexValue;
     }).join('');
-  }
+  };
 
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id, {get: "pageData"}, (response) => {
