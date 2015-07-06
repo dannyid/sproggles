@@ -2,7 +2,10 @@
   box-sizing: border-box;
 }
 
-html, body {
+html, 
+body, 
+ul.nav-tabs,
+ul.nav-tabs li {
   padding: 0;
   margin: 0;
 }
@@ -14,16 +17,45 @@ input#clipboard {
 
 #tabpanel {
   display: none;
+  width: 625px;
 }
 
 ul.nav-tabs {
-  font-size: 2rem;
-  font-weight: 300;
+  float: left;
+  width: 75px;
+  background: #E3E3E3;
+  border: 0;
+}
+
+ul.nav-tabs li {
+  float: left;
+  width: 75px;
+  height: 75px;
+  border: 0;
+  background: transparent;
+}
+
+ul.nav-tabs li > a {
+  margin: 0;
+  width: 75px;
+  height: 75px;
+  background-color: transparent;
+  padding: 20px;
+}
+
+ul.nav-tabs li > a,
+ul.nav-tabs li > a:hover,
+ul.nav-tabs li > a:focus,
+ul.nav-tabs li.active > a,
+ul.nav-tabs li.active > a:hover, 
+ul.nav-tabs li.active > a:focus {
+  border: 0;
 }
 
 .tab-content {
   position: relative;
   overflow: hidden;
+  min-height: 300px;
 }
 
 #colors::after,
@@ -42,16 +74,16 @@ ul.nav-tabs {
 
 .color-square-container {
   position: relative;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   float: left;
   display: inline-block;
   transition-duration: 100ms;
 }
 
 .color-square {
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   position: absolute;
 }
 
@@ -73,17 +105,13 @@ ul.nav-tabs {
   color: white;
 }
 
-#tabpanel {
-  width: 400px;
-}
-
 #colors {
   overflow: auto;
 }
 
 #fonts {
   background: #FFF;
-  margin: 5px;
+  padding: 10px;
   font-size: 1.8rem;
 }
 
@@ -108,7 +136,6 @@ ul.nav-tabs {
   vertical-align: middle;
   position: relative;
 }
-
 
 .image-square-container a {
 }
