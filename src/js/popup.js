@@ -1,17 +1,35 @@
 import $ from 'jquery';
 
 $(() => {
+  const $colorsTab = $('#colors');
+  const $fontsTab = $('#fonts');
+  const $imagesTab = $('#images');
+
   const convertRgbToHex = (color) => {
     return '#'+color.slice(4, -1).split(',').map((i) => {
       var hexValue = parseInt(i, 10).toString(16).toUpperCase();
       // if the hex value is < 10, add a leading 0
       return hexValue.length === 1 ? '0'+hexValue : hexValue;
     }).join('');
-  }
+  };
+
+  $('ul.nav-tabs li a').click((e) => {
+    const $this = $(e.currentTarget);
+    const tabId = $this.attr('href').substr(1);
+    const $relatedTabPanel = $(`.tab-content .tab-pane#${tabId}`);
+
+    $this
+      .parent().addClass('active').fadeIn()
+      .siblings().removeClass('active');
+
+    $relatedTabPanel
+      .addClass('in active').fadeIn()
+      .siblings().removeClass('in active');
+  });
 
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id, {get: "pageData"}, (response) => {
-      response.colors.sort();
+      //response.colors.sort();
       var coloredDivs = response.colors.map((color) => {
         if (color === 'rgb(0, 0, 0)' ||
             color === 'rgba(0, 0, 0, 0)' ||
@@ -28,9 +46,9 @@ $(() => {
         return $(`<div class="image-square-container"><a target="_blank" href="${imageUrl}"><img src="${imageUrl}"/></a></div>`);
       });
 
-      $('#colors').append(coloredDivs);
-      $('#fonts').append(fontDivs);
-      $('#images').append(imageDivs);
+      $colorsTab.append(coloredDivs);
+      $fontsTab.append(fontDivs);
+      $imagesTab.append(imageDivs);
 
       var timeout;
 
