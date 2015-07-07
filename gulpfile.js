@@ -47,9 +47,6 @@ var paths = {
   }
 };
 
-/********************
-****** /PATHS *******
-********************/
 
 /********************
 ******** CSS ********
@@ -66,9 +63,6 @@ gulp.task('css', ['clean:css'], function() {
     .pipe(gulp.dest(paths.dest.css))
 });
 
-/********************
-******** /CSS *******
-********************/
 
 /********************
 ******** JS *********
@@ -104,9 +98,6 @@ gulp.task('js:contentScript', ['clean:js'], function() {
 
 gulp.task('js', ['js:popup','js:contentScript'])
 
-/********************
-******** /JS ********
-********************/
 
 /********************
 ******* HTML ********
@@ -121,9 +112,6 @@ gulp.task('html', ['clean:html'], function() {
   .pipe(gulp.dest(paths.dest.dist))
 });
 
-/********************
-******* /HTML *******
-********************/
 
 /********************
 ****** IMAGES *******
@@ -138,9 +126,6 @@ gulp.task('img', ['clean:img'], function() {
   .pipe(gulp.dest(paths.dest.img))
 });
 
-/********************
-***** /IMAGES *******
-********************/
 
 /********************
 ***** MANIFEST ******
@@ -155,9 +140,6 @@ gulp.task('manifest', ['clean:manifest'], function() {
   .pipe(gulp.dest(paths.dest.dist))
 });
 
-/********************
-***** /MANIFEST *****
-********************/
 
 /********************
 ******* SERVE *******
@@ -171,18 +153,11 @@ gulp.task('watch', ['build'], function() {
     gulp.watch(paths.src.manifest, ['manifest']);
 });
 
-/********************
-****** /SERVE *******
-********************/
 
 /********************
 ******* BUILD *******
 ********************/
 
 gulp.task('build', ['html', 'js', 'css', 'img', 'manifest']);
-
-/********************
-****** /BUILD *******
-********************/
 
 gulp.task('default', ['build']);
