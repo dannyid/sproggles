@@ -1,18 +1,14 @@
 /** 
-npm install --save-dev gulp browserify babelify del vinyl-source-stream gulp-stylus gulp-autoprefixer gulp-minify-css gulp-concat gulp-uncss browser-sync
+npm install --save-dev gulp browserify babelify del vinyl-source-stream gulp-minify-css gulp-concat
 **/
 
 var gulp = require('gulp');
+var del = require('del');
 var browserify = require('browserify');
 var babelify = require('babelify');
-var del = require('del');
 var source = require('vinyl-source-stream');
-//var autoprefixer = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 var concat = require('gulp-concat');
-//var uncss = require('gulp-uncss');
-var browserSync = require('browser-sync').create();
-var reload = browserSync.reload;
 
 /********************
 ******* PATHS *******
@@ -20,14 +16,28 @@ var reload = browserSync.reload;
 
 var paths = {
   src: {
-    css: ['./src/css/libs/*.css', 'src/css/**/*.css'],
-    js: ['./src/js/**/*.js'],
-    img: ['./src/img/**/*'],
-    popup: ['./src/js/popup.js'],
-    contentScript: ['./src/js/contentScript.js'],
-    html: ['./src/*.html'],
-    manifest: ['./src/manifest.json']
-
+    css: [
+      './src/css/libs/*.css', 
+      './src/css/**/*.css'
+    ],
+    js: [
+      './src/js/**/*.js'
+    ],
+    img: [
+      './src/img/**/*'
+    ],
+    popup: [
+      './src/js/popup.js'
+    ],
+    contentScript: [
+      './src/js/contentScript.js'
+    ],
+    html: [
+      './src/*.html'
+    ],
+    manifest: [
+      './src/manifest.json'
+    ]
   },
   dest: {
     dist: './dist',
@@ -51,14 +61,9 @@ gulp.task('clean:css', function(done) {
 
 gulp.task('css', ['clean:css'], function() {
   return gulp.src(paths.src.css)
-    //.pipe(autoprefixer())
     .pipe(minifyCSS())
     .pipe(concat('style.min.css'))
-    //.pipe(uncss({
-    //  html: ['./dist/index.html'] // why this not work?
-    //}))
     .pipe(gulp.dest(paths.dest.css))
-    .pipe(browserSync.stream());
 });
 
 /********************
@@ -83,7 +88,6 @@ gulp.task('js:popup', ['clean:js'], function() {
   .bundle()
   .pipe(source('popup.js'))
   .pipe(gulp.dest(paths.dest.js))
-  .on('end', reload);
 });
 
 gulp.task('js:contentScript', ['clean:js'], function() {
@@ -96,7 +100,6 @@ gulp.task('js:contentScript', ['clean:js'], function() {
   .bundle()
   .pipe(source('contentScript.js'))
   .pipe(gulp.dest(paths.dest.js))
-  .on('end', reload);
 });
 
 gulp.task('js', ['js:popup','js:contentScript'])
@@ -116,7 +119,6 @@ gulp.task('clean:html', function(done) {
 gulp.task('html', ['clean:html'], function() {
   return gulp.src(paths.src.html)
   .pipe(gulp.dest(paths.dest.dist))
-  .on('end', reload);
 });
 
 /********************
@@ -134,7 +136,6 @@ gulp.task('clean:img', function(done) {
 gulp.task('img', ['clean:img'], function() {
   return gulp.src(paths.src.img)
   .pipe(gulp.dest(paths.dest.img))
-  .on('end', reload);
 });
 
 /********************
@@ -152,7 +153,6 @@ gulp.task('clean:manifest', function(done) {
 gulp.task('manifest', ['clean:manifest'], function() {
   return gulp.src(paths.src.manifest)
   .pipe(gulp.dest(paths.dest.dist))
-  .on('end', reload);
 });
 
 /********************
@@ -163,11 +163,7 @@ gulp.task('manifest', ['clean:manifest'], function() {
 ******* SERVE *******
 ********************/
 
-gulp.task('serve', ['build'], function() {
-    browserSync.init({
-        server: "./dist"
-    });
-
+gulp.task('watch', ['build'], function() {
     gulp.watch(paths.src.css, ['css']);
     gulp.watch(paths.src.js, ['js']);
     gulp.watch(paths.src.img, ['img']);
