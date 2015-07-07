@@ -2,26 +2,27 @@ import $ from 'jquery';
 import getColors from './modules/getColors';
 import getFonts from './modules/getFonts';
 import getImages from './modules/getImages';
-import {convertRgbToHex, copyColorToClipboard, tabClickHandler, createSelectors} from './modules/utils';
+import {convertRgbToHex, colorSquareClickListener, tabClickHandler, createSelectors} from './modules/utils';
 
 $(() => {
-  const [$colorsTab, $fontsTab, $imagesTab, $colorSquare, $spinner, $tabPanel, $tab] = createSelectors();
-
-  $tab.click(tabClickHandler);
+  const [$colorsTab, $fontsTab, $imagesTab, $spinner, $tabPanel, $tab] = createSelectors();
 
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id, {get: "pageData"}, (response) => {
-      var timeout;
-      var coloredDivs = getColors(response.colors);
-      var fontDivs = getFonts(response.fonts);
-      var imageDivs = getImages(response.images);
+      const coloredDivs = getColors(response.colors);
+      const fontDivs = getFonts(response.fonts);
+      const imageDivs = getImages(response.images);
 
       $colorsTab.append(coloredDivs);
       $fontsTab.append(fontDivs);
       $imagesTab.append(imageDivs);
 
-      $colorSquare.click(copyColorToClipboard);
+      // Need to create this here because colorSquares don't exist util $colorsTab.append(coloredDivs) run
 
+      $tab.click(tabClickHandler);
+
+      colorSquareClickListener().attach();
+      
       $spinner.hide();
       $tabPanel.fadeIn(150);
     });

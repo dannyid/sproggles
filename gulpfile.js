@@ -76,7 +76,7 @@ gulp.task('js:popup', ['clean:js'], function() {
   return browserify({
     entries: paths.src.popup,
     extensions: ['.js'],
-    debug: true
+    debug: false
   })
   .transform(babelify)
   .bundle()
@@ -88,7 +88,7 @@ gulp.task('js:contentScript', ['clean:js'], function() {
   return browserify({
     entries: paths.src.contentScript,
     extensions: ['.js'],
-    debug: true
+    debug: false
   })
   .transform(babelify)
   .bundle()
