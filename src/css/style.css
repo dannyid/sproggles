@@ -139,3 +139,62 @@ ul.nav-tabs li.active > a:focus {
 
 .image-square-container a {
 }
+
+
+#search {
+  font-family: arial, sans-serif;
+  box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
+  overflow: visible;
+  width: 522px;
+  height: 84px;
+  margin: auto auto;
+  padding: 5px;
+}
+
+.serp {
+  width: 522px;
+  height: 84px;
+}
+
+.serp h3 {
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+}
+
+.serp h3 a {
+  color: #1a0dab;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.serp h3 a:hover {
+  text-decoration: underline;
+}
+
+.serp .description-container cite {
+  color: #006621;
+  font-size: 14px;
+  font-style: normal;
+  display: block;
+}
+
+.serp .description-container .description {
+  color: #545454;
+  line-height: 1.4;
+  font-size: small;
+  display: block;
+}
+
+.noresult {
+  text-align: center;
+  min-width: 225px;
+}
+
+.noresult a {
+  text-decoration: none;
+}
+
+.noresult a:hover {
+  text-decoration: underline;
+}

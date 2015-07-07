@@ -31,7 +31,8 @@ $(() => {
       sendResponse({
         colors: reduced.results.allColors,
         fonts: reduced.results.allFonts,
-        images: reduced.results.allImages
+        images: reduced.results.allImages,
+        url: location.origin+(location.pathname || '')
       });
     }
   });
