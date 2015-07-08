@@ -11,6 +11,9 @@
   "plugins": [
     "react"
   ],
+  "globals": {
+    "chrome": true
+  },
   "rules": {
     "strict": 0,
     "quotes": 0,
