@@ -2,12 +2,12 @@ import $ from 'jquery';
 
 export function convertRgbToHex(color) {
   console.log('convert rgb');
-  return '#'+color.slice(4, -1).split(',').map((i) => {
+  return '#' + color.slice(4, -1).split(',').map((i) => {
     var hexValue = parseInt(i, 10).toString(16).toUpperCase();
     // if the hex value is < 10, add a leading 0
-    return hexValue.length === 1 ? '0'+hexValue : hexValue;
+    return hexValue.length === 1 ? '0' + hexValue : hexValue;
   }).join('');
-};
+}
 
 export function colorSquareClickListener() {
   const $colorSquare = $('.color-square');
@@ -17,11 +17,11 @@ export function colorSquareClickListener() {
     console.log('copied!');
     const $input = $('input#clipboard');
     const $copied = $('.copied.alert');
-    const color = ((color) => {
-      if (color.indexOf('rgba') !== -1) {
-        return color;
-      } else if (color.indexOf('rgb') !== -1) {
-        return convertRgbToHex(color);
+    const color = ((colorCode) => {
+      if (colorCode.indexOf('rgba') !== -1) {
+        return colorCode;
+      } else if (colorCode.indexOf('rgb') !== -1) {
+        return convertRgbToHex(colorCode);
       }
     })($(e.currentTarget).attr('id'));
 
@@ -39,13 +39,14 @@ export function colorSquareClickListener() {
 
   return {
     attach: function() {
-      $colorSquare.click(copyColorToClipboard)
+      $colorSquare.click(copyColorToClipboard);
     }
   };
-};
+}
 
 export function tabClickHandler(e) {
   console.log('tab click handler');
+  e.preventDefault();
   const $this = $(e.currentTarget);
   const tabId = $this.attr('href').substr(1);
   const $relatedTabPanel = $(`.tab-content .tab-pane#${tabId}`);
@@ -57,7 +58,7 @@ export function tabClickHandler(e) {
   $relatedTabPanel
     .addClass('in active').fadeIn()
     .siblings().removeClass('in active');
-};
+}
 
 export function createSelectors() {
   console.log('create selectors');
@@ -75,17 +76,17 @@ export function createSelectors() {
     $tabPanel,
     $tab
   ];
-};
+}
 
 export function completeImageUrl(imageUrl) {
   console.log('complete imgage url');
   if (imageUrl.indexOf('//') === 0) {
-    return window.location.protocol+imageUrl;
+    return window.location.protocol + imageUrl;
   } else if (imageUrl.indexOf('/') === 0) {
-    return window.location.origin+imageUrl;
+    return window.location.origin + imageUrl;
   }
   return imageUrl;
-};
+}
 
 export function reduceColorsAndFonts(elements) {
   console.log('reduce colors');
@@ -140,7 +141,7 @@ export function reduceColorsAndFonts(elements) {
     },
     "fonts": {
       "font-family": []
-    }, 
+    },
     "results": {
       "allColors": [],
       "allFonts": [],

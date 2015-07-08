@@ -20,6 +20,12 @@ input#clipboard {
   width: 675px;
 }
 
+.nav.nav-tabs > li.active > a,
+.nav.nav-tabs > li.active:hover > a,
+.nav.nav-tabs > li.active:focus > a {
+  background-color: #BAF1FF;
+}
+
 ul.nav-tabs {
   float: left;
   width: 75px;
@@ -40,6 +46,7 @@ ul.nav-tabs li > a {
   width: 75px;
   height: 75px;
   background-color: transparent;
+  border-radius: 0;
   padding: 20px;
 }
 
@@ -51,6 +58,31 @@ ul.nav-tabs li.active > a:hover,
 ul.nav-tabs li.active > a:focus {
   border: 0;
 }
+
+.tab-pane-toolbar {
+  position: relative;
+  overflow: hidden;
+  height: 50px;
+  background: #EEE;
+  width: 600px;
+}
+
+.tab-pane-toolbar-table {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.tab-pane-toolbar-table .toolbar-text {
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+  width: 100%;
+  padding-left: 14px;
+  font-size: 20px;
+}
+
 
 .tab-content {
   position: relative;
@@ -79,6 +111,7 @@ ul.nav-tabs li.active > a:focus {
   float: left;
   display: inline-block;
   transition-duration: 100ms;
+  cursor: pointer;
 }
 
 .color-square {
@@ -140,20 +173,20 @@ ul.nav-tabs li.active > a:focus {
 .image-square-container a {
 }
 
-
 #search {
   font-family: arial, sans-serif;
   box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
   overflow: visible;
   width: 522px;
   height: 84px;
-  margin: auto auto;
-  padding: 5px;
+  margin: auto;
+  margin-top: 40px;
 }
 
 .serp {
   width: 522px;
   height: 84px;
+  padding: 5px;
 }
 
 .serp h3 {

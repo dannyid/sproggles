@@ -14,10 +14,10 @@ $(() => {
       const coloredDivs = getColors(response.colors);
       const fontDivs = getFonts(response.fonts);
       const imageDivs = getImages(response.images);
-      
+
       serpUtils.get(response.url)
-        .done(serpUtils.ajaxSuccessFn)
-        .fail(serpUtils.ajaxFailFn);
+       .done(serpUtils.ajaxSuccessFn)
+       .fail(serpUtils.ajaxFailFn);
 
       $colorsTab.append(coloredDivs);
       $fontsTab.append(fontDivs);
@@ -26,7 +26,7 @@ $(() => {
       $tab.click(tabClickHandler);
 
       colorSquareClickListener().attach();
-      
+
       $spinner.hide();
       $tabPanel.fadeIn(150);
     });

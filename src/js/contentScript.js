@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import {completeImageUrl, reduceColorsAndFonts} from './modules/utils'
+import {completeImageUrl, reduceColorsAndFonts} from './modules/utils';
 
 $(() => {
   // Get fonts and colors on page load
@@ -13,14 +13,14 @@ $(() => {
   // Sort fonts in alphabetical order
   reduced.results.allFonts.sort((a, b) => {
     return a.toLowerCase().localeCompare(b.toLowerCase());
-  }); 
+  });
 
   // Derives all the images
   images.forEach((i) => {
     var imageUrl = completeImageUrl($(i).attr('src') || '');
 
     if (imageUrl && $.inArray(imageUrl, reduced.results.allImages) === -1) {
-      reduced.results.allImages.push(imageUrl); 
+      reduced.results.allImages.push(imageUrl);
     }
   });
 
@@ -32,7 +32,7 @@ $(() => {
         colors: reduced.results.allColors,
         fonts: reduced.results.allFonts,
         images: reduced.results.allImages,
-        url: location.origin+(location.pathname || '')
+        url: location.origin + (location.pathname || '')
       });
     }
   });
