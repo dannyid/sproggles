@@ -3,11 +3,15 @@ import getColors from './modules/getColors';
 import getFonts from './modules/getFonts';
 import getImages from './modules/getImages';
 import getSerp from './modules/getSerp';
-import {colorSquareClickListener, tabClickHandler, createSelectors} from './modules/utils';
+import {colorSquareClickListener, tabClickHandler, themeButtonClickHandler, createSelectors} from './modules/utils';
 
 $(() => {
-  const [$colorsTab, $fontsTab, $imagesTab, $spinner, $tabPanel, $tab] = createSelectors();
+  const [$colorsTab, $fontsTab, $imagesTab, $spinner, $tabPanel, $tab, $themeButton] = createSelectors();
   const serpUtils = getSerp();
+
+  $tab.click(tabClickHandler);
+
+  $themeButton.click(themeButtonClickHandler);
 
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id, {get: "pageData"}, (response) => {
@@ -22,8 +26,6 @@ $(() => {
       $colorsTab.append(coloredDivs);
       $fontsTab.append(fontDivs);
       $imagesTab.append(imageDivs);
-
-      $tab.click(tabClickHandler);
 
       colorSquareClickListener().attach();
 

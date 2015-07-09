@@ -23,7 +23,11 @@ input#clipboard {
 .nav.nav-tabs > li.active > a,
 .nav.nav-tabs > li.active:hover > a,
 .nav.nav-tabs > li.active:focus > a {
-  background-color: #BAF1FF;
+  background-color: dodgerblue;
+}
+
+.nav.nav-tabs > li.active > a > img {
+  -webkit-filter: invert(100%);
 }
 
 ul.nav-tabs {
@@ -67,10 +71,19 @@ ul.nav-tabs li.active > a:focus {
   width: 600px;
 }
 
+.tab-pane-toolbar h3 {
+  margin: 0;
+  display: inline-block;
+}
+
 .tab-pane-toolbar-table {
-  display: table;
+  display: none;
   height: 100%;
   width: 100%;
+}
+
+.tab-pane-toolbar-table.active {
+  display: table;
 }
 
 .tab-pane-toolbar-table .toolbar-text {
@@ -83,15 +96,19 @@ ul.nav-tabs li.active > a:focus {
   font-size: 20px;
 }
 
+.tab-pane-toolbar-table .toolbar-text span {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+}
 
 .tab-content {
   position: relative;
   overflow: hidden;
-  min-height: 300px;
+  min-height: 250px;
 }
 
-#colors::after,
-#images::after {
+.tab-content #colors::after,
+.tab-content #images::after {
   content: '';
   background: #ffffff url("/img/checkerboard.png") repeat left top;
   position: absolute;
@@ -102,6 +119,28 @@ ul.nav-tabs li.active > a:focus {
   opacity: 0.2;
   width: 100%;
   height: 100%;
+}
+
+span.dark-theme {
+  width: 50px;
+  height: 50px;
+  background-color: #666;
+  display: table-cell;
+  color: white;
+  padding: 0px 8px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+span.dark-theme.dark {
+  -webkit-filter: invert(100%);
+}
+
+.tab-content.dark #colors::after, 
+.tab-content.dark #images::after {
+  -webkit-filter: invert(100%);
 }
 
 .color-square-container {
@@ -122,11 +161,19 @@ ul.nav-tabs li.active > a:focus {
 
 .alert.copied {
   font-size: 1.5rem;
-  position: fixed;
+  position: relative;
   top: 8px;
   right: 8px;
   padding: 5px;
-  display: none;
+  margin: 0;
+  white-space: nowrap;
+  display: block;
+  opacity: 0;
+  transition-duration: 200ms;
+}
+
+.alert.copied.active {
+  opacity: 1;
 }
 
 .color-name {
@@ -138,25 +185,25 @@ ul.nav-tabs li.active > a:focus {
   color: white;
 }
 
-#colors {
+.tab-content #colors {
   overflow: auto;
 }
 
-#fonts {
+.tab-content #fonts {
   background: #FFF;
   padding: 10px;
   font-size: 1.8rem;
 }
 
-#fonts li {
+.tab-content #fonts li {
   list-style: none;
 }
 
-#fonts a {
+.tab-content #fonts a {
   color: black;
 }
 
-#images img {
+.tab-content #images img {
   width: 100%;
 }
 
@@ -173,7 +220,7 @@ ul.nav-tabs li.active > a:focus {
 .image-square-container a {
 }
 
-#search {
+.tab-content #search {
   font-family: arial, sans-serif;
   box-shadow: 0 -1px 0 #e5e5e5,0 0 2px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);
   overflow: visible;
@@ -193,6 +240,9 @@ ul.nav-tabs li.active > a:focus {
   font-size: 18px;
   padding: 0;
   margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;  
 }
 
 .serp h3 a {

@@ -9,10 +9,10 @@ export default (colors) => {
       return null;
     }
     return $(
-      `<div class="color-square-container">`+
-        `<div id="${color}" class="color-square" style="background-color: ${color};"></div>`+
-        `<div class="color-name">${color}</div>`+
+      `<div class="color-square-container">` +
+        `<div id="${color}" class="color-square" style="background-color: ${color};"></div>` +
+        `<div class="color-name">${color}</div>` +
       `</div>`
     );
   });
-}
+};

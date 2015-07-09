@@ -28,12 +28,12 @@ export function colorSquareClickListener() {
     $input.val(color).select();
     document.execCommand('Copy');
 
-    $copied.text(`Copied: ${color}`).hide().fadeIn(200);
+    $copied.text(`Copied: ${color}`).addClass('active');
 
     clearTimeout(timeout);
 
     timeout = setTimeout(() => {
-      $copied.fadeOut(200);
+      $copied.removeClass('active');
     }, 2000);
   }
 
@@ -45,41 +45,55 @@ export function colorSquareClickListener() {
 }
 
 export function tabClickHandler(e) {
-  console.log('tab click handler');
   e.preventDefault();
   const $this = $(e.currentTarget);
   const tabId = $this.attr('href').substr(1);
+  const $relatedToolbar = $(`.tab-pane-toolbar #${tabId}`);
   const $relatedTabPanel = $(`.tab-content .tab-pane#${tabId}`);
+  console.log(`Tab #${tabId} has been clicked`);
 
+  // Highlight active tab
   $this
     .parent().addClass('active').fadeIn()
     .siblings().removeClass('active');
 
+  // Choose proper toolbar
+  $relatedToolbar
+    .addClass('active').fadeIn()
+    .siblings().removeClass('active');
+
+  // Display proper tab content
   $relatedTabPanel
     .addClass('in active').fadeIn()
     .siblings().removeClass('in active');
 }
 
+export function themeButtonClickHandler(e) {
+  $('span.dark-theme').toggleClass('dark');
+  $('.tab-content').toggleClass('dark');
+}
+
 export function createSelectors() {
-  console.log('create selectors');
-  const $colorsTab = $('#colors');
-  const $fontsTab = $('#fonts');
-  const $imagesTab = $('#images');
+  console.log('Selectors created.');
+  const $colorsTab = $('.tab-content #colors');
+  const $fontsTab = $('.tab-content #fonts');
+  const $imagesTab = $('.tab-content #images');
   const $spinner = $('#spinner');
   const $tabPanel = $('#tabpanel');
   const $tab = $('ul.nav-tabs li a');
+  const $themeButton = $('span.dark-theme');
   return [
     $colorsTab,
     $fontsTab,
     $imagesTab,
     $spinner,
     $tabPanel,
-    $tab
+    $tab,
+    $themeButton
   ];
 }
 
 export function completeImageUrl(imageUrl) {
-  console.log('complete imgage url');
   if (imageUrl.indexOf('//') === 0) {
     return window.location.protocol + imageUrl;
   } else if (imageUrl.indexOf('/') === 0) {
@@ -89,7 +103,6 @@ export function completeImageUrl(imageUrl) {
 }
 
 export function reduceColorsAndFonts(elements) {
-  console.log('reduce colors');
   return elements.reduce((prev, curr) => {
     // Derives all the colors
     Object.keys(prev.colors).forEach((prop) => {
@@ -148,4 +161,5 @@ export function reduceColorsAndFonts(elements) {
       "allImages": []
     }
   });
-};
+}
+

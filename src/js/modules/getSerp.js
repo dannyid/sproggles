@@ -7,14 +7,14 @@ export default function getSerp() {
 	const get = (url) => {
 		const encodedPageUrl = encodeURIComponent(url);
 		derivedGoogleSearchUrl = googleSearchBaseUrl + encodedPageUrl;
-		console.log('in Get', derivedGoogleSearchUrl);
+		console.log('Getting Google search data...');
 		return $.getJSON(resultDataUrl + encodedPageUrl);
 	};
 
 	const ajaxSuccessFn = (data) => {
-		console.log('in ajax success', derivedGoogleSearchUrl);
+		console.log('AJAX Success');
 
-		$('#search').append(
+		$('.tab-content #search').append(
 			`<div class="serp">` +
 				`<h3>` +
 					`<a href="${derivedGoogleSearchUrl}" target="_blank">${data.title}</a>` +
@@ -30,8 +30,8 @@ export default function getSerp() {
 	const ajaxFailFn = (err) => {
 		if (err) { console.log(err); }
 
-		console.log('in ajax fail', derivedGoogleSearchUrl);
-		$('#search').append(
+		console.log('AJAX Fail', err);
+		$('.tab-content #search').append(
 			`<div class="noresult">` +
 				`<a href="${derivedGoogleSearchUrl}" target="_blank">` +
 					`No Google search result for this page.` +
