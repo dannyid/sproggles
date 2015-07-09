@@ -12,11 +12,10 @@
 
 2. Clone repo
 
-    `git clone git@git.hubteam.com:dshekhtman/sproggles.git`
+    `git clone git@git.hubteam.com:dshekhtman/sproggles.git && cd sproggles`
 
 3. Install dependencies
 
-		`cd sproggles;`
     `npm install`
 
 4. Kick off watch task:
