@@ -16,6 +16,7 @@
 
 3. Install dependencies
 
+		`cd sproggles;`
     `npm install`
 
 4. Kick off watch task:
