@@ -82,15 +82,17 @@ export function createSelectors() {
   const $tabPanel = $('#tabpanel');
   const $tab = $('ul.nav-tabs li a');
   const $themeButton = $('span.dark-theme');
-  return [
+  const $pleaseRefresh = $('#please-refresh');
+  return {
     $colorsTab,
     $fontsTab,
     $imagesTab,
     $spinner,
     $tabPanel,
     $tab,
-    $themeButton
-  ];
+    $themeButton,
+    $pleaseRefresh
+  };
 }
 
 export function completeImageUrl(imageUrl) {

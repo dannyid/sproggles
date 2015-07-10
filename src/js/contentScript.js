@@ -8,8 +8,6 @@ $(() => {
 
   let reduced = reduceColorsAndFonts(elements);
 
-  console.log(reduced);
-
   // Sort fonts in alphabetical order
   reduced.results.allFonts.sort((a, b) => {
     return a.toLowerCase().localeCompare(b.toLowerCase());
@@ -24,6 +22,8 @@ $(() => {
       reduced.results.allImages.push(imageUrl);
     }
   });
+
+  console.log(reduced);
 
   // Only send gotten fonts and colors upon message from popup.js
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

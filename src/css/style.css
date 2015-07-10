@@ -15,6 +15,13 @@ input#clipboard {
   top: -50px;
 }
 
+#please-refresh {
+  display: none;
+  text-align: center;
+  width: 260px;
+  padding: 8px;
+}
+
 #tabpanel {
   display: none;
   width: 675px;
