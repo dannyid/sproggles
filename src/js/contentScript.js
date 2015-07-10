@@ -3,10 +3,10 @@ import {completeImageUrl, reduceColorsAndFonts} from './modules/utils';
 
 $(() => {
   // Get fonts and colors on page load
-  var elements = $.makeArray($('body *').not('script, link, style'));
-  var images = $.makeArray($('body img'));
+  const elements = $.makeArray($('body *').not('script, link, style'));
+  const images = $.makeArray($('body img'));
 
-  var reduced = reduceColorsAndFonts(elements);
+  let reduced = reduceColorsAndFonts(elements);
 
   console.log(reduced);
 
@@ -15,10 +15,11 @@ $(() => {
     return a.toLowerCase().localeCompare(b.toLowerCase());
   });
 
-  // Derives all the images
+  // Derives all the images and adds them to the reduced result
   images.forEach((i) => {
     var imageUrl = completeImageUrl($(i).attr('src') || '');
 
+    // Dedupe images and only add one of each
     if (imageUrl && $.inArray(imageUrl, reduced.results.allImages) === -1) {
       reduced.results.allImages.push(imageUrl);
     }

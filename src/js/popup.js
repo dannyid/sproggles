@@ -15,6 +15,10 @@ $(() => {
 
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id, {get: "pageData"}, (response) => {
+      if (typeof response === 'undefined') {
+        // Put up message saying to reload the page and wait for it to fully load
+      }
+
       const coloredDivs = getColors(response.colors);
       const fontDivs = getFonts(response.fonts);
       const imageDivs = getImages(response.images);
