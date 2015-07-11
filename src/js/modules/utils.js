@@ -25,13 +25,13 @@ export function colorSquareClickListener() {
       }
     })($(e.currentTarget).attr('id'));
 
+    // Insert color value text into input box and copy it to the clipboard
     $input.val(color).select();
     document.execCommand('Copy');
 
+    // Activate "copied" alert and then fade it out
     $copied.text(`Copied: ${color}`).addClass('active');
-
     clearTimeout(timeout);
-
     timeout = setTimeout(() => {
       $copied.removeClass('active');
     }, 2000);

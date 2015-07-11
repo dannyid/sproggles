@@ -12,7 +12,6 @@ $(() => {
   let giveUpTimeout = 0;
 
   $tab.click(tabClickHandler);
-
   $themeButton.click(themeButtonClickHandler);
 
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
@@ -25,9 +24,10 @@ $(() => {
           const fontDivs = getFonts(response.fonts);
           const imageDivs = getImages(response.images);
 
-          serpUtils.get(response.url)
-           .done(serpUtils.ajaxSuccessFn)
-           .fail(serpUtils.ajaxFailFn);
+          serpUtils.getJSON(response.url)
+           .done(serpUtils.injectSerp)
+           .fail(serpUtils.injectError)
+           .always(serpUtils.attachClickListener);
 
           $colorsTab.append(coloredDivs);
           $fontsTab.append(fontDivs);
@@ -39,9 +39,7 @@ $(() => {
           $pleaseRefresh.hide();
           $tabPanel.fadeIn(150);
 
-          tabLoadTimeout.forEach(function(timeout){
-            clearTimeout(timeout);
-          });
+          tabLoadTimeout.forEach(clearTimeout);
 
           clearTimeout(giveUpTimeout);
         }
