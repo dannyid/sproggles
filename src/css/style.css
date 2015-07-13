@@ -237,15 +237,18 @@ span.dark-theme.dark {
   margin-top: 40px;
   padding: 5px;
   cursor: pointer;
+  border: 1px solid transparent;
+  transition-property: border;
+  transition-duration: 300ms;
 }
 
-.tab-content #search.hover {
-  margin-top: 38px;
-  box-shadow: 0 -1px 0 #e5e5e5, 0 0 2px rgba(0,0,0,.12), 0 4px 4px rgba(0,0,0,.24);
+.tab-content #search:hover {
+  /*border: 1px solid #1e90ff;*/
+  border: 1px solid rgba(30, 144, 255, .75);
 }
 
 .tab-content #search.depressed {
-  border: 1px solid #EEE;
+  border: 1px solid rgba(30, 144, 255, .75);
   box-shadow: none;
   margin-top: 42px;
 }

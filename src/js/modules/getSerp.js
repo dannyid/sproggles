@@ -43,14 +43,6 @@ export default function getSerp() {
     attachClickListeners: () => {
       $('.tab-content #search')
 
-      .on('mouseover', function(e) {
-        $(this).addClass('hover');
-      })
-
-      .on('mouseout', function(e) {
-        $(this).removeClass('hover');
-      })
-
       .on('mousedown', function(e){
         e.which === 1 && $(this).addClass('depressed');
       })
