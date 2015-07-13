@@ -31,13 +31,13 @@ export default function getSerp() {
     injectError: (jqxhr, textStatus, err) => {
       console.log('Error: ', err);
 
-      // $('.tab-content #search').empty().append(
-      //   `<div class="noresult">` +
-      //     `<a href="${derivedGoogleSearchUrl}" target="_blank">` +
-      //       `No Google search result for this page.` +
-      //     `</a>`,
-      //   `</div>`
-      // );
+      $('.tab-content #search').empty().append(
+        `<div class="noresult">` +
+          `<a href="${derivedGoogleSearchUrl}" target="_blank">` +
+            `No Google search result for this page.` +
+          `</a>`,
+        `</div>`
+      );
     },
 
     attachClickListeners: () => {

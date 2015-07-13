@@ -239,7 +239,7 @@ span.dark-theme.dark {
   cursor: pointer;
   border: 1px solid transparent;
   transition-property: border;
-  transition-duration: 300ms;
+  transition-duration: 200ms;
 }
 
 .tab-content #search:hover {
