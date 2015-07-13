@@ -295,3 +295,105 @@ span.dark-theme.dark {
 .noresult a:hover {
   text-decoration: underline;
 }
+
+@-webkit-keyframes theShining {
+  0% { background-position: -468px 0; }
+  100% { background-position: 468px 0; }
+}
+
+.shiny {
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: theShining;
+  -webkit-animation-timing-function: linear;
+  background-color: #f6f7f8;
+  background-image: -webkit-gradient(linear, left center, right center, from(#f6f7f8), color-stop(.2, #edeef1), color-stop(.4, #f6f7f8), to(#f6f7f8));
+  background-image: -webkit-linear-gradient(left, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-repeat: no-repeat;
+  background-size: 800px 74px;
+  height: 74px;
+  position: relative;
+  margin-left: 4px;
+}
+
+.serp .mask1 {
+  position: absolute;
+  height: 4px;
+  width: 508px;
+  background: #fff;
+  top: 0;
+  left: 0;
+}
+
+.serp .mask2 {
+  position: absolute;
+  height: 10px;
+  width: 150px;
+  background: #fff;
+  top: 4px;
+  right: 0;
+}
+
+.serp .mask3 {
+  position: absolute;
+  height: 10px;
+  width: 508px;
+  background: #fff;
+  top: 14px;
+  left: 0;
+}
+
+.serp .mask4 {
+  position: absolute;
+  height: 6px;
+  width: 350px;
+  background: #fff;
+  top: 24px;
+  right: 0;
+}
+
+.serp .mask5 {
+  position: absolute;
+  height: 14px;
+  width: 508px;
+  background: #fff;
+  top: 30px;
+  left: 0;
+}
+
+.serp .mask6 {
+  position: absolute;
+  height: 6px;
+  width: 20px;
+  background: #fff;
+  top: 44px;
+  right: 0;
+}
+
+.serp .mask7 {
+  position: absolute;
+  height: 12px;
+  width: 508px;
+  background: #fff;
+  top: 50px;
+  left: 0;
+}
+
+.serp .mask8 {
+  position: absolute;
+  height: 6px;
+  width: 50px;
+  background: #fff;
+  top: 62px;
+  right: 0;
+}
+
+.serp .mask9 {
+  position: absolute;
+  height: 8px;
+  width: 508px;
+  background: #fff;
+  top: 68px;
+  left: 0;
+}
