@@ -43,6 +43,10 @@ export default function getSerp() {
     attachClickListeners: () => {
       $('.tab-content #search')
 
+      .on('mouseout', function(e) {
+        $(this).removeClass('depressed');
+      })
+
       .on('mousedown', function(e){
         e.which === 1 && $(this).addClass('depressed');
       })
