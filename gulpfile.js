@@ -1,4 +1,4 @@
-/** 
+/**
 npm install --save-dev gulp browserify babelify del vinyl-source-stream gulp-minify-css gulp-concat
 **/
 
@@ -17,7 +17,7 @@ var concat = require('gulp-concat');
 var paths = {
   src: {
     css: [
-      './src/css/libs/*.css', 
+      './src/css/libs/*.css',
       './src/css/**/*.css'
     ],
     js: [
@@ -96,7 +96,7 @@ gulp.task('js:contentScript', ['clean:js'], function() {
   .pipe(gulp.dest(paths.dest.js));
 });
 
-gulp.task('js', ['js:popup','js:contentScript']);
+gulp.task('js', ['js:popup', 'js:contentScript']);
 
 
 /********************
