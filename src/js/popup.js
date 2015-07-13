@@ -27,7 +27,7 @@ $(() => {
           serpUtils.getJSON(response.url)
            .done(serpUtils.injectSerp)
            .fail(serpUtils.injectError)
-           .always(serpUtils.attachClickListener);
+           .always(serpUtils.attachClickListeners);
 
           $colorsTab.append(coloredDivs);
           $fontsTab.append(fontDivs);

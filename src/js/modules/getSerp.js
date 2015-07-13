@@ -40,7 +40,7 @@ export default function getSerp() {
       )
     },
 
-    attachClickListener: () => {
+    attachClickListeners: () => {
       $('.tab-content #search')
 
       .on('mouseover', function(e) {
@@ -51,7 +51,7 @@ export default function getSerp() {
         $(this).removeClass('hover');
       })
 
-      .on('mousedown',function(e){
+      .on('mousedown', function(e){
         e.which === 1 && $(this).addClass('depressed');
       })
 
