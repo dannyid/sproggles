@@ -75,31 +75,19 @@ export function themeButtonClickHandler(e) {
 
 export function createSelectors() {
   console.log('Selectors created.');
-  const $colorsTab = $('.tab-content #colors');
-  const $fontsTab = $('.tab-content #fonts');
-  const $imagesTab = $('.tab-content #images');
-  const $spinner = $('#spinner');
-  const $tabPanel = $('#tabpanel');
-  const $tab = $('ul.nav-tabs li a');
-  const $themeButton = $('span.dark-theme');
-  const $pleaseRefresh = $('#please-refresh');
-  const $twitterShareCount = $('.twitter-share-count');
-  const $facebookShareCount = $('.facebook-share-count');
-  const $linkedInShareCount = $('.linkedin-share-count');
-  const $pinterestShareCount = $('.pinterest-share-count');
   return {
-    $colorsTab,
-    $fontsTab,
-    $imagesTab,
-    $spinner,
-    $tabPanel,
-    $tab,
-    $themeButton,
-    $pleaseRefresh,
-    $twitterShareCount,
-    $facebookShareCount,
-    $linkedInShareCount,
-    $pinterestShareCount
+    $colorsTab: $('.tab-content #colors'),
+    $fontsTab: $('.tab-content #fonts'),
+    $imagesTab: $('.tab-content #images'),
+    $spinner: $('#spinner'),
+    $tabPanel: $('#tabpanel'),
+    $tab: $('ul.nav-tabs li a'),
+    $themeButton: $('span.dark-theme'),
+    $pleaseRefresh: $('#please-refresh'),
+    $twitterShareCount: $('.twitter-share-count'),
+    $facebookShareCount: $('.facebook-share-count'),
+    $linkedInShareCount: $('.linkedin-share-count'),
+    $pinterestShareCount: $('.pinterest-share-count')
   };
 }
 

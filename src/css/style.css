@@ -107,6 +107,7 @@ ul.nav-tabs li.active > a:focus {
   display: inline-block;
 }
 
+.tab-pane-toolbar .toolbar-text h3 + span,
 .tab-content .tab-pane h4 + span {
   color: rgba(0, 0, 0, 0.5);
   font-size: 14px;
