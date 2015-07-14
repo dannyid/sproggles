@@ -103,7 +103,11 @@ ul.nav-tabs li.active > a:focus {
   font-size: 20px;
 }
 
-.tab-pane-toolbar-table .toolbar-text span {
+.tab-content .tab-pane h4 {
+  display: inline-block;
+}
+
+.tab-content .tab-pane h4 + span {
   color: rgba(0, 0, 0, 0.5);
   font-size: 14px;
 }
@@ -214,9 +218,6 @@ span.dark-theme.dark {
   width: 100%;
 }
 
-#images-container {
-}
-
 .image-square-container {
   display: inline-block;
   width: 100px;
@@ -224,33 +225,34 @@ span.dark-theme.dark {
   position: relative;
 }
 
-.image-square-container a {
+.tab-content #search {
+  padding: 10px;
+  text-align: center;
 }
 
-.tab-content #search {
+.tab-content #search .serp-container {
   font-family: arial, sans-serif;
   box-shadow: 0 -1px 0 #e5e5e5, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
   overflow: visible;
   width: 522px;
   height: 84px;
-  margin: auto;
-  margin-top: 40px;
   padding: 5px;
   cursor: pointer;
   border: 1px solid transparent;
   transition-property: border;
   transition-duration: 200ms;
+  text-align: left;
+  margin: auto;
 }
 
-.tab-content #search:hover {
+.tab-content #search .serp-container:hover {
   /*border: 1px solid #1e90ff;*/
   border: 1px solid rgba(30, 144, 255, .75);
 }
 
-.tab-content #search.depressed {
+.tab-content #search .serp-container.depressed {
   border: 1px solid rgba(30, 144, 255, .75);
   box-shadow: none;
-  margin-top: 42px;
 }
 
 .tab-content .serp h3 {
@@ -266,10 +268,6 @@ span.dark-theme.dark {
   color: #1a0dab;
   text-decoration: none;
   font-weight: normal;
-}
-
-.tab-content .serp h3 a:hover {
-  text-decoration: underline;
 }
 
 .tab-content .serp .description-container cite {
@@ -317,13 +315,13 @@ span.dark-theme.dark {
   background-size: 800px 74px;
   height: 74px;
   position: relative;
-  margin-left: 4px;
+  margin-left: 0px;
 }
 
 .serp .mask1 {
   position: absolute;
   height: 4px;
-  width: 508px;
+  width: 512px;
   background: #fff;
   top: 0;
   left: 0;
@@ -341,7 +339,7 @@ span.dark-theme.dark {
 .serp .mask3 {
   position: absolute;
   height: 10px;
-  width: 508px;
+  width: 512px;
   background: #fff;
   top: 14px;
   left: 0;
@@ -359,7 +357,7 @@ span.dark-theme.dark {
 .serp .mask5 {
   position: absolute;
   height: 14px;
-  width: 508px;
+  width: 512px;
   background: #fff;
   top: 30px;
   left: 0;
@@ -377,7 +375,7 @@ span.dark-theme.dark {
 .serp .mask7 {
   position: absolute;
   height: 12px;
-  width: 508px;
+  width: 512px;
   background: #fff;
   top: 50px;
   left: 0;
@@ -395,8 +393,34 @@ span.dark-theme.dark {
 .serp .mask9 {
   position: absolute;
   height: 8px;
-  width: 508px;
+  width: 512px;
   background: #fff;
   top: 68px;
   left: 0;
+}
+
+#search .social-counts {
+  width: 522px;
+  margin: 20px auto auto auto;
+  text-align: center;
+}
+
+#search .social-counts table {
+  width: 100%;
+}
+
+#search .social-counts th,
+#search .social-counts td {
+  width: 25%;
+  text-align: center;
+}
+
+#search .social-counts th {
+  background-color: #EEE;
+  border: 1px solid #DDD;
+}
+
+#search .social-counts td {
+  background-color: #FFF;
+  border: 1px solid #EEE;
 }

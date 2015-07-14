@@ -34,5 +34,5 @@
     "activeTab"
   ],
 
-  "content_security_policy": "script-src 'self'; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://api.pinterest.com; object-src 'self'"
 }

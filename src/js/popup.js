@@ -3,10 +3,21 @@ import getColors from './modules/getColors';
 import getFonts from './modules/getFonts';
 import getImages from './modules/getImages';
 import getSerp from './modules/getSerp';
+import getSocialCounts from './modules/getSocialCounts';
 import {colorSquareClickListener, tabClickHandler, themeButtonClickHandler, createSelectors} from './modules/utils';
 
 $(() => {
-  const {$colorsTab, $fontsTab, $imagesTab, $spinner, $tabPanel, $tab, $themeButton, $pleaseRefresh} = createSelectors();
+  const {
+    $colorsTab,
+    $fontsTab,
+    $imagesTab,
+    $spinner,
+    $tabPanel,
+    $tab,
+    $themeButton,
+    $pleaseRefresh
+  } = createSelectors();
+
   const serpUtils = getSerp();
   let tabLoadTimeout = [];
   let giveUpTimeout = 0;
@@ -23,15 +34,18 @@ $(() => {
           const coloredDivs = getColors(response.colors);
           const fontDivs = getFonts(response.fonts);
           const imageDivs = getImages(response.images);
-
-          serpUtils.getJSON(response.url)
-           .done(serpUtils.injectSerp)
-           .fail(serpUtils.injectError)
-           .always(serpUtils.attachClickListeners);
+          const socialCounts = getSocialCounts(response.url);
 
           $colorsTab.append(coloredDivs);
           $fontsTab.append(fontDivs);
           $imagesTab.append(imageDivs);
+
+          serpUtils.getJSON(response.url)
+            .done(serpUtils.injectSerp)
+            .fail(serpUtils.injectError)
+            .always(serpUtils.attachClickListeners);
+
+          socialCounts.getAll();
 
           colorSquareClickListener().attach();
 
