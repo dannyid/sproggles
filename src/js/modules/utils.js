@@ -83,6 +83,10 @@ export function createSelectors() {
   const $tab = $('ul.nav-tabs li a');
   const $themeButton = $('span.dark-theme');
   const $pleaseRefresh = $('#please-refresh');
+  const $twitterShareCount = $('.twitter-share-count');
+  const $facebookShareCount = $('.facebook-share-count');
+  const $linkedInShareCount = $('.linkedin-share-count');
+  const $pinterestShareCount = $('.pinterest-share-count');
   return {
     $colorsTab,
     $fontsTab,
@@ -91,7 +95,11 @@ export function createSelectors() {
     $tabPanel,
     $tab,
     $themeButton,
-    $pleaseRefresh
+    $pleaseRefresh,
+    $twitterShareCount,
+    $facebookShareCount,
+    $linkedInShareCount,
+    $pinterestShareCount
   };
 }
 
