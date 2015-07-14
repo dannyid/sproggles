@@ -22,7 +22,7 @@
 
     `gulp watch`
 
-5. Gulp will create a `dist` folder which will be the entire extension
+5. Gulp will create a `dist` folder which is the entire unpacked extension
 
 6. In Chrome, navigate to `chrome://extensions`
 
@@ -32,6 +32,6 @@
 
 9. Choose the `dist` folder that gulp created earlier
 
-10. Your changes will automatically be processed by gulp and will appear in the `dist` folder
+10. Your changes will automatically be processed by `gulp watch` and will update the `dist` folder every time you save
 
 11. After many of your changes you'll need to click the **refresh** link on the extension on the `chrome://extensions` page or just refresh the whole page
