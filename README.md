@@ -18,14 +18,20 @@
 
     `npm install`
 
-4. Kick off watch task:
+4. Kick off watch task
 
     `gulp watch`
 
-5. Open `chrome://extensions` and click `Load unpacked extension...`
+5. Gulp will create a `dist` folder which will be the entire extension
 
-6. Choose the `dist` folder from this repo
+6. In Chrome, navigate to `chrome://extensions`
 
-7. Your changes will automatically be processed by gulp and will appear in the `dist` folder
+7. Make sure the **Developer mode** checkbox on the top right is checked
 
-8. After many of your changes you'll need to click the `refresh` link on the extension on the `chrome://extensions` page or just refresh the whole page
+8. Click **Load unpacked extension...**
+
+9. Choose the `dist` folder that gulp created earlier
+
+10. Your changes will automatically be processed by gulp and will appear in the `dist` folder
+
+11. After many of your changes you'll need to click the **refresh** link on the extension on the `chrome://extensions` page or just refresh the whole page
