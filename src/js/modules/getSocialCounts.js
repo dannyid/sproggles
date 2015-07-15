@@ -1,11 +1,12 @@
 import $ from 'jquery';
+import humanize from 'humanize';
 import {
-	twitterShareCountUrl,
-	facebookShareCountUrl,
-	facebookLikeCountUrl,
-	linkedInShareCountUrl,
-	pinterestShareCountUrl,
-	googlePlusShareCountUrl
+  twitterShareCountUrl,
+  facebookShareCountUrl,
+  facebookLikeCountUrl,
+  linkedInShareCountUrl,
+  pinterestShareCountUrl,
+  googlePlusShareCountUrl
 } from './constants';
 
 import {createSelectors} from './utils';
@@ -13,90 +14,94 @@ import {createSelectors} from './utils';
 const {$twitterShareCount, $facebookShareCount, $linkedInShareCount, $pinterestShareCount} = createSelectors();
 
 export default (url) => {
-	const getTwitterShareCount = () => {
-		return $.getJSON(twitterShareCountUrl + url);
-	};
+  const formatNum = (num) => {
+    return humanize.numberFormat(num, 0);
+  };
 
-	const twitterShareCountSuccess = (data) => {
-		$twitterShareCount.text(data.count || 0);
-	};
+  const getTwitterShareCount = () => {
+    return $.getJSON(twitterShareCountUrl + url);
+  };
 
-	const twitterShareCountFail = (err) => {
-		console.log(err);
-	};
+  const twitterShareCountSuccess = (data) => {
+    $twitterShareCount.text(formatNum(data.count) || 0);
+  };
 
-
-	const getFacebookShareCount = () => {
-		return $.getJSON(facebookShareCountUrl + url);
-	};
-
-	const facebookShareCountSuccess = (data) => {
-		$facebookShareCount.text(data.shares || 0);
-	};
-
-	const facebookShareCountFail = (err) => {
-		console.log(err);
-	};
+  const twitterShareCountFail = (err) => {
+    console.log(err);
+  };
 
 
-	const getFacebookLikeCount = () => {
-		return $.getJSON(facebookLikeCountUrl + url);
-	};
+  const getFacebookShareCount = () => {
+    return $.getJSON(facebookShareCountUrl + url);
+  };
+
+  const facebookShareCountSuccess = (data) => {
+    $facebookShareCount.text(formatNum(data.shares) || 0);
+  };
+
+  const facebookShareCountFail = (err) => {
+    console.log(err);
+  };
 
 
-	const getLinkedInShareCount = () => {
-		return $.getJSON(linkedInShareCountUrl + url);
-	};
-
-	const linkedInShareCountSuccess = (data) => {
-		$linkedInShareCount.text(data.count || 0);
-	};
-
-	const linkedInShareCountFail = (err) => {
-		console.log(err);
-	};
+  const getFacebookLikeCount = () => {
+    return $.getJSON(facebookLikeCountUrl + url);
+  };
 
 
-	const getPinterestShareCount = () => {
-		return $.ajax({
-			url: pinterestShareCountUrl,
-			dataType: 'jsonp',
-			type: 'GET',
-			data: {
-				url: url
-			}
-		});
-	};
+  const getLinkedInShareCount = () => {
+    return $.getJSON(linkedInShareCountUrl + url);
+  };
 
-	const pinterestShareCountSuccess = (data) => {
-		$pinterestShareCount.text(data.count || 0);
-	};
+  const linkedInShareCountSuccess = (data) => {
+    $linkedInShareCount.text(formatNum(data.count) || 0);
+  };
 
-	const pinterestShareCountFail = (err) => {
-		console.log(err);
-	};
+  const linkedInShareCountFail = (err) => {
+    console.log(err);
+  };
 
-	const getGooglePlusShareCount = () => {
-		return $.getJSON(googlePlusShareCountUrl + url);
-	};
 
-	return {
-		getAll: () => {
-			getTwitterShareCount()
-				.done(twitterShareCountSuccess)
-				.fail(twitterShareCountFail);
+  const getPinterestShareCount = () => {
+    return $.ajax({
+      url: pinterestShareCountUrl,
+      dataType: 'jsonp',
+      type: 'GET',
+      data: {
+        url: url
+      }
+    });
+  };
 
-			getFacebookShareCount()
-				.done(facebookShareCountSuccess)
-				.fail(facebookShareCountFail);
+  const pinterestShareCountSuccess = (data) => {
+    $pinterestShareCount.text(formatNum(data.count) || 0);
+  };
 
-			getLinkedInShareCount()
-				.done(linkedInShareCountSuccess)
-				.fail(linkedInShareCountFail);
+  const pinterestShareCountFail = (err) => {
+    console.log(err);
+  };
 
-			getPinterestShareCount()
-				.done(pinterestShareCountSuccess)
-				.fail(pinterestShareCountFail);
-		}
-	};
+  const getGooglePlusShareCount = () => {
+    return $.getJSON(googlePlusShareCountUrl + url);
+  };
+
+  return {
+    getAll: () => {
+      getTwitterShareCount()
+        .done(twitterShareCountSuccess)
+        .fail(twitterShareCountFail);
+
+      getFacebookShareCount()
+        .done(facebookShareCountSuccess)
+        .fail(facebookShareCountFail);
+
+      getLinkedInShareCount()
+        .done(linkedInShareCountSuccess)
+        .fail(linkedInShareCountFail);
+
+      getPinterestShareCount()
+        .done(pinterestShareCountSuccess)
+        .fail(pinterestShareCountFail);
+    }
+  };
 };

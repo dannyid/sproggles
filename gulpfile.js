@@ -1,11 +1,13 @@
 /**
-npm install --save-dev gulp browserify babelify del vinyl-source-stream gulp-minify-css gulp-concat
+npm install --save-dev gulp gulp-uglify browserify babelify vinyl-buffer del vinyl-source-stream gulp-minify-css gulp-concat
 **/
 
 var gulp = require('gulp');
 var del = require('del');
 var browserify = require('browserify');
 var babelify = require('babelify');
+var buffer = require('vinyl-buffer');
+var uglify = require('gulp-uglify');
 var source = require('vinyl-source-stream');
 var minifyCSS = require('gulp-minify-css');
 var concat = require('gulp-concat');
@@ -81,6 +83,8 @@ gulp.task('js:popup', ['clean:js'], function() {
   .transform(babelify)
   .bundle()
   .pipe(source('popup.js'))
+  // .pipe(buffer())
+  // .pipe(uglify())
   .pipe(gulp.dest(paths.dest.js));
 });
 
@@ -93,6 +97,8 @@ gulp.task('js:contentScript', ['clean:js'], function() {
   .transform(babelify)
   .bundle()
   .pipe(source('contentScript.js'))
+  // .pipe(buffer())
+  // .pipe(uglify())
   .pipe(gulp.dest(paths.dest.js));
 });
 
