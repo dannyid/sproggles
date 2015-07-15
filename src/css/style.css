@@ -10,6 +10,11 @@ ul.nav-tabs li {
   margin: 0;
 }
 
+#spinner img {
+  width: 32px;
+  height: 32px;
+}
+
 input#clipboard {
   position: fixed;
   top: -50px;

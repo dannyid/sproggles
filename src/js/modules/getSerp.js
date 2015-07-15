@@ -61,4 +61,4 @@ export default (url) => {
     .done(injectSerp)
     .fail(injectError)
     .always(attachClickListeners);
-}
+};
