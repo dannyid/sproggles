@@ -18,7 +18,6 @@ $(() => {
     $pleaseRefresh
   } = createSelectors();
 
-  const serpUtils = getSerp();
   let tabLoadTimeout = [];
   let giveUpTimeout = 0;
 
@@ -34,20 +33,15 @@ $(() => {
           const coloredDivs = getColors(response.colors);
           const fontDivs = getFonts(response.fonts);
           const imageDivs = getImages(response.images);
-          const socialCounts = getSocialCounts(response.url);
 
           $colorsTab.append(coloredDivs);
           $fontsTab.append(fontDivs);
           $imagesTab.append(imageDivs);
 
-          serpUtils.getJSON(response.url)
-            .done(serpUtils.injectSerp)
-            .fail(serpUtils.injectError)
-            .always(serpUtils.attachClickListeners);
-
-          socialCounts.getAll();
-
           colorSquareClickListener().attach();
+
+          getSerp(response.url);
+          getSocialCounts(response.url).getAll();
 
           $spinner.hide();
           $pleaseRefresh.hide();

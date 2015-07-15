@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import humanize from 'humanize';
+import {createSelectors} from './utils';
 import {
   twitterShareCountUrl,
   facebookShareCountUrl,
@@ -8,8 +9,6 @@ import {
   pinterestShareCountUrl,
   googlePlusShareCountUrl
 } from './constants';
-
-import {createSelectors} from './utils';
 
 const {$twitterShareCount, $facebookShareCount, $linkedInShareCount, $pinterestShareCount} = createSelectors();
 
