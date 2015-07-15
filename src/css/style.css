@@ -422,11 +422,34 @@ span.dark-theme.dark {
 }
 
 #search .social-counts th {
-  background-color: #EEE;
-  border: 1px solid #DDD;
+  border: 1px solid;
+  color: white;
+  height: 25px;
+  font-size: 16px;
+}
+
+#search .social-counts th.twitter-share-header {
+  background-color: #55acee;
+  border-color: #55acee;
+}
+
+#search .social-counts th.facebook-share-header {
+  background-color: #3b5998;
+  border-color: #3b5998;
+}
+
+#search .social-counts th.linkedin-share-header {
+  background-color: #0077b5;
+  border-color: #0077b5;
+}
+
+#search .social-counts th.pinterest-share-header {
+  background-color: #cc2127;
+  border-color: #cc2127;
 }
 
 #search .social-counts td {
-  background-color: #FFF;
-  border: 1px solid #EEE;
+  border: 1px solid #DDD;
+  height: 35px;
+  font-size: 18px;
 }
