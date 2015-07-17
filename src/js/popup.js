@@ -18,7 +18,7 @@ $(() => {
     $pleaseRefresh
   } = createSelectors();
 
-  let tabLoadTimeout = [];
+  const tabLoadTimeout = [];
   let giveUpTimeout = 0;
 
   $tab.click(tabClickHandler);
@@ -34,11 +34,12 @@ $(() => {
           const fontDivs = getFonts(response.fonts);
           const imageDivs = getImages(response.images);
 
+          /* Inject page data from content script */
           $colorsTab.append(coloredDivs);
+          colorSquareClickListener().attach();
+
           $fontsTab.append(fontDivs);
           $imagesTab.append(imageDivs);
-
-          colorSquareClickListener().attach();
 
           getSerp(response.url);
           getSocialCounts(response.url).getAll();
