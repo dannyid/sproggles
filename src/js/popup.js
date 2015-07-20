@@ -13,9 +13,12 @@ $(() => {
     $imagesTab,
     $spinner,
     $tabPanel,
+    $tabContent,
     $tab,
     $themeButton,
-    $pleaseRefresh
+    $pleaseRefresh,
+    $feedbackButton,
+    $feedbackForm
   } = createSelectors();
 
   const tabLoadTimeout = [];
@@ -48,6 +51,43 @@ $(() => {
           $pleaseRefresh.hide();
           $tabPanel.fadeIn(150);
 
+          $feedbackButton.click((e) => {
+            e.preventDefault();
+            const $this = $(e.currentTarget);
+            const $form = $('.hbspt-form');
+            const $toolbarText = $this.siblings('.toolbar-text');
+            // let oldToolbarText;
+
+            console.log($this.find('img'));
+
+            // console.log(oldToolbarText);
+
+            if ($form.length === 0) {
+              hbspt.forms.create({
+                target: '#feedback-form',
+                portalId: '150905',
+                formId: '2f33e21f-3324-437c-8bee-8cc266fc8296'
+              });
+            }
+
+            if ($feedbackForm.hasClass('active')) {
+              $feedbackForm.removeClass('in active');
+              $feedbackButton.find('img').attr('src', './img/light-bulb-off.png');
+              // $toolbarText.empty().append(oldToolbarText);
+            } else {
+              // oldToolbarText = $toolbarText.html();
+              $feedbackForm.addClass('in active');
+              $feedbackButton.find('img').attr('src', './img/light-bulb-on.png');
+              // $toolbarText.empty().append('<h3>Feedback</h3>');
+            }
+
+            $form.submit(function() {
+              $feedbackForm.removeClass('in active');
+              // $toolbarText.empty().append(oldToolbarText);
+            });
+
+          });
+
           tabLoadTimeout.forEach(clearTimeout);
 
           clearTimeout(giveUpTimeout);
@@ -66,6 +106,6 @@ $(() => {
 
     // If the popup doesn't receive a response in 10 seconds, it gives up and tells you to refresh
     getTabData();
-    giveUpTimeout = setTimeout(giveUp, 10000);
+    giveUpTimeout = setTimeout(giveUp, 6000);
   });
 });

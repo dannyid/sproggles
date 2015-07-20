@@ -15,6 +15,20 @@ ul.nav-tabs li {
   height: 32px;
 }
 
+.feedback-button {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  right: 8px;
+  top: 8px;
+  display: inline-block;
+}
+
+.feedback-button img {
+  width: 28px;
+  height: 28px;
+}
+
 input#clipboard {
   position: fixed;
   top: -50px;
@@ -178,13 +192,13 @@ span.dark-theme.dark {
 
 .alert.copied {
   font-size: 1.5rem;
-  position: relative;
+  position: absolute;
   top: 8px;
-  right: 8px;
+  right:104px;
   padding: 5px;
   margin: 0;
   white-space: nowrap;
-  display: block;
+  display: inline;
   opacity: 0;
   transition-duration: 200ms;
 }
@@ -288,6 +302,43 @@ span.dark-theme.dark {
   line-height: 1.4;
   font-size: small;
   display: block;
+}
+
+.tab-content #feedback-form {
+  position: absolute;
+  z-index: 20;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.tab-content #feedback-form form {
+  margin-left: 55px;
+  margin-top: 5px;
+}
+
+.tab-content #feedback-form fieldset {
+  height: 60px;
+}
+
+.tab-content #feedback-form textarea {
+  width: 97%;
+}
+
+.tab-content #feedback-form .hs_submit .actions {
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.tab-content #feedback-form .hs-error-msgs {
+  display: none !important;
+}
+
+.submitted-message {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 30px;
 }
 
 .noresult {
