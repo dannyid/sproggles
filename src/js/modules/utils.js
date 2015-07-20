@@ -66,6 +66,9 @@ export function tabClickHandler(e) {
   $relatedTabPanel
     .addClass('in active').fadeIn()
     .siblings().removeClass('in active');
+
+  // Turn off lightbulb
+  $('.feedback-button img').attr('src', './img/light-bulb-off.png');
 }
 
 export function themeButtonClickHandler(e) {
@@ -81,13 +84,16 @@ export function createSelectors() {
     $imagesTab: $('.tab-content #images'),
     $spinner: $('#spinner'),
     $tabPanel: $('#tabpanel'),
+    $tabContent: $('.tab-content'),
     $tab: $('ul.nav-tabs li a'),
     $themeButton: $('span.dark-theme'),
     $pleaseRefresh: $('#please-refresh'),
     $twitterShareCount: $('.twitter-share-count'),
     $facebookShareCount: $('.facebook-share-count'),
     $linkedInShareCount: $('.linkedin-share-count'),
-    $pinterestShareCount: $('.pinterest-share-count')
+    $pinterestShareCount: $('.pinterest-share-count'),
+    $feedbackButton: $('.feedback-button'),
+    $feedbackForm: $('.tab-content #feedback-form')
   };
 }
 
