@@ -1,7 +1,7 @@
 import $ from 'jquery';
+import * as mixpanelEvents from './mixpanelEvents';
 
 export function convertRgbToHex(color) {
-  console.log('convert rgb');
   return '#' + color.slice(4, -1).split(',').map((i) => {
     var hexValue = parseInt(i, 10).toString(16).toUpperCase();
     // if the hex value is < 10, add a leading 0
@@ -14,7 +14,7 @@ export function colorSquareClickListener() {
   let timeout = 0;
 
   function copyColorToClipboard(e) {
-    console.log('copied!');
+    console.log('color copied to clipboard');
     const $input = $('input#clipboard');
     const $copied = $('.copied.alert');
     const color = ((colorCode) => {
@@ -28,6 +28,7 @@ export function colorSquareClickListener() {
     // Insert color value text into input box and copy it to the clipboard
     $input.val(color).select();
     document.execCommand('Copy');
+    mixpanelEvents.colorCopied();
 
     // Activate "copied" alert and then fade it out
     $copied.text(`Copied: ${color}`).addClass('active');
@@ -50,34 +51,36 @@ export function tabClickHandler(e) {
   const tabId = $this.attr('href').substr(1);
   const $relatedToolbar = $(`.tab-pane-toolbar #${tabId}`);
   const $relatedTabPanel = $(`.tab-content .tab-pane#${tabId}`);
-  console.log(`Tab #${tabId} has been clicked`);
 
-  // Highlight active tab
+  /* Fire mixpanel event */
+  mixpanelEvents.tabClicked(tabId);
+
+  /* Highlight active tab */
   $this
     .parent().addClass('active').fadeIn()
     .siblings().removeClass('active');
 
-  // Choose proper toolbar
+  /* Choose proper toolbar */
   $relatedToolbar
     .addClass('active').fadeIn()
     .siblings().removeClass('active');
 
-  // Display proper tab content
+  /* Display proper tab content */
   $relatedTabPanel
     .addClass('in active').fadeIn()
     .siblings().removeClass('in active');
 
-  // Turn off lightbulb
+  /* Turn off lightbulb */
   $('.feedback-button img').attr('src', './img/light-bulb-off.png');
 }
 
 export function themeButtonClickHandler(e) {
+  mixpanelEvents.darkThemeClicked();
   $('span.dark-theme').toggleClass('dark');
   $('.tab-content').toggleClass('dark');
 }
 
 export function createSelectors() {
-  console.log('Selectors created.');
   return {
     $colorsTab: $('.tab-content #colors'),
     $fontsTab: $('.tab-content #fonts'),

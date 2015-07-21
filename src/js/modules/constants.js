@@ -6,5 +6,7 @@ export default {
   facebookLikeCountUrl: 'https://graph.facebook.com/',
   googlePlusShareCountUrl: 'https://clients6.google.com/rpc?key=YOUR_API_KEY',
   pinterestShareCountUrl: 'https://api.pinterest.com/v1/urls/count.json',
-  linkedInShareCountUrl: 'https://www.linkedin.com/countserv/count/share?format=json&url='
+  linkedInShareCountUrl: 'https://www.linkedin.com/countserv/count/share?format=json&url=',
+  mixpanelEventUrl: 'http://api.mixpanel.com/track/?data=',
+  mixpanelToken: '4eb3882957d7327aad9ca130a5749082'
 };

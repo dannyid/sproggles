@@ -4,6 +4,7 @@ import getFonts from './modules/getFonts';
 import getImages from './modules/getImages';
 import getSerp from './modules/getSerp';
 import getSocialCounts from './modules/getSocialCounts';
+import * as mixpanelEvents from './modules/mixpanelEvents';
 import {colorSquareClickListener, tabClickHandler, themeButtonClickHandler, createSelectors} from './modules/utils';
 
 $(() => {
@@ -23,6 +24,8 @@ $(() => {
 
   const tabLoadTimeout = [];
   let giveUpTimeout = 0;
+
+  mixpanelEvents.popupOpened();
 
   $tab.click(tabClickHandler);
   $themeButton.click(themeButtonClickHandler);
@@ -53,14 +56,10 @@ $(() => {
 
           $feedbackButton.click((e) => {
             e.preventDefault();
+            mixpanelEvents.feedbackButtonClicked();
             const $this = $(e.currentTarget);
             const $form = $('.hbspt-form');
             const $toolbarText = $this.siblings('.toolbar-text');
-            // let oldToolbarText;
-
-            console.log($this.find('img'));
-
-            // console.log(oldToolbarText);
 
             if ($form.length === 0) {
               hbspt.forms.create({
@@ -73,17 +72,13 @@ $(() => {
             if ($feedbackForm.hasClass('active')) {
               $feedbackForm.removeClass('in active');
               $feedbackButton.find('img').attr('src', './img/light-bulb-off.png');
-              // $toolbarText.empty().append(oldToolbarText);
             } else {
-              // oldToolbarText = $toolbarText.html();
               $feedbackForm.addClass('in active');
               $feedbackButton.find('img').attr('src', './img/light-bulb-on.png');
-              // $toolbarText.empty().append('<h3>Feedback</h3>');
             }
 
             $form.submit(function() {
               $feedbackForm.removeClass('in active');
-              // $toolbarText.empty().append(oldToolbarText);
             });
 
           });
@@ -96,6 +91,8 @@ $(() => {
     };
 
     const giveUp = () => {
+      mixpanelEvents.popupFailed();
+
       $spinner.hide();
       $pleaseRefresh.fadeIn(150);
 
