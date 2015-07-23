@@ -12,7 +12,8 @@
     "react"
   ],
   "globals": {
-    "chrome": true
+    "chrome": true,
+    "hbspt": true
   },
   "rules": {
     "strict": 0,

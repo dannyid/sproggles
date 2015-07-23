@@ -4,8 +4,16 @@ import getFonts from './modules/getFonts';
 import getImages from './modules/getImages';
 import getSerp from './modules/getSerp';
 import getSocialCounts from './modules/getSocialCounts';
+import createForm from './modules/createForm';
+import {createSelectors} from './modules/utils';
 import * as mixpanelEvents from './modules/mixpanelEvents';
-import {colorSquareClickListener, tabClickHandler, themeButtonClickHandler, createSelectors} from './modules/utils';
+import {
+  colorSquareClickListener,
+  tabClickHandler,
+  themeButtonClickHandler,
+  feedbackButtonClickHandler
+} from './modules/clickHandlers';
+
 
 $(() => {
   const {
@@ -19,13 +27,13 @@ $(() => {
     $themeButton,
     $pleaseRefresh,
     $feedbackButton,
-    $feedbackForm
   } = createSelectors();
 
   const tabLoadTimeout = [];
   let giveUpTimeout = 0;
 
   mixpanelEvents.popupOpened();
+  createForm();
 
   $tab.click(tabClickHandler);
   $themeButton.click(themeButtonClickHandler);
@@ -39,6 +47,7 @@ $(() => {
           const coloredDivs = getColors(response.colors);
           const fontDivs = getFonts(response.fonts);
           const imageDivs = getImages(response.images);
+          const $feedbackToolbar = $tabPanel.find('.tab-pane-toolbar #feedback');
 
           /* Inject page data from content script */
           $colorsTab.append(coloredDivs);
@@ -54,34 +63,7 @@ $(() => {
           $pleaseRefresh.hide();
           $tabPanel.fadeIn(150);
 
-          $feedbackButton.click((e) => {
-            e.preventDefault();
-            mixpanelEvents.feedbackButtonClicked();
-            const $this = $(e.currentTarget);
-            const $form = $('.hbspt-form');
-            const $toolbarText = $this.siblings('.toolbar-text');
-
-            if ($form.length === 0) {
-              hbspt.forms.create({
-                target: '#feedback-form',
-                portalId: '150905',
-                formId: '2f33e21f-3324-437c-8bee-8cc266fc8296'
-              });
-            }
-
-            if ($feedbackForm.hasClass('active')) {
-              $feedbackForm.removeClass('in active');
-              $feedbackButton.find('img').attr('src', './img/light-bulb-off.png');
-            } else {
-              $feedbackForm.addClass('in active');
-              $feedbackButton.find('img').attr('src', './img/light-bulb-on.png');
-            }
-
-            $form.submit(function() {
-              $feedbackForm.removeClass('in active');
-            });
-
-          });
+          $feedbackButton.click(feedbackButtonClickHandler);
 
           tabLoadTimeout.forEach(clearTimeout);
 
