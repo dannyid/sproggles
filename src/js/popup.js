@@ -42,6 +42,7 @@ $(() => {
     const getTabData = () => {
       chrome.tabs.sendMessage(tabs[0].id, {get: "pageData"}, (response) => {
         if (typeof response === 'undefined') {
+          chrome.tabs.executeScript(null, {file: "js/contentScript.js"});
           tabLoadTimeout.push(setTimeout(getTabData, 500));
         } else {
           const coloredDivs = getColors(response.colors);
