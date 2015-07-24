@@ -16,7 +16,7 @@ export default (url) => {
     $('.tab-content #search .serp-container').empty().append(
       `<div class="serp">` +
         `<h3>` +
-          `<a target="_blank">${data.title}</a>` +
+          `<a>${data.title}</a>` +
         `</h3>` +
         `<div class="description-container">` +
           `<cite>${data.link}</cite>` +
@@ -31,7 +31,7 @@ export default (url) => {
 
     $('.tab-content #search .serp-container').empty().append(
       `<div class="noresult">` +
-        `<a href="${derivedGoogleSearchUrl}" target="_blank">` +
+        `<a>` +
           `No Google search result for this page.` +
         `</a>`,
       `</div>`

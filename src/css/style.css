@@ -346,12 +346,9 @@ span.dark-theme.dark {
   min-width: 225px;
 }
 
-.noresult a {
-  text-decoration: none;
-}
-
+.noresult a,
 .noresult a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 @-webkit-keyframes theShining {
