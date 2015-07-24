@@ -1,5 +1,6 @@
 import $ from 'jquery';
-import {completeImageUrl, reduceColorsAndFonts} from './modules/utils';
+import {completeImageUrl} from './modules/utils';
+import reduceColorsAndFonts from './modules/reduceColorsAndFonts';
 
 $(() => {
   // Only send gotten fonts and colors upon message from popup.js
