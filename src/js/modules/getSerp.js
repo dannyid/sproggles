@@ -1,22 +1,22 @@
 import $ from 'jquery';
-import {resultDataUrl, googleSearchBaseUrl} from './constants';
+import {RESULT_DATA_URL, GOOGLE_SEARCH_BASE_URL} from './constants';
 
 export default (url) => {
 	var derivedGoogleSearchUrl;
   const getJSON = () => {
     const encodedPageUrl = encodeURIComponent(url);
-    derivedGoogleSearchUrl = googleSearchBaseUrl + encodedPageUrl;
+    derivedGoogleSearchUrl = GOOGLE_SEARCH_BASE_URL + encodedPageUrl;
     console.log('Getting Google search data...');
-    return $.getJSON(resultDataUrl + encodedPageUrl);
+    return $.getJSON(RESULT_DATA_URL + encodedPageUrl);
   };
 
   const injectSerp = (data) => {
-    console.log('AJAX Success');
+    console.log('SERP success!');
 
     $('.tab-content #search .serp-container').empty().append(
       `<div class="serp">` +
         `<h3>` +
-          `<a href="" target="_blank">${data.title}</a>` +
+          `<a target="_blank">${data.title}</a>` +
         `</h3>` +
         `<div class="description-container">` +
           `<cite>${data.link}</cite>` +
@@ -27,7 +27,7 @@ export default (url) => {
   };
 
   const injectError = (jqxhr, textStatus, err) => {
-    console.log('Error: ', err);
+    console.log('SERP error: ', err);
 
     $('.tab-content #search .serp-container').empty().append(
       `<div class="noresult">` +

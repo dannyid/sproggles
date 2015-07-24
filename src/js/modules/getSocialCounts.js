@@ -2,12 +2,12 @@ import $ from 'jquery';
 import humanize from 'humanize';
 import {createSelectors} from './utils';
 import {
-  twitterShareCountUrl,
-  facebookShareCountUrl,
-  facebookLikeCountUrl,
-  linkedInShareCountUrl,
-  pinterestShareCountUrl,
-  googlePlusShareCountUrl
+  TWITTER_SHARE_COUNT_URL,
+  FACEBOOK_SHARE_COUNT_URL,
+  FACEBOOK_LIKE_COUNT_URL,
+  LINKEDIN_SHARE_COUNT_URL,
+  PINTEREST_SHARE_COUNT_URL,
+  GOOGLE_PLUS_SHARE_COUNT_URL
 } from './constants';
 
 const {$twitterShareCount, $facebookShareCount, $linkedInShareCount, $pinterestShareCount} = createSelectors();
@@ -18,7 +18,7 @@ export default (url) => {
   };
 
   const getTwitterShareCount = () => {
-    return $.getJSON(twitterShareCountUrl + url);
+    return $.getJSON(TWITTER_SHARE_COUNT_URL + url);
   };
 
   const twitterShareCountSuccess = (data) => {
@@ -31,7 +31,7 @@ export default (url) => {
 
 
   const getFacebookShareCount = () => {
-    return $.getJSON(facebookShareCountUrl + url);
+    return $.getJSON(FACEBOOK_SHARE_COUNT_URL + url);
   };
 
   const facebookShareCountSuccess = (data) => {
@@ -44,12 +44,12 @@ export default (url) => {
 
 
   const getFacebookLikeCount = () => {
-    return $.getJSON(facebookLikeCountUrl + url);
+    return $.getJSON(FACEBOOK_LIKE_COUNT_URL + url);
   };
 
 
   const getLinkedInShareCount = () => {
-    return $.getJSON(linkedInShareCountUrl + url);
+    return $.getJSON(LINKEDIN_SHARE_COUNT_URL + url);
   };
 
   const linkedInShareCountSuccess = (data) => {
@@ -63,7 +63,7 @@ export default (url) => {
 
   const getPinterestShareCount = () => {
     return $.ajax({
-      url: pinterestShareCountUrl,
+      url: PINTEREST_SHARE_COUNT_URL,
       dataType: 'jsonp',
       type: 'GET',
       data: {
@@ -81,7 +81,7 @@ export default (url) => {
   };
 
   const getGooglePlusShareCount = () => {
-    return $.getJSON(googlePlusShareCountUrl + url);
+    return $.getJSON(GOOGLE_PLUS_SHARE_COUNT_URL + url);
   };
 
   return {

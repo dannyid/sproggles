@@ -1,12 +1,14 @@
+import {REAL_FORM_ID, TEST_FORM_ID} from './constants';
+import prod from './productionCheck';
+
 export default () => {
-  const REAL_FORM_ID = '2f33e21f-3324-437c-8bee-8cc266fc8296';
-  const TEST_FORM_ID = '62052d58-3688-4528-81fc-102ea654df06';
+  const formId = prod() ? REAL_FORM_ID : TEST_FORM_ID;
 
   if (document.getElementsByClassName('hs-form').length === 0) {
     hbspt.forms.create({
       target: '#feedback-form',
       portalId: '150905',
-      formId: REAL_FORM_ID
+      formId: formId
     });
   }
 };

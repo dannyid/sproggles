@@ -4,7 +4,7 @@ import getFonts from './modules/getFonts';
 import getImages from './modules/getImages';
 import getSerp from './modules/getSerp';
 import getSocialCounts from './modules/getSocialCounts';
-import createForm from './modules/createForm';
+import createFeedbackForm from './modules/createFeedbackForm';
 import {createSelectors} from './modules/utils';
 import * as mixpanelEvents from './modules/mixpanelEvents';
 import {
@@ -33,7 +33,7 @@ $(() => {
   let giveUpTimeout = 0;
 
   mixpanelEvents.popupOpened();
-  createForm();
+  createFeedbackForm();
 
   $tab.click(tabClickHandler);
   $themeButton.click(themeButtonClickHandler);
@@ -47,7 +47,6 @@ $(() => {
           const coloredDivs = getColors(response.colors);
           const fontDivs = getFonts(response.fonts);
           const imageDivs = getImages(response.images);
-          const $feedbackToolbar = $tabPanel.find('.tab-pane-toolbar #feedback');
 
           /* Inject page data from content script */
           $colorsTab.append(coloredDivs);
