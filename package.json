@@ -1,6 +1,6 @@
 {
   "name": "sproggles",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "The ultimate marketer's toolbelt",
   "main": "index.js",
   "scripts": {
