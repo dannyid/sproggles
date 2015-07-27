@@ -19,7 +19,8 @@ $(() => {
 
       // Derives all the images and adds them to the reduced result
       images.forEach((i) => {
-        var imageUrl = completeImageUrl($(i).attr('src') || '');
+        const imgSrc = $(i).attr('src') || '';
+        const imageUrl = completeImageUrl(imgSrc);
 
         // Dedupe images and only add one of each
         if (imageUrl && $.inArray(imageUrl, reduced.results.allImages) === -1) {

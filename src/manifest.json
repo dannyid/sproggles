@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Sproggles",
   "description": "Ultimate marketer's toolkit",
-  "version": "0.2.5",
+  "version": "0.2.6",
 
   "background": {
     "scripts": []
