@@ -5,7 +5,7 @@ import getSerp from './getSerp';
 import getSocialCounts from './getSocialCounts';
 import {createSelectors} from './utils';
 import * as mixpanelEvents from './mixpanelEvents';
-import {colorSquareClickListener, feedbackButtonClickHandler} from './clickHandlers';
+import {colorSquareClickListener} from './clickHandlers';
 
 const tabLoadTimeout = [];
 let giveUpTimeout = 0;
@@ -16,8 +16,7 @@ const {
   $imagesTab,
   $spinner,
   $tabPanel,
-  $pleaseRefresh,
-  $feedbackButton,
+  $pleaseRefresh
 } = createSelectors();
 
 const getTabData = (tabs) => {
@@ -43,8 +42,6 @@ const getTabData = (tabs) => {
       $spinner.hide();
       $pleaseRefresh.hide();
       $tabPanel.fadeIn(150);
-
-      $feedbackButton.click(feedbackButtonClickHandler);
 
       tabLoadTimeout.forEach(clearTimeout);
 

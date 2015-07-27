@@ -2,11 +2,11 @@ import $ from 'jquery';
 import createFeedbackForm from './modules/createFeedbackForm';
 import {createSelectors} from './modules/utils';
 import * as mixpanelEvents from './modules/mixpanelEvents';
-import {tabClickHandler, themeButtonClickHandler} from './modules/clickHandlers';
+import {tabClickHandler, themeButtonClickHandler, feedbackButtonClickHandler} from './modules/clickHandlers';
 import queryTab from './modules/queryTab';
 
 $(() => {
-  const {$tab, $themeButton} = createSelectors();
+  const {$tab, $themeButton, $feedbackButton} = createSelectors();
 
   mixpanelEvents.popupOpened();
 
@@ -14,6 +14,7 @@ $(() => {
 
   $tab.click(tabClickHandler);
   $themeButton.click(themeButtonClickHandler);
+  $feedbackButton.click(feedbackButtonClickHandler);
 
   queryTab();
 });
