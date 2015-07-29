@@ -43,7 +43,7 @@ $(() => {
 
   const app = document.createElement('div');
   app.id = 'sproggles-app';
-  document.body.appendChild(app);
+  document.body.insertBefore(app, document.body.firstChild);
 
 
   React.render(
