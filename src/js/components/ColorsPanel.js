@@ -9,7 +9,7 @@ const colorsPanelStyle = {
   width: '300px',
   background: 'white',
   border: '1px solid #CCC',
-  'z-index': 9999999999,
+  'z-index': '9999999999999999 !important',
   'box-shadow': '0 -1px 0 #e5e5e5, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)',
   'padding': '5px',
   'font-size': '16px'
