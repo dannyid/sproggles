@@ -1,43 +1,64 @@
 import React from 'react';
 import Draggable from 'react-draggable';
 
+const important = '!important';
 
 const ColorsPanel = React.createClass({
   getInitialState: function() {
     return {
       open: true
-    }
+    };
   },
 
   getDefaultProps: function() {
     return {
       colorsPanelStyle: {
-        background: 'white',
-        border: '1px solid #CCC',
-        boxShadow: '0 -1px 0 #e5e5e5, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)',
-        fontSize: '16px',
-        fontStyle: 'Helvetica',
-        height: '500px',
-        left: '30px',
-        padding: '5px',
-        position: 'fixed',
-        top: '30px',
-        width: '300px',
-        zIndex: '9999999999999999 !important'
+        background: `white ${important}`,
+        // border: `1px solid #CCC ${important}`,
+        boxShadow: /*0 -1px 0 #e5e5e5,*/ `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24) ${important}`,
+        fontFamily: `Helvetica ${important}`,
+        fontSize: `16px ${important}`,
+        height: `400px ${important}`,
+        left: `10px ${important}`,
+        padding: `0 ${important}`,
+        opacity: `0.98 ${important}`,
+        position: `fixed ${important}`,
+        top: `10px ${important}`,
+        width: `250px ${important}`,
+        zIndex: `9999999999999999 ${important}`
       },
 
       closeButtonStyle: {
-        color: 'dodgerblue',
-        fontSize: '15px',
-        fontFamily: 'Helvetica',
-        height: '7px',
-        position: 'absolute',
-        right: '7px',
-        textDecoration: 'none',
-        transform: 'scaleX(1.3)',
-        top: '-1px',
-        width: '7px'
+        color: `white ${important}`,
+        fontFamily: `Helvetica ${important}`,
+        fontSize: `18px ${important}`,
+        position: `absolute ${important}`,
+        right: `12px ${important}`,
+        textDecoration: `none ${important}`,
+        transform: `scaleX(1.3) ${important}`,
+        top: `6px ${important}`
       },
+
+      panelToolbarStyle: {
+        backgroundColor: `dodgerblue ${important}`,
+        border: `1px solid hsl(210, 100%, 48%) ${important}`,
+        color: `white ${important}`,
+        display: `table-cell ${important}`,
+        fontSize: `20px ${important}`,
+        fontWeight: `400 ${important}`,
+        height: `22px ${important}`,
+        padding: `5px ${important}`,
+        verticalAlign: `middle ${important}`,
+        width: `250px ${important}`
+      },
+
+      panelTextStyle: {
+        display: `block ${important}`,
+        fontFamily: `Helvetica ${important}`,
+        fontSize: `14px ${important}`,
+        margin: `0 ${important}`,
+        padding: `5px ${important}`
+      }
     };
   },
 
@@ -54,26 +75,26 @@ const ColorsPanel = React.createClass({
       return (
         <Draggable>
           <div className="colorsPanel" style={this.props.colorsPanelStyle}>
-            <p>
+            <div className="panelToolbar" style={this.props.panelToolbarStyle}>
+              <span>
+                Colors
+              </span>
+              <a className="closeButton" style={this.props.closeButtonStyle} onClick={this.closePanel} href>
+                x
+              </a>
+            </div>
+            <p style={this.props.panelTextStyle}>
               Hello, I am a React component embedded on the screen!
             </p>
-            <a
-              className="closeButton"
-              style={this.props.closeButtonStyle}
-              onClick={this.closePanel}
-              href>
-              x
-            </a>
           </div>
         </Draggable>
       );
     } else {
-      return(
+      return (
         <span></span>
-      )
+      );
     }
   }
 });
-
 
 export default ColorsPanel;
