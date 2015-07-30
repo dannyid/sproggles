@@ -41,7 +41,7 @@ const ColorsPanel = React.createClass({
     };
   },
 
-  onClick: function(e) {
+  closePanel: function(e) {
     e.preventDefault();
 
     this.setState({
@@ -57,7 +57,11 @@ const ColorsPanel = React.createClass({
             <p>
               Hello, I am a React component embedded on the screen!
             </p>
-            <a href className="closeButton" style={this.props.closeButtonStyle} onClick={this.onClick}>
+            <a
+              className="closeButton"
+              style={this.props.closeButtonStyle}
+              onClick={this.closePanel}
+              href>
               x
             </a>
           </div>
