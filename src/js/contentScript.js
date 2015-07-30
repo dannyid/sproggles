@@ -45,7 +45,6 @@ $(() => {
   app.id = 'sproggles-app';
   document.body.insertBefore(app, document.body.firstChild);
 
-
   React.render(
     <ColorsPanel />,
     document.getElementById('sproggles-app')
