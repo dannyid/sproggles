@@ -4,39 +4,43 @@ import Draggable from 'react-draggable';
 const important = '!important';
 
 const ColorsPanel = React.createClass({
-  getInitialState: function() {
-    return {
-      open: true
-    };
-  },
-
   getDefaultProps: function() {
     return {
       colorsPanelStyle: {
-        background: `white ${important}`,
-        // border: `1px solid #CCC ${important}`,
-        boxShadow: /*0 -1px 0 #e5e5e5,*/ `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24) ${important}`,
-        fontFamily: `Helvetica ${important}`,
-        fontSize: `16px ${important}`,
-        height: `400px ${important}`,
-        left: `10px ${important}`,
-        padding: `0 ${important}`,
-        opacity: `0.98 ${important}`,
-        position: `fixed ${important}`,
-        top: `10px ${important}`,
-        width: `250px ${important}`,
-        zIndex: `9999999999999999 ${important}`
+        base: {
+          background: `white ${important}`,
+          // border: `1px solid #CCC ${important}`,
+          boxShadow: /*0 -1px 0 #e5e5e5,*/ `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24) ${important}`,
+          fontFamily: `Helvetica ${important}`,
+          fontSize: 16,
+          left: 10,
+          padding: 0,
+          opacity: 0.98,
+          overflow: `hidden ${important}`,
+          position: `fixed ${important}`,
+          top: 10,
+          width: 250,
+          zIndex: `9999999999999999 ${important}`
+        },
+
+        opened: {
+          height: 400
+        },
+
+        closed: {
+          height: 37
+        }
       },
 
       closeButtonStyle: {
         color: `white ${important}`,
         fontFamily: `Helvetica ${important}`,
-        fontSize: `18px ${important}`,
+        fontSize: 18,
         position: `absolute ${important}`,
-        right: `12px ${important}`,
+        right: 12,
         textDecoration: `none ${important}`,
         transform: `scaleX(1.3) ${important}`,
-        top: `6px ${important}`
+        top: 6
       },
 
       panelToolbarStyle: {
@@ -62,38 +66,45 @@ const ColorsPanel = React.createClass({
     };
   },
 
-  closePanel: function(e) {
+  getInitialState: function() {
+    return {
+      isOpen: true
+    };
+  },
+
+  togglePanel: function(e) {
     e.preventDefault();
 
     this.setState({
-      open: false
+      isOpen: !this.state.isOpen
     });
   },
 
   render: function() {
-    if (this.state.open) {
-      return (
-        <Draggable>
-          <div className="colorsPanel" style={this.props.colorsPanelStyle}>
-            <div className="panelToolbar" style={this.props.panelToolbarStyle}>
-              <span>
-                Colors
-              </span>
-              <a className="closeButton" style={this.props.closeButtonStyle} onClick={this.closePanel} href>
-                x
-              </a>
-            </div>
-            <p style={this.props.panelTextStyle}>
-              Hello, I am a React component embedded on the screen!
-            </p>
+    const style = Object.assign({}, this.props.colorsPanelStyle.base,
+      this.state.isOpen
+      ? this.props.colorsPanelStyle.opened
+      : this.props.colorsPanelStyle.closed);
+
+    console.log(style);
+
+    return (
+      <Draggable>
+        <div style={style}>
+          <div className="panelToolbar" style={this.props.panelToolbarStyle}>
+            <span>
+              Colors
+            </span>
+            <a className="closeButton" style={this.props.closeButtonStyle} onClick={this.togglePanel} href>
+              x
+            </a>
           </div>
-        </Draggable>
-      );
-    } else {
-      return (
-        <span></span>
-      );
-    }
+          <p style={this.props.panelTextStyle}>
+            Hello, I am a React component embedded on the screen!
+          </p>
+        </div>
+      </Draggable>
+    );
   }
 });
 

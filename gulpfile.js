@@ -6,6 +6,7 @@ var gulp = require('gulp');
 var del = require('del');
 var browserify = require('browserify');
 var babelify = require('babelify');
+
 var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
 var source = require('vinyl-source-stream');
@@ -80,7 +81,9 @@ gulp.task('js:popup', ['clean:js'], function() {
     extensions: ['.js'],
     debug: true
   })
-  .transform(babelify)
+  .transform(babelify.configure({
+    plugins: ["object-assign"]
+  }))
   .bundle()
   .pipe(source('popup.js'))
   // .pipe(buffer())
@@ -94,7 +97,9 @@ gulp.task('js:contentScript', ['clean:js'], function() {
     extensions: ['.js'],
     debug: true
   })
-  .transform(babelify)
+  .transform(babelify.configure({
+    plugins: ["object-assign"]
+  }))
   .bundle()
   .pipe(source('contentScript.js'))
   // .pipe(buffer())
