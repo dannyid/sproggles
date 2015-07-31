@@ -453,13 +453,15 @@ span.dark-theme.dark {
   left: 0;
 }
 
-#search .social-counts {
+#search .social-counts,
+#search .derived-keywords {
   width: 522px;
   margin: 20px auto auto auto;
   text-align: center;
 }
 
-#search .social-counts table {
+#search .social-counts table,
+#search .derived-keywords table {
   width: 100%;
 }
 
@@ -469,11 +471,25 @@ span.dark-theme.dark {
   text-align: center;
 }
 
+#search .derived-keywords th, 
+#search .derived-keywords td {
+  width: 33.3%;
+  text-align: center;
+}
+
 #search .social-counts th {
   border: 1px solid;
   color: white;
   height: 25px;
   font-size: 16px;
+}
+
+#search .derived-keywords th {
+  background-color: #DDD;
+  border: 1px solid #DDD;
+  color: black;
+  height: 25px;
+  font-size: 16px; 
 }
 
 #search .social-counts th.twitter-share-header {
@@ -496,8 +512,16 @@ span.dark-theme.dark {
   border-color: #cc2127;
 }
 
-#search .social-counts td {
+#search .social-counts td,
+#search .derived-keywords td {
   border: 1px solid #DDD;
   height: 35px;
   font-size: 18px;
 }
+
+#search .derived-keywords td:nth-child(1) {
+  text-align: left;
+  padding: 5px;
+  font-size: 16px;
+}
+

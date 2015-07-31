@@ -3,6 +3,7 @@ import getFonts from './getFonts';
 import getImages from './getImages';
 import getSerp from './getSerp';
 import getSocialCounts from './getSocialCounts';
+import getKeywords from './getKeywords';
 import {createSelectors} from './utils';
 import * as mixpanelEvents from './mixpanelEvents';
 import {colorSquareClickListener} from './clickHandlers';
@@ -38,6 +39,9 @@ const getTabData = (tabs) => {
 
       getSerp(response.url);
       getSocialCounts(response.url).getAll();
+      getKeywords(response.url);
+      // get rank
+      // get search volume
 
       $spinner.hide();
       $pleaseRefresh.hide();

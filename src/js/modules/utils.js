@@ -25,7 +25,8 @@ export function createSelectors() {
     $pinterestShareCount: $('.pinterest-share-count'),
     $feedbackButton: $('.feedback-button'),
     $feedbackForm: $('.tab-content #feedback-form'),
-    $feedbackToolbar: $('#tabpanel .tab-pane-toolbar #feedback')
+    $feedbackToolbar: $('#tabpanel .tab-pane-toolbar #feedback'),
+    $derivedKeywords: $('.derived-keywords')
   };
 }
 
