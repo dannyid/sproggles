@@ -1,7 +1,10 @@
 import React from 'react';
 import Draggable from 'react-draggable';
+import ColorSquare from './ColorSquare';
 
 const important = '!important';
+
+// const colors = ['#CCC', '#999', '#333', '#CCC', '#CCC'];
 
 const ColorsPanel = React.createClass({
   getInitialState: function() {
@@ -23,20 +26,10 @@ const ColorsPanel = React.createClass({
         padding: `0 ${important}`,
         opacity: `0.98 ${important}`,
         position: `fixed ${important}`,
+        textAlign: `left ${important}`,
         top: `10px ${important}`,
         width: `250px ${important}`,
         zIndex: `9999999999999999 ${important}`
-      },
-
-      closeButtonStyle: {
-        color: `white ${important}`,
-        fontFamily: `Helvetica ${important}`,
-        fontSize: `18px ${important}`,
-        position: `absolute ${important}`,
-        right: `12px ${important}`,
-        textDecoration: `none ${important}`,
-        transform: `scaleX(1.3) ${important}`,
-        top: `6px ${important}`
       },
 
       panelToolbarStyle: {
@@ -50,6 +43,17 @@ const ColorsPanel = React.createClass({
         padding: `5px ${important}`,
         verticalAlign: `middle ${important}`,
         width: `250px ${important}`
+      },
+
+      closeButtonStyle: {
+        color: `white ${important}`,
+        fontFamily: `Helvetica ${important}`,
+        fontSize: `18px ${important}`,
+        position: `absolute ${important}`,
+        right: `12px ${important}`,
+        textDecoration: `none ${important}`,
+        transform: `scaleX(1.3) ${important}`,
+        top: `6px ${important}`
       },
 
       panelTextStyle: {
@@ -83,9 +87,15 @@ const ColorsPanel = React.createClass({
                 x
               </a>
             </div>
+
             <p style={this.props.panelTextStyle}>
               Hello, I am a React component embedded on the screen!
             </p>
+            {this.props.colors.map(function(color){
+              return (
+                <ColorSquare color={color}/>
+              );
+            })}
           </div>
         </Draggable>
       );

@@ -30,6 +30,15 @@ $(() => {
         }
       });
 
+      const app = document.createElement('div');
+      app.id = 'sproggles-app';
+      document.body.insertBefore(app, document.body.firstChild);
+
+      React.render(
+        <ColorsPanel colors={reduced.results.allColors} />,
+        document.getElementById('sproggles-app')
+      );
+
       console.log(reduced);
       // Send data to popup.js
       sendResponse({
@@ -40,13 +49,4 @@ $(() => {
       });
     }
   });
-
-  const app = document.createElement('div');
-  app.id = 'sproggles-app';
-  document.body.insertBefore(app, document.body.firstChild);
-
-  React.render(
-    <ColorsPanel />,
-    document.getElementById('sproggles-app')
-  );
 });
