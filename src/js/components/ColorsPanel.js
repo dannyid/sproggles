@@ -87,13 +87,11 @@ const ColorsPanel = React.createClass({
       ? this.props.styles.colorsPanelStyle.opened
       : this.props.styles.colorsPanelStyle.closed;
 
-    const style = preNormalize(this.props.styles.colorsPanelStyle.base, openState);
-
     console.log(style);
 
     return (
       <Draggable>
-        <div style={style}>
+        <div style={preNormalize(this.props.styles.colorsPanelStyle.base, openState)}>
           <div className="panelToolbar" style={preNormalize(this.props.styles.panelToolbarStyle)}>
             <span>
               Colors
