@@ -37,3 +37,40 @@ export function completeImageUrl(imageUrl) {
   }
   return imageUrl;
 }
+
+export function preNormalize(...styles) {
+  const normalize = {
+    all: 'initial',
+    azimuth: 'center',
+    borderCollapse: 'separate',
+    borderSpacing: 0,
+    captionSide: 'top',
+    color: 'black',
+    cursor: 'auto',
+    direction: 'ltr',
+    elevation: '',
+    emptyCells: 'show',
+    font: '',
+    fontFamily: 'sans-serif',
+    fontSize: 'medium',
+    fontStyle: 'normal',
+    fontVariant: 'normal',
+    fontWeight: 'normal',
+    letterSpacing: 'normal',
+    lineHeight: 'normal',
+    listStyleImage: 'none',
+    listStylePosition: 'outside',
+    listStyleType: 'disc',
+    orphans: 2,
+    textAlign: 'left',
+    textIndent: 0,
+    textTransform: 'none',
+    visibility: 'visible',
+    whiteSpace: 'normal',
+    widows: 2,
+    wordSpacing: 'normal'
+  };
+
+  // Object.assign requires a gulp-babel plugin to function
+  return Object.assign({}, normalize, ...styles);
+}
