@@ -87,8 +87,6 @@ const ColorsPanel = React.createClass({
       ? this.props.styles.colorsPanelStyle.opened
       : this.props.styles.colorsPanelStyle.closed;
 
-    console.log(style);
-
     return (
       <Draggable>
         <div style={preNormalize(this.props.styles.colorsPanelStyle.base, openState)}>
