@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import React from 'react';
+import ColorsPanel from './components/ColorsPanel.js';
 import {completeImageUrl} from './modules/utils';
 import reduceColorsAndFonts from './modules/reduceColorsAndFonts';
 
@@ -39,3 +41,12 @@ $(() => {
     }
   });
 });
+
+const app = document.createElement('div');
+app.id = 'sproggles-app';
+document.body.insertBefore(app, document.body.firstChild);
+
+React.render(
+  <ColorsPanel />,
+  document.getElementById('sproggles-app')
+);

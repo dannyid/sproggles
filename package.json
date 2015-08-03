@@ -1,6 +1,6 @@
 {
   "name": "sproggles",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "The ultimate marketer's toolbelt",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,9 @@
   "author": "Danny Shekhtman",
   "license": "ISC",
   "devDependencies": {
+    "babel": "^5.8.19",
+    "babel-core": "^5.8.19",
+    "babel-plugin-object-assign": "^1.2.1",
     "babelify": "^6.1.2",
     "browser-sync": "^2.7.13",
     "browserify": "^10.2.4",
@@ -24,6 +27,8 @@
   },
   "dependencies": {
     "humanize": "0.0.9",
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "react": "^0.13.3",
+    "react-draggable": "^0.8.1"
   }
 }
