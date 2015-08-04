@@ -17,7 +17,12 @@
   "content_scripts": [{
     "matches": ["<all_urls>"],
     "js": ["js/contentScript.js"]
-  }],
+  },
+  {
+    "matches": ["*://www.google.com/search*"],
+    "js": ["js/google-search-content-script.js"]
+  }
+  ],
 
   "icons": {
     "16": "img/logo-16.png",
