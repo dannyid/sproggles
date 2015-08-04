@@ -8,6 +8,7 @@
   },
   "author": "Danny Shekhtman",
   "license": "ISC",
+  "repository": "git@github.com:HubLab/sproggles.git",
   "devDependencies": {
     "babelify": "^6.1.2",
     "browser-sync": "^2.7.13",
