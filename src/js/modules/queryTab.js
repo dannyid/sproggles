@@ -4,6 +4,8 @@ import getImages from './getImages';
 import getSerp from './getSerp';
 import getSocialCounts from './getSocialCounts';
 import getKeywords from './getKeywords';
+import getRanks from './getRanks';
+import getVolumes from './getVolumes';
 import {createSelectors} from './utils';
 import * as mixpanelEvents from './mixpanelEvents';
 import {colorSquareClickListener} from './clickHandlers';
@@ -37,10 +39,13 @@ const getTabData = (tabs) => {
       $fontsTab.append(fontDivs);
       $imagesTab.append(imageDivs);
 
-      getSerp(response.url);
-      getSocialCounts(response.url).getAll();
-      getKeywords(response.url);
-      // get rank
+      // getSerp(response.url);
+      // getSocialCounts(response.url).getAll();
+      getKeywords(response.url)
+      .then(getVolumes, function(e) {return console.log("this is exploding", e); })
+      .then(getRanks, function(e) {return console.log("this, as well, is exploding", e); })
+      .then(function(e){console.log(e); });
+      // get ranksiqqq
       // get search volume
 
       $spinner.hide();

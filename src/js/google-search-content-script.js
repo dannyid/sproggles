@@ -22,8 +22,11 @@ $(() => {
 
   const message = {
     type: 'rank',
-    results: formattedResults
+    keyword: window.location.search.slice(1).split('&').filter(param => param.indexOf('q=') > -1)[0].split('=')[1],
+    results: $.makeArray(formattedResults)
   };
+
+  console.log(message);
   chrome.runtime.sendMessage(message);
   console.log('Fired off rank data');
 });

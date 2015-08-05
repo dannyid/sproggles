@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "humanize": "0.0.9",
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "q": "^1.4.1"
   }
 }
