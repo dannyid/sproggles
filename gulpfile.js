@@ -34,6 +34,12 @@ var paths = {
     contentScript: [
       './src/js/contentScript.js'
     ],
+    googleSearchContentScript: [
+      './src/js/google-search-content-script.js'
+    ],
+    background: [
+      './src/js/background.js'
+    ],
     html: [
       './src/*.html'
     ],
@@ -102,7 +108,35 @@ gulp.task('js:contentScript', ['clean:js'], function() {
   .pipe(gulp.dest(paths.dest.js));
 });
 
-gulp.task('js', ['js:popup', 'js:contentScript']);
+gulp.task('js:googleSearchContentScript', ['clean:js'], function() {
+  return browserify({
+    entries: paths.src.googleSearchContentScript,
+    extensions: ['.js'],
+    debug: true
+  })
+  .transform(babelify)
+  .bundle()
+  .pipe(source('google-search-content-script.js'))
+  // .pipe(buffer())
+  // .pipe(uglify())
+  .pipe(gulp.dest(paths.dest.js));
+});
+
+gulp.task('js:background', ['clean:js'], function() {
+  return browserify({
+    entries: paths.src.background,
+    extensions: ['.js'],
+    debug: true
+  })
+  .transform(babelify)
+  .bundle()
+  .pipe(source('background.js'))
+  // .pipe(buffer())
+  // .pipe(uglify())
+  .pipe(gulp.dest(paths.dest.js));
+});
+
+gulp.task('js', ['js:popup', 'js:contentScript', 'js:googleSearchContentScript', 'js:background']);
 
 
 /********************

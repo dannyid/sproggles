@@ -2,10 +2,10 @@
   "manifest_version": 2,
   "name": "Sproggles",
   "description": "Ultimate marketer's toolkit",
-  "version": "0.2.6",
+  "version": "0.2.7",
 
   "background": {
-    "scripts": []
+    "scripts": ["js/background.js"]
   },
 
   "browser_action": {
@@ -34,5 +34,5 @@
     "activeTab"
   ],
 
-  "content_security_policy": "script-src 'self' https://api.pinterest.com https://*.hsforms.net https://*.hubspot.com https://*.hubapi.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://api.pinterest.com https://*.hsforms.net https://*.hubspot.com https://*.hubapi.com https://www.google.com; object-src 'self'"
 }

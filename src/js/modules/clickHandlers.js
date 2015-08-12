@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import * as mixpanelEvents from './mixpanelEvents';
 import {convertRgbToHex, createSelectors} from './utils';
+import openSecretGoogleWindow from './openSecretGoogleWindow';
 
 export function colorSquareClickListener() {
   const $colorSquare = $('.color-square');

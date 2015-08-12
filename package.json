@@ -1,6 +1,6 @@
 {
   "name": "sproggles",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "The ultimate marketer's toolbelt",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,7 @@
   },
   "author": "Danny Shekhtman",
   "license": "ISC",
+  "repository": "git@github.com:HubLab/sproggles.git",
   "devDependencies": {
     "babelify": "^6.1.2",
     "browser-sync": "^2.7.13",
@@ -24,6 +25,7 @@
   },
   "dependencies": {
     "humanize": "0.0.9",
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "q": "^1.4.1"
   }
 }
