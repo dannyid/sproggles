@@ -1,6 +1,7 @@
 import searchGoogle from './modules/searchGoogle';
 import calculateRankFromSerp from './modules/calculateRankFromSerp';
 import {getSingleKeywordVolume} from './modules/getVolume';
+import {uuid} from './modules/utils';
 import Q from 'q';
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

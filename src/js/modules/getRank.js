@@ -1,7 +1,3 @@
-import openSecretGoogleWindow from './openSecretGoogleWindow';
-import openSecretGoogleTab from './openSecretGoogleTab';
-import Q from 'q';
-
 export default (results, url) => {
   let rank = null;
   const parsedUrl = url.slice(url.indexOf('//') + 2);
