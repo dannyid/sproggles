@@ -17,12 +17,7 @@
   "content_scripts": [{
     "matches": ["<all_urls>"],
     "js": ["js/contentScript.js"]
-  },
-  {
-    "matches": ["*://www.google.com/search*"],
-    "js": ["js/google-search-content-script.js"]
-  }
-  ],
+  }],
 
   "icons": {
     "16": "img/logo-16.png",
@@ -39,5 +34,5 @@
     "activeTab"
   ],
 
-  "content_security_policy": "script-src 'self' https://api.pinterest.com https://*.hsforms.net https://*.hubspot.com https://*.hubapi.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://api.pinterest.com https://*.hsforms.net https://*.hubspot.com https://*.hubapi.com https://www.google.com; object-src 'self'"
 }

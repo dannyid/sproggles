@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Sproggles</title>
-		<link rel="stylesheet" href="css/style.min.css">
-	</head>
-	<body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sproggles</title>
+    <link rel="stylesheet" href="css/style.min.css">
+  </head>
+  <body>
     <input type="text" id="clipboard"></input>
     <div id="spinner">
       <img src="img/loading-square.gif" />
@@ -20,7 +20,7 @@
     <div role="tabpanel" id="tabpanel">
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
+        <li role="presentation" class="">
           <a href="#colors" aria-controls="color" role="tab" data-toggle="tab">
             <img src="img/colors.svg" alt="colors">
           </a>
@@ -162,7 +162,13 @@
             </table>
           </div>
           <div class="derived-keywords">
-            <h4>On-page Keywords</h4>
+            <h4>Real-time Keyword Research</h4>
+            <form>
+              <label for="keyword">Search keyword:
+                <input name="keyword" type="text" />
+              </label>
+              <button type="submit">Search</button>
+            </form>
             <table>
               <tr>
                 <th class="keyword-name-header">Keyword</th>
@@ -175,9 +181,9 @@
       </div>
     </div>
 
-		<div style="clear: both;"></div>
+    <div style="clear: both;"></div>
 
     <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
-		<script type="text/javascript" src="js/popup.js"></script>
-	</body>
+    <script type="text/javascript" src="js/popup.js"></script>
+  </body>
 </html>

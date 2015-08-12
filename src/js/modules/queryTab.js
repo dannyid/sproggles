@@ -1,62 +1,28 @@
-import getColors from './getColors';
-import getFonts from './getFonts';
-import getImages from './getImages';
-import getSerp from './getSerp';
-import getSocialCounts from './getSocialCounts';
-import getKeywords from './getKeywords';
-import getRanks from './getRanks';
-import getVolumes from './getVolumes';
-import {createSelectors} from './utils';
 import * as mixpanelEvents from './mixpanelEvents';
-import {colorSquareClickListener} from './clickHandlers';
+import {createSelectors} from './utils';
+import Q from 'q';
 
 const tabLoadTimeout = [];
 let giveUpTimeout = 0;
 
 const {
-  $colorsTab,
-  $fontsTab,
-  $imagesTab,
   $spinner,
-  $tabPanel,
   $pleaseRefresh
 } = createSelectors();
 
 const getTabData = (tabs) => {
+  const deferred = Q.defer();
+
   chrome.tabs.sendMessage(tabs[0].id, {get: "pageData"}, (response) => {
     if (typeof response === 'undefined') {
       chrome.tabs.executeScript(null, {file: "js/contentScript.js"});
       tabLoadTimeout.push(setTimeout(getTabData, 500));
     } else {
-      const coloredDivs = getColors(response.colors);
-      const fontDivs = getFonts(response.fonts);
-      const imageDivs = getImages(response.images);
-
-      /* Inject page data from content script */
-      $colorsTab.append(coloredDivs);
-      colorSquareClickListener().attach();
-
-      $fontsTab.append(fontDivs);
-      $imagesTab.append(imageDivs);
-
-      // getSerp(response.url);
-      // getSocialCounts(response.url).getAll();
-      getKeywords(response.url)
-      .then(getVolumes, function(e) {return console.log("this is exploding", e); })
-      .then(getRanks, function(e) {return console.log("this, as well, is exploding", e); })
-      .then(function(e){console.log(e); });
-      // get ranksiqqq
-      // get search volume
-
-      $spinner.hide();
-      $pleaseRefresh.hide();
-      $tabPanel.fadeIn(150);
-
-      tabLoadTimeout.forEach(clearTimeout);
-
-      clearTimeout(giveUpTimeout);
+      deferred.resolve(response);
     }
   });
+
+  return deferred.promise;
 };
 
 const giveUp = () => {
@@ -69,8 +35,17 @@ const giveUp = () => {
 };
 
 export default () => {
+  const deferred = Q.defer();
+
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-    getTabData(tabs);
+    getTabData(tabs).then(tabData => {
+      deferred.resolve(tabData);
+      tabLoadTimeout.forEach(clearTimeout);
+      clearTimeout(giveUpTimeout);
+    });
+
     giveUpTimeout = setTimeout(giveUp, 6000);
   });
+
+  return deferred.promise;
 };
