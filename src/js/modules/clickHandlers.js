@@ -21,7 +21,7 @@ export function colorSquareClickListener() {
     // Insert color value text into input box and copy it to the clipboard
     $input.val(color).select();
     document.execCommand('Copy');
-    mixpanelEvents.colorCopied();
+    mixpanelEvents.colorCopied(color);
 
     // Activate "copied" alert and then fade it out
     $copied.text(`Copied: ${color}`).addClass('active');
