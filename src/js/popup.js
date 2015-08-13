@@ -52,8 +52,8 @@ $(() => {
     $pleaseRefresh.hide();
     $tabPanel.fadeIn(150);
 
-    // getSerp(response.url);
-    // getSocialCounts(response.url).getAll();
+    getSerp(response.url);
+    getSocialCounts(response.url).getAll();
 
     $keywordForm.submit(e => {
       e.preventDefault();
