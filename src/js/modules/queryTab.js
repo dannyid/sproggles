@@ -10,17 +10,23 @@ const {
   $pleaseRefresh
 } = createSelectors();
 
-const getTabData = (tabs) => {
+const getTabData = tabId => {
   const deferred = Q.defer();
-  const tabId = tabs[0].id;
-  chrome.tabs.sendMessage(tabId, {get: "pageData"}, (response) => {
-    if (typeof response === 'undefined') {
-      chrome.tabs.executeScript(null, {file: "js/contentScript.js"});
-      tabLoadTimeout.push(setTimeout(getTabData, 500));
-    } else {
-      deferred.resolve(response);
-    }
-  });
+
+  const sendMessage = () => {
+    chrome.tabs.sendMessage(tabId, {get: "pageData"}, response => {
+      if (typeof response === 'undefined') {
+        chrome.tabs.executeScript(null, {file: "js/contentScript.js"});
+        tabLoadTimeout.push(setTimeout(() => {
+          sendMessage(tabId); // Try again
+        }, 500));
+      } else {
+        deferred.resolve(response);
+      }
+    });
+  };
+
+  sendMessage();
 
   return deferred.promise;
 };
@@ -36,8 +42,11 @@ const giveUp = () => {
 
 export default () => {
   const deferred = Q.defer();
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-    getTabData(tabs).then(tabData => {
+
+  chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+    const tabId = tabs[0].id;
+
+    getTabData(tabId).then(tabData => {
       deferred.resolve(tabData);
       tabLoadTimeout.forEach(clearTimeout);
       clearTimeout(giveUpTimeout);
