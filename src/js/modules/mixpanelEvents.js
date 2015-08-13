@@ -24,7 +24,7 @@ function createEvent(eventName) {
   return (specificElement) => {
     createEventJSON(eventName, specificElement)
     .then(eventData => {
-      if (!prod()) {
+      if (prod()) {
         $get(MIXPANEL_EVENT_URL + eventData, function(data) {
           console.log('Mixpanel event fired:', eventName);
         });
