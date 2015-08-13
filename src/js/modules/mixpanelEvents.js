@@ -1,79 +1,54 @@
 import {get as $get} from 'jquery';
 import prod from './productionCheck';
 import {MIXPANEL_EVENT_URL, MIXPANEL_TOKEN} from './constants';
+import Q from 'q';
 
-function createEventJSON(eventName) {
-  return window.btoa(`{
-    "event": "${eventName}",
-    "properties": {
-      "token": "${MIXPANEL_TOKEN}"
-    }
-  }`);
+function createEventJSON(eventName, specificElement) {
+  let deferred = Q.defer();
+
+  chrome.storage.sync.get('uuid', storage => {
+    deferred.resolve(window.btoa(`{
+      "event": "${eventName}",
+      "properties": {
+        "token": "${MIXPANEL_TOKEN}",
+        "uuid": "${storage.uuid}",
+        "specificElement": "${specificElement}"
+      }
+    }`));
+  });
+
+  return deferred.promise;
 }
 
-export function tabClicked(tabId) {
-  const eventData = createEventJSON(`Clicked ${tabId} tab`);
-  if (prod()) {
-    $get(MIXPANEL_EVENT_URL + eventData, function(data) {
-      console.log('Mixpanel click event fired: ', data);
+function createEvent(eventName) {
+  return (specificElement) => {
+    createEventJSON(eventName, specificElement)
+    .then(eventData => {
+      if (!prod()) {
+        $get(MIXPANEL_EVENT_URL + eventData, function(data) {
+          console.log('Mixpanel event fired:', eventName);
+        });
+      } else {
+        console.log(`'${eventName}' event not fired (because in QA)`);
+      }
     });
-  } else {
-    console.log('In QA so no event fired');
-  }
+  };
 }
 
-export function popupOpened() {
-  const eventData = createEventJSON(`Popup opened`);
-  if (prod()) {
-    $get(MIXPANEL_EVENT_URL + eventData, function(data) {
-      console.log('Mixpanel popup open event fired: ', data);
-    });
-  } else {
-    console.log('In QA so no event fired');
-  }
-}
+export const tabClicked = createEvent('Tab clicked');
 
-export function popupFailed() {
-  const eventData = createEventJSON(`Popup failed`);
-  if (prod()) {
-    $get(MIXPANEL_EVENT_URL + eventData, function(data) {
-      console.log('Mixpanel popup failed event fired: ', data);
-    });
-  } else {
-    console.log('In QA so no event fired');
-  }
-}
+export const popupOpened = createEvent('Popup opened');
 
-export function darkThemeClicked() {
-  const eventData = createEventJSON(`Dark theme clicked`);
-  if (prod()) {
-    $get(MIXPANEL_EVENT_URL + eventData, function(data) {
-      console.log('Mixpanel dark theme click event fired: ', data);
-    });
-  } else {
-    console.log('In QA so no event fired');
-  }
-}
+export const popupFailed = createEvent('Popup failed');
 
-export function feedbackButtonClicked() {
-  const eventData = createEventJSON(`Feedback button clicked`);
-  if (prod()) {
-    $get(MIXPANEL_EVENT_URL + eventData, function(data) {
-      console.log('Mixpanel feedback button click event fired: ', data);
-    });
-  } else {
-    console.log('In QA so no event fired');
-  }
-}
+export const darkThemeClicked = createEvent('Dark theme clicked');
 
-export function colorCopied() {
-  const eventData = createEventJSON(`Color copied to clipboard`);
-  if (prod()) {
-    $get(MIXPANEL_EVENT_URL + eventData, function(data) {
-      console.log('Mixpanel color copied to clipboard event fired: ', data);
-    });
-  } else {
-    console.log('In QA so no event fired');
-  }
-}
+export const feedbackButtonClicked = createEvent('Feedback button clicked');
 
+export const colorCopied = createEvent('Color copied to clipboard');
+
+export const firstInstalled = createEvent('Extension first installed');
+
+export const feedbackSubmitted = createEvent('Feedback submitted');
+
+export const keywordSearched = createEvent('Keyword searched');

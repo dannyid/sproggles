@@ -12,8 +12,8 @@ const {
 
 const getTabData = (tabs) => {
   const deferred = Q.defer();
-
-  chrome.tabs.sendMessage(tabs[0].id, {get: "pageData"}, (response) => {
+  const tabId = tabs[0].id;
+  chrome.tabs.sendMessage(tabId, {get: "pageData"}, (response) => {
     if (typeof response === 'undefined') {
       chrome.tabs.executeScript(null, {file: "js/contentScript.js"});
       tabLoadTimeout.push(setTimeout(getTabData, 500));
@@ -36,7 +36,6 @@ const giveUp = () => {
 
 export default () => {
   const deferred = Q.defer();
-
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     getTabData(tabs).then(tabData => {
       deferred.resolve(tabData);

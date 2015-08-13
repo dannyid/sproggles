@@ -26,7 +26,8 @@ export function createSelectors() {
     $feedbackButton: $('.feedback-button'),
     $feedbackForm: $('.tab-content #feedback-form'),
     $feedbackToolbar: $('#tabpanel .tab-pane-toolbar #feedback'),
-    $derivedKeywords: $('.derived-keywords')
+    $derivedKeywords: $('.derived-keywords'),
+    $keywordForm: $('.derived-keywords form')
   };
 }
 
@@ -39,7 +40,7 @@ export function completeImageUrl(imageUrl) {
   return imageUrl;
 }
 
-export function uuid() {
+export function generateUUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);

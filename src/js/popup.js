@@ -23,7 +23,8 @@ $(() => {
     $imagesTab,
     $spinner,
     $tabPanel,
-    $pleaseRefresh
+    $pleaseRefresh,
+    $keywordForm
   } = createSelectors();
 
   mixpanelEvents.popupOpened();
@@ -51,12 +52,13 @@ $(() => {
     $pleaseRefresh.hide();
     $tabPanel.fadeIn(150);
 
-    getSerp(response.url);
-    getSocialCounts(response.url).getAll();
+    // getSerp(response.url);
+    // getSocialCounts(response.url).getAll();
 
-    $('.derived-keywords form').submit(function(e) {
+    $keywordForm.submit(e => {
       e.preventDefault();
       const keyword = $(e.target).find('input').val();
+      mixpanelEvents.keywordSearched(keyword);
       getKeywordInfo(keyword, response.url).then(injectKeywordInfo);
     });
   });
