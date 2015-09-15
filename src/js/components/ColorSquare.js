@@ -19,7 +19,6 @@ const ColorSquare = React.createClass({
   render: function() {
     return (
       <div className="color-square" style={this.props.colorSquareStyle}>
-        {this.props.color}
       </div>
     );
   }

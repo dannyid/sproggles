@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import React from 'react';
-import ColorsPanel from './components/ColorsPanel.js';
+import App from './components/App.js';
 import {completeImageUrl} from './modules/utils';
 import reduceColorsAndFonts from './modules/reduceColorsAndFonts';
 
@@ -35,7 +35,7 @@ $(() => {
       document.body.insertBefore(app, document.body.firstChild);
 
       React.render(
-        <ColorsPanel colors={reduced.results.allColors} />,
+        <App results={reduced.results} />,
         document.getElementById('sproggles-app')
       );
 

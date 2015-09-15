@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 export default (elements) => {
-  return elements.reduce((prev, curr) => {
+  const reduced = elements.reduce((prev, curr) => {
     // Derives all the colors
     Object.keys(prev.colors).forEach((prop) => {
       const colorValue = $(curr).css(prop);
@@ -59,4 +59,11 @@ export default (elements) => {
       "allImages": []
     }
   });
+
+  // Sort fonts in alphabetical order
+  reduced.results.allFonts.sort((a, b) => {
+    return a.toLowerCase().localeCompare(b.toLowerCase());
+  });
+
+  return reduced;
 };

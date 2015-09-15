@@ -1,5 +1,4 @@
 import React from 'react';
-import Draggable from 'react-draggable';
 import ColorSquare from './ColorSquare';
 
 const important = '!important';
@@ -77,27 +76,25 @@ const ColorsPanel = React.createClass({
   render: function() {
     if (this.state.open) {
       return (
-        <Draggable>
-          <div className="colorsPanel" style={this.props.colorsPanelStyle}>
-            <div className="panelToolbar" style={this.props.panelToolbarStyle}>
-              <span>
-                Colors
-              </span>
-              <a className="closeButton" style={this.props.closeButtonStyle} onClick={this.closePanel} href>
-                x
-              </a>
-            </div>
-
-            <p style={this.props.panelTextStyle}>
-              Hello, I am a React component embedded on the screen!
-            </p>
-            {this.props.colors.map(function(color){
-              return (
-                <ColorSquare color={color}/>
-              );
-            })}
+        <div className="colorsPanel" style={this.props.colorsPanelStyle}>
+          <div className="panelToolbar" style={this.props.panelToolbarStyle}>
+            <span>
+              Colors
+            </span>
+            <a className="closeButton" style={this.props.closeButtonStyle} onClick={this.closePanel} href>
+              x
+            </a>
           </div>
-        </Draggable>
+
+          <p style={this.props.panelTextStyle}>
+            Hello, I am a React component embedded on the screen!
+          </p>
+          {this.props.colors.map(function(color){
+            return (
+              <ColorSquare color={color}/>
+            );
+          })}
+        </div>
       );
     } else {
       return (
