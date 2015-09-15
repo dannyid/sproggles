@@ -83,7 +83,9 @@ gulp.task('js:popup', ['clean:js'], function() {
     extensions: ['.js'],
     debug: true
   })
-  .transform(babelify)
+  .transform(babelify.configure({
+    plugins: ["object-assign"]
+  }))
   .bundle()
   .pipe(source('popup.js'))
   // .pipe(buffer())
@@ -97,7 +99,9 @@ gulp.task('js:contentScript', ['clean:js'], function() {
     extensions: ['.js'],
     debug: true
   })
-  .transform(babelify)
+  .transform(babelify.configure({
+    plugins: ["object-assign"]
+  }))
   .bundle()
   .pipe(source('contentScript.js'))
   // .pipe(buffer())
@@ -111,7 +115,9 @@ gulp.task('js:background', ['clean:js'], function() {
     extensions: ['.js'],
     debug: true
   })
-  .transform(babelify)
+  .transform(babelify.configure({
+    plugins: ["object-assign"]
+  }))
   .bundle()
   .pipe(source('background.js'))
   // .pipe(buffer())

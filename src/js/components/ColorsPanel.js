@@ -1,5 +1,6 @@
 import React from 'react';
 import ColorSquare from './ColorSquare';
+import {preNormalize} from '../modules/utils';
 
 const important = '!important';
 
