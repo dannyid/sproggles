@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import React from 'react';
+import ColorsPanel from './components/ColorsPanel.js';
 import {completeImageUrl} from './modules/utils';
 import reduceColorsAndFonts from './modules/reduceColorsAndFonts';
 
@@ -27,6 +29,15 @@ $(() => {
           reduced.results.allImages.push(imageUrl);
         }
       });
+
+      const app = document.createElement('div');
+      app.id = 'sproggles-app';
+      document.body.insertBefore(app, document.body.firstChild);
+
+      React.render(
+        <ColorsPanel colors={reduced.results.allColors} />,
+        document.getElementById('sproggles-app')
+      );
 
       console.log(reduced);
       // Send data to popup.js
