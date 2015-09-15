@@ -27,8 +27,6 @@ $(() => {
     $keywordForm
   } = createSelectors();
 
-  mixpanelEvents.popupOpened();
-
   createFeedbackForm();
 
   $tab.click(tabClickHandler);
@@ -37,6 +35,9 @@ $(() => {
 
   queryTab().then(response => {
     console.log(response);
+
+    mixpanelEvents.popupOpened(response.url);
+
     const coloredDivs = getColors(response.colors);
     const fontDivs = getFonts(response.fonts);
     const imageDivs = getImages(response.images);
