@@ -38,13 +38,10 @@ const App = React.createClass({
 
   toggleColorsPanel: function(e) {
     e.preventDefault();
-    console.log(this.state);
 
     this.setState({
       colorsPanelOpen: !this.state.colorsPanelOpen
     });
-
-    console.log(this.state);
   },
 
   getDefaultProps: function() {
