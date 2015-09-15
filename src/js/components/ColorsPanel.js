@@ -37,6 +37,7 @@ const ColorsPanel = React.createClass({
           fontWeight: 400,
           height: 22,
           padding: 5,
+          position: 'relative',
           verticalAlign: `middle`,
           width: 250
         },

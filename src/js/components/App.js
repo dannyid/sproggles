@@ -32,16 +32,35 @@ const App = React.createClass({
 
     return {
       results: reduced.results,
-      colorsPanelOpen: true
+      panels: {
+        colors: {
+          isOpen: true
+        },
+
+        fonts: {
+          isOpen: false
+        }
+      }
     };
   },
 
-  toggleColorsPanel: function(e) {
-    e.preventDefault();
+  togglePanel: function(panelName) {
+    return function(e) {
+      e.preventDefault();
 
-    this.setState({
-      colorsPanelOpen: !this.state.colorsPanelOpen
-    });
+      let panels = Object.assign({}, this.state.panels);
+
+      // // Close all other panels
+      // Object.keys(panels).forEach(panel => {
+      //   panels[panel].isOpen = false;
+      // });
+
+      // Open this specific panel
+      panels[panelName].isOpen = !panels[panelName].isOpen;
+
+      // Set state of all panels
+      this.setState({panels});
+    }.bind(this);
   },
 
   getDefaultProps: function() {
@@ -75,8 +94,14 @@ const App = React.createClass({
           <ColorsPanel
             title="Colors"
             data={this.state.results.allColors}
-            open={this.state.colorsPanelOpen}
-            toggle={this.toggleColorsPanel}
+            open={this.state.panels.colors.isOpen}
+            toggle={this.togglePanel('colors')}
+          />
+          <ColorsPanel
+            title="Fonts"
+            data={this.state.results.allColors}
+            open={this.state.panels.fonts.isOpen}
+            toggle={this.togglePanel('fonts')}
           />
         </div>
       </Draggable>
