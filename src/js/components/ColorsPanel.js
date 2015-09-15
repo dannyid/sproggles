@@ -12,19 +12,11 @@ const ColorsPanel = React.createClass({
       styles: {
         colorsPanelStyle: {
           base: {
-            background: `white`,
-            // border: `1px solid #CCC`,
-            boxShadow: /*0 -1px 0 #e5e5e5,*/ `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)`,
             fontFamily: `Helvetica`,
             fontSize: 16,
-            left: 10,
             padding: 0,
-            opacity: 0.98,
             overflow: `hidden`,
-            position: `fixed`,
-            top: 10,
-            width: 250,
-            zIndex: `9999999999999999`
+            display: `block`
           },
 
           opened: {
@@ -36,9 +28,28 @@ const ColorsPanel = React.createClass({
           }
         },
 
-        closeButtonStyle: {
+        panelToolbarStyle: {
+          backgroundColor: `dodgerblue`,
+          border: `1px solid hsl(210, 100%, 48%)`,
           color: `white`,
-          fontFamily: `Helvetica`,
+          display: `table-cell`,
+          fontSize: 20,
+          fontWeight: 400,
+          height: 22,
+          padding: 5,
+          verticalAlign: `middle`,
+          width: 250
+        },
+
+        panelToolbarTitleStyle: {
+          color: 'inherit',
+          fontSize: 'inherit',
+          fontWeight: 'inherit'
+        },
+
+        closeButtonStyle: {
+          color: `inherit`,
+          fontFamily: `inherit`,
           fontSize: 18,
           position: `absolute`,
           right: 12,
@@ -47,68 +58,49 @@ const ColorsPanel = React.createClass({
           top: 6
         },
 
-        panelToolbarStyle: {
-          backgroundColor: `dodgerblue`,
-          border: `1px solid hsl(210, 100%, 48%)`,
-          color: `white`,
-          display: `table-cell`,
-          fontSize: `20px`,
-          fontWeight: `400`,
-          height: `22px`,
-          padding: `5px`,
-          verticalAlign: `middle`,
-          width: `250px`
-        },
-
         panelTextStyle: {
           display: `block`,
-          fontFamily: `Helvetica`,
-          fontSize: `14px`,
-          margin: `0`,
-          padding: `5px`
+          fontFamily: `inherit`,
+          fontSize: 14,
+          margin: 0,
+          padding: 5
+        },
+
+        colorSquaresContainer: {
+          display: `block`,
+          position: `relative`
         }
       }
     };
   },
 
-  getInitialState: function() {
-    return {
-      isOpen: true
-    };
-  },
-
-  togglePanel: function(e) {
-    e.preventDefault();
-
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  },
-
   render: function() {
     const openState =
-      this.state.isOpen
+      this.props.open
       ? this.props.styles.colorsPanelStyle.opened
       : this.props.styles.colorsPanelStyle.closed;
 
     return (
-      <div className="colorsPanel" style={preNormalize(this.props.styles.colorsPanelStyle.base, openState)}>
-        <div className="panelToolbar" style={preNormalize(this.props.styles.panelToolbarStyle)}>
-          <span>
-            Colors
+      <div className="colors-panel" style={preNormalize(this.props.styles.colorsPanelStyle.base, openState)}>
+        <div className="panel-toolbar" style={preNormalize(this.props.styles.panelToolbarStyle)}>
+          <span style={preNormalize(this.props.styles.panelToolbarTitleStyle)}>
+            {this.props.title}
           </span>
-          <a className="closeButton" style={preNormalize(this.props.styles.closeButtonStyle)} onClick={this.togglePanel} href>
+          <a className="close-button" style={preNormalize(this.props.styles.closeButtonStyle)} onClick={this.props.toggle} href>
             x
           </a>
         </div>
         <p style={preNormalize(this.props.styles.panelTextStyle)}>
           Hello, I am a React component embedded on the screen!
         </p>
-        {this.props.colors.map(function(color){
-          return (
-            <ColorSquare color={color}/>
-          );
-        })}
+        <div className="color-squares-container" style={preNormalize(this.props.styles.colorSquaresContainer)}>
+          {this.props.data.map(function(color){
+            return (
+              <ColorSquare color={color} />
+            );
+          })}
+          <div style={{clear: "both"}}></div>
+        </div>
       </div>
     );
   }

@@ -6,6 +6,12 @@ import Q from 'q';
 import * as chromeStorage from './modules/chromeStorage';
 import * as mixpanelEvents from './modules/mixpanelEvents';
 
+
+// chrome.browserAction.onClicked.addListener(() => {
+  
+// });
+
+/* When asked for keyword info from page, get it and send it back */
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === "getKeywordInfo") {
     const {keyword, url} = request;
