@@ -1,10 +1,6 @@
 import React from 'react';
 
 const ColorSquare = React.createClass({
-  componentWillMount: function() {
-    this.props.colorSquareStyle.backgroundColor = this.props.color;
-  },
-
   getDefaultProps: function() {
     return {
       colorSquareStyle: {
@@ -16,9 +12,15 @@ const ColorSquare = React.createClass({
     };
   },
 
+  combineStyles: function(backgroundColor) {
+    return Object.assign({}, this.props.colorSquareStyle, backgroundColor);
+  },
+
   render: function() {
+    const combinedStyles = this.combineStyles({'backgroundColor': this.props.color});
+
     return (
-      <div className="color-square" style={this.props.colorSquareStyle}>
+      <div className="color-square" style={combinedStyles}>
       </div>
     );
   }
