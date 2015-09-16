@@ -50,6 +50,7 @@ const ColorsPanel = React.createClass({
 
         closeButtonStyle: {
           color: `inherit`,
+          cursor: `pointer`,
           fontFamily: `inherit`,
           fontSize: 18,
           position: `absolute`,
@@ -87,7 +88,7 @@ const ColorsPanel = React.createClass({
           <span style={preNormalize(this.props.styles.panelToolbarTitleStyle)}>
             {this.props.title}
           </span>
-          <a className="close-button" style={preNormalize(this.props.styles.closeButtonStyle)} onClick={this.props.toggle} href>
+          <a className="close-button" style={preNormalize(this.props.styles.closeButtonStyle)} onClick={this.props.toggle}>
             x
           </a>
         </div>

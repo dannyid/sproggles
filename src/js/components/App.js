@@ -36,27 +36,41 @@ const App = React.createClass({
         colors: {
           isOpen: true
         },
-
         fonts: {
+          isOpen: false
+        },
+        images: {
+          isOpen: false
+        },
+        seo: {
           isOpen: false
         }
       }
     };
   },
 
+  closeAllPanels: function(panels) {
+    Object.keys(panels).forEach(panel => {
+      panels[panel].isOpen = false;
+    });
+  },
+
   togglePanel: function(panelName) {
     return function(e) {
       e.preventDefault();
+      e.stopPropagation();
+      console.log(e);
 
+      // Copy panels object from state to modify it and then set it back as state
       let panels = Object.assign({}, this.state.panels);
 
-      // // Close all other panels
-      // Object.keys(panels).forEach(panel => {
-      //   panels[panel].isOpen = false;
-      // });
-
-      // Open this specific panel
-      panels[panelName].isOpen = !panels[panelName].isOpen;
+      // If panel is already open, close it, overwise switch panels
+      if (panels[panelName].isOpen) {
+        panels[panelName].isOpen = false;
+      } else {
+        this.closeAllPanels(panels);
+        panels[panelName].isOpen = true;
+      }
 
       // Set state of all panels
       this.setState({panels});
