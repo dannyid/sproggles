@@ -3,10 +3,6 @@ import ColorSquare from './ColorSquare';
 import PanelToolbar from './PanelToolbar';
 import {preNormalize} from '../modules/utils';
 
-const important = '!important';
-
-// const colors = ['#CCC', '#999', '#333', '#CCC', '#CCC'];
-
 const ColorsPanel = React.createClass({
   getDefaultProps: function() {
     return {
