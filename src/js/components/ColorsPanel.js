@@ -22,7 +22,7 @@ const ColorsPanel = React.createClass({
           },
 
           opened: {
-            height: 435
+            maxHeight: 435
           },
 
           closed: {
