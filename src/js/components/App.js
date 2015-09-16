@@ -17,9 +17,10 @@ const App = React.createClass({
     const elements = $.makeArray($('body *').not('script, link, style'));
     const images = $.makeArray($('body img'));
 
+    // Whittle DOM nodes down into list of colors and fonts
     let reduced = reduceColorsAndFonts(elements);
 
-    // Derives all the images and adds them to the reduced result
+    // Derive all the images and add them to the reduced result
     images.forEach((i) => {
       const imgSrc = $(i).attr('src') || '';
       const imageUrl = completeImageUrl(imgSrc);
@@ -30,19 +31,25 @@ const App = React.createClass({
       }
     });
 
+    console.log(reduced.results);
+
     return {
       results: reduced.results,
       panels: {
         colors: {
+          title: 'Colors',
           isOpen: true
         },
         fonts: {
+          title: 'Fonts',
           isOpen: false
         },
         images: {
+          title: 'images',
           isOpen: false
         },
         seo: {
+          title: 'SEO',
           isOpen: false
         }
       }
@@ -59,7 +66,6 @@ const App = React.createClass({
     return function(e) {
       e.preventDefault();
       e.stopPropagation();
-      console.log(e);
 
       // Copy panels object from state to modify it and then set it back as state
       let panels = Object.assign({}, this.state.panels);
@@ -116,6 +122,18 @@ const App = React.createClass({
             data={this.state.results.allColors}
             open={this.state.panels.fonts.isOpen}
             toggle={this.togglePanel('fonts')}
+          />
+          <ColorsPanel
+            title="Images"
+            data={this.state.results.allColors}
+            open={this.state.panels.images.isOpen}
+            toggle={this.togglePanel('images')}
+          />
+          <ColorsPanel
+            title="SEO"
+            data={this.state.results.allColors}
+            open={this.state.panels.seo.isOpen}
+            toggle={this.togglePanel('seo')}
           />
         </div>
       </Draggable>
