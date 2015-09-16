@@ -9,7 +9,7 @@ const styles = {
 
   link: {
     color: 'black',
-    fontSize: '1.1rem'
+    fontSize: 16
   }
 };
 

@@ -5,7 +5,7 @@ const styles = {
  imageSquareContainer: {
     display: 'inline-block',
     float: 'left',
-    width: '33.333%',
+    width: `${1 / 3 * 100}%`,
     verticalAlign: 'middle',
     position: 'relative'
   },
