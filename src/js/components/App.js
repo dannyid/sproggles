@@ -1,6 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
 import ColorsPanel from './ColorsPanel.js';
+import FontsPanel from './FontsPanel.js';
+import ImagesPanel from './ImagesPanel.js';
 import Draggable from 'react-draggable';
 import {completeImageUrl} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
@@ -114,25 +116,25 @@ const App = React.createClass({
           <ColorsPanel
             title="Colors"
             data={this.state.results.allColors}
-            open={this.state.panels.colors.isOpen}
+            isOpen={this.state.panels.colors.isOpen}
             toggle={this.togglePanel('colors')}
           />
-          <ColorsPanel
+          <FontsPanel
             title="Fonts"
-            data={this.state.results.allColors}
-            open={this.state.panels.fonts.isOpen}
+            data={this.state.results.allFonts}
+            isOpen={this.state.panels.fonts.isOpen}
             toggle={this.togglePanel('fonts')}
           />
-          <ColorsPanel
+          <ImagesPanel
             title="Images"
             data={this.state.results.allColors}
-            open={this.state.panels.images.isOpen}
+            isOpen={this.state.panels.images.isOpen}
             toggle={this.togglePanel('images')}
           />
           <ColorsPanel
             title="SEO"
             data={this.state.results.allColors}
-            open={this.state.panels.seo.isOpen}
+            isOpen={this.state.panels.seo.isOpen}
             toggle={this.togglePanel('seo')}
           />
         </div>
