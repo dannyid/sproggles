@@ -12,22 +12,12 @@ const ColorsPanel = React.createClass({
     return {
       styles: {
         colorsPanelStyle: {
-          base: {
-            fontFamily: `Helvetica`,
-            fontSize: 14,
-            padding: 0,
-            margin: 0,
-            overflow: `hidden`,
-            display: `block`
-          },
-
-          opened: {
-            maxHeight: 435
-          },
-
-          closed: {
-            height: 35
-          }
+          fontFamily: `Helvetica`,
+          fontSize: 14,
+          padding: 0,
+          margin: 0,
+          overflow: `hidden`,
+          display: `block`
         },
 
         panelTextStyle: {
@@ -37,8 +27,20 @@ const ColorsPanel = React.createClass({
         },
 
         colorSquaresContainer: {
-          display: `block`,
-          position: `relative`
+          base: {
+            display: `block`,
+            position: `relative`,
+            overflow: `scroll`
+          },
+
+          opened: {
+            maxHeight: 400
+          },
+
+          closed: {
+            height: 0,
+            maxHeight: 0
+          }
         }
       }
     };
@@ -47,13 +49,13 @@ const ColorsPanel = React.createClass({
   render: function() {
     const openState =
       this.props.open
-      ? this.props.styles.colorsPanelStyle.opened
-      : this.props.styles.colorsPanelStyle.closed;
+      ? this.props.styles.colorSquaresContainer.opened
+      : this.props.styles.colorSquaresContainer.closed;
 
     return (
-      <div className="colors-panel" style={preNormalize(this.props.styles.colorsPanelStyle.base, openState)}>
+      <div className="colors-panel" style={preNormalize(this.props.styles.colorsPanelStyle)}>
         <PanelToolbar title={this.props.title} toggle={this.props.toggle}/>
-        <div className="color-squares-container" style={preNormalize(this.props.styles.colorSquaresContainer)}>
+        <div className="color-squares-container" style={preNormalize(this.props.styles.colorSquaresContainer.base, openState)}>
           {this.props.data.map(function(color){
             return (
               <ColorSquare color={color} />
