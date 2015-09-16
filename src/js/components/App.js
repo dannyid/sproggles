@@ -8,6 +8,25 @@ import {completeImageUrl} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
 import {preNormalize} from '../modules/utils';
 
+const styles = {
+  appStyle: {
+    base: {
+      background: `white`,
+      // border: `1px solid #CCC`,
+      boxShadow: /*0 -1px 0 #e5e5e5,*/ `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)`,
+      fontFamily: `Helvetica`,
+      fontSize: 16,
+      left: 10,
+      padding: 0,
+      opacity: 0.98,
+      overflow: `hidden`,
+      position: `fixed`,
+      top: 10,
+      width: 250,
+      zIndex: `9999999999999999`
+    }
+  }
+};
 
 const App = React.createClass({
   componentWillMount: function() {
@@ -36,23 +55,26 @@ const App = React.createClass({
     console.log(reduced.results);
 
     return {
-      results: reduced.results,
       panels: {
-        colors: {
+        colorsPanel: {
           title: 'Colors',
-          isOpen: true
+          isOpen: true,
+          data: reduced.results.allColors
         },
-        fonts: {
+        fontsPanel: {
           title: 'Fonts',
-          isOpen: false
+          isOpen: false,
+          data: reduced.results.allFonts
         },
-        images: {
-          title: 'images',
-          isOpen: false
+        imagesPanel: {
+          title: 'Images',
+          isOpen: false,
+          data: reduced.results.allImages
         },
-        seo: {
+        seoPanel: {
           title: 'SEO',
-          isOpen: false
+          isOpen: false,
+          data: reduced.results.allColors
         }
       }
     };
@@ -85,58 +107,14 @@ const App = React.createClass({
     }.bind(this);
   },
 
-  getDefaultProps: function() {
-    return {
-      styles: {
-        appStyle: {
-          base: {
-            background: `white`,
-            // border: `1px solid #CCC`,
-            boxShadow: /*0 -1px 0 #e5e5e5,*/ `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)`,
-            fontFamily: `Helvetica`,
-            fontSize: 16,
-            left: 10,
-            padding: 0,
-            opacity: 0.98,
-            overflow: `hidden`,
-            position: `fixed`,
-            top: 10,
-            width: 250,
-            zIndex: `9999999999999999`
-          }
-        }
-      }
-    };
-  },
-
   render: function() {
     return (
       <Draggable>
-        <div className="sproggles-app" style={preNormalize(this.props.styles.appStyle.base)}>
-          <ColorsPanel
-            title="Colors"
-            data={this.state.results.allColors}
-            isOpen={this.state.panels.colors.isOpen}
-            toggle={this.togglePanel('colors')}
-          />
-          <FontsPanel
-            title="Fonts"
-            data={this.state.results.allFonts}
-            isOpen={this.state.panels.fonts.isOpen}
-            toggle={this.togglePanel('fonts')}
-          />
-          <ImagesPanel
-            title="Images"
-            data={this.state.results.allColors}
-            isOpen={this.state.panels.images.isOpen}
-            toggle={this.togglePanel('images')}
-          />
-          <ColorsPanel
-            title="SEO"
-            data={this.state.results.allColors}
-            isOpen={this.state.panels.seo.isOpen}
-            toggle={this.togglePanel('seo')}
-          />
+        <div className="sproggles-app" style={preNormalize(styles.appStyle.base)}>
+          <ColorsPanel {...this.state.panels.colorsPanel} toggle={this.togglePanel('colorsPanel')} />
+          <FontsPanel {...this.state.panels.fontsPanel} toggle={this.togglePanel('fontsPanel')} />
+          <ImagesPanel {...this.state.panels.imagesPanel} toggle={this.togglePanel('imagesPanel')} />
+          <ColorsPanel {...this.state.panels.seoPanel} toggle={this.togglePanel('seoPanel')} />
         </div>
       </Draggable>
     );
