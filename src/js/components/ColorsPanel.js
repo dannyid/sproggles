@@ -14,14 +14,15 @@ const ColorsPanel = React.createClass({
         colorsPanelStyle: {
           base: {
             fontFamily: `Helvetica`,
-            fontSize: 16,
+            fontSize: 14,
             padding: 0,
+            margin: 0,
             overflow: `hidden`,
             display: `block`
           },
 
           opened: {
-            height: 400
+            height: 435
           },
 
           closed: {
@@ -32,8 +33,6 @@ const ColorsPanel = React.createClass({
         panelTextStyle: {
           display: `block`,
           fontFamily: `inherit`,
-          fontSize: 14,
-          margin: 0,
           padding: 5
         },
 
@@ -54,9 +53,6 @@ const ColorsPanel = React.createClass({
     return (
       <div className="colors-panel" style={preNormalize(this.props.styles.colorsPanelStyle.base, openState)}>
         <PanelToolbar title={this.props.title} toggle={this.props.toggle}/>
-        <p style={preNormalize(this.props.styles.panelTextStyle)}>
-          Hello, I am a React component embedded on the screen!
-        </p>
         <div className="color-squares-container" style={preNormalize(this.props.styles.colorSquaresContainer)}>
           {this.props.data.map(function(color){
             return (
