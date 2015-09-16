@@ -6,8 +6,8 @@ const ColorSquare = React.createClass({
       colorSquareStyle: {
         backgroundColor: `#FFF`,
         float: 'left',
-        height: `50px`,
-        width: `50px`
+        paddingTop: `20%`, // This is a trick for height to match width
+        width: `20%`
       }
     };
   },
