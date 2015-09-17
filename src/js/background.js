@@ -8,7 +8,6 @@ import * as mixpanelEvents from './modules/mixpanelEvents';
 
 // When clicked the browserAction toggles the App
 chrome.browserAction.onClicked.addListener(() => {
-  console.log('BrowserAction clicked.');
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
       chrome.tabs.sendMessage(tabs[0].id, {action: "toggleApp"});
   });

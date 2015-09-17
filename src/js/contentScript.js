@@ -21,9 +21,7 @@ $(() => {
 
   // Receive browserAction click event from background script and toggle app
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log('Content Script hears click.');
     if (request.action === "toggleApp") {
-      console.log('The click is a "toggleApp" event.');
       appVisible = !appVisible;
       renderApp(appVisible);
     }
