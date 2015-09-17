@@ -2,7 +2,7 @@ import React from 'react';
 import {resetCSS} from '../modules/utils';
 
 const styles = {
-  panelToolbarStyle: {
+  PanelHeaderStyle: {
     backgroundColor: `dodgerblue`,
     border: `1px solid hsl(210, 100%, 48%)`,
     color: `white`,
@@ -17,7 +17,7 @@ const styles = {
     width: 250
   },
 
-  panelToolbarTitleStyle: {
+  PanelHeaderTitleStyle: {
     color: 'inherit',
     cursor: 'pointer',
     fontSize: 'inherit',
@@ -37,17 +37,17 @@ const styles = {
   }
 };
 
-const PanelToolbar = React.createClass({
+const PanelHeader = React.createClass({
   render: function() {
-    const panelToolbarStyle = resetCSS(styles.panelToolbarStyle),
-          panelToolbarTitleStyle = resetCSS(styles.panelToolbarTitleStyle),
+    const PanelHeaderStyle = resetCSS(styles.PanelHeaderStyle),
+          PanelHeaderTitleStyle = resetCSS(styles.PanelHeaderTitleStyle),
           closeButtonStyle = resetCSS(styles.closeButtonStyle);
 
     const {toggle} = this.props;
 
     return (
-      <div className='drag-handle' style={panelToolbarStyle}>
-        <span style={panelToolbarTitleStyle} onClick={toggle}>
+      <div className='drag-handle' style={PanelHeaderStyle}>
+        <span style={PanelHeaderTitleStyle} onClick={toggle}>
           {this.props.title}
         </span>
         <a style={closeButtonStyle} onClick={toggle}>
@@ -58,4 +58,4 @@ const PanelToolbar = React.createClass({
   }
 });
 
-export default PanelToolbar;
+export default PanelHeader;

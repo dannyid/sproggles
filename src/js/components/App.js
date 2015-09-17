@@ -4,9 +4,8 @@ import ColorsPanel from './ColorsPanel.js';
 import FontsPanel from './FontsPanel.js';
 import ImagesPanel from './ImagesPanel.js';
 import Draggable from 'react-draggable';
-import {completeImageUrl} from '../modules/utils';
+import {completeImageUrl, resetCSS} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
-import {resetCSS} from '../modules/utils';
 
 const styles = {
   appStyle: {
@@ -108,7 +107,7 @@ const App = React.createClass({
   },
 
   render: function() {
-    const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = this.state;
+    const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = this.state.panels;
     const appStyle = resetCSS(styles.appStyle.base);
 
     return (

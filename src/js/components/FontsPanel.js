@@ -1,6 +1,6 @@
 import React from 'react';
 import PanelContainer from './PanelContainer';
-import PanelToolbar from './PanelToolbar';
+import PanelHeader from './PanelHeader';
 import PanelBody from './PanelBody';
 import RenderedFont from './RenderedFont';
 import {resetCSS} from '../modules/utils';
@@ -21,7 +21,7 @@ const FontsPanel = React.createClass({
 
     return (
       <PanelContainer>
-        <PanelToolbar title={title} toggle={toggle} />
+        <PanelHeader title={title} toggle={toggle} />
         <PanelBody isOpen={isOpen}>
           <ul style={fontsContainerStyle}>
             {fontList}
