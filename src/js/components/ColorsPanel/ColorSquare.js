@@ -1,5 +1,5 @@
 import React from 'react';
-import {resetCSS} from '../modules/utils';
+import {resetCSS} from '../../modules/utils';
 
 const styles = {
   colorSquareStyle: {

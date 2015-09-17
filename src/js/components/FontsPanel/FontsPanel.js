@@ -1,7 +1,7 @@
 import React from 'react';
-import PanelContainer from './PanelContainer';
+import PanelContainer from '../PanelContainer';
 import RenderedFont from './RenderedFont';
-import {resetCSS} from '../modules/utils';
+import {resetCSS} from '../../modules/utils';
 
 const styles = {
   fontsContainer: {

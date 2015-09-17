@@ -1,5 +1,5 @@
 import React from 'react';
-import PanelContainer from './PanelContainer';
+import PanelContainer from '../PanelContainer';
 import ImageSquare from './ImageSquare';
 
 const ColorsPanel = React.createClass({

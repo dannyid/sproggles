@@ -1,8 +1,9 @@
 import React from 'react';
 import $ from 'jquery';
-import ColorsPanel from './ColorsPanel.js';
-import FontsPanel from './FontsPanel.js';
-import ImagesPanel from './ImagesPanel.js';
+import ColorsPanel from './ColorsPanel/ColorsPanel';
+import FontsPanel from './FontsPanel/FontsPanel';
+import ImagesPanel from './ImagesPanel/ImagesPanel';
+import SEOPanel from './SEOPanel/SEOPanel';
 import Draggable from 'react-draggable';
 import {completeImageUrl, resetCSS} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
@@ -125,7 +126,7 @@ const App = React.createClass({
           <ColorsPanel {...colorsPanel} toggle={this.togglePanel('colorsPanel')} />
           <FontsPanel {...fontsPanel} toggle={this.togglePanel('fontsPanel')} />
           <ImagesPanel {...imagesPanel} toggle={this.togglePanel('imagesPanel')} />
-          <ColorsPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} />
+          <SEOPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} />
         </div>
       </Draggable>
     );
