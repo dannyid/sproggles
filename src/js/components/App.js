@@ -21,7 +21,7 @@ const styles = {
       overflow: `hidden`,
       position: `fixed`,
       top: 10,
-      width: 250,
+      width: 550,
       zIndex: `9999999999999999`
     },
 

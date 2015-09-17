@@ -7,14 +7,13 @@ const styles = {
     border: `1px solid hsl(210, 100%, 48%)`,
     color: `white`,
     cursor: `pointer`,
-    display: `table-cell`,
+    display: `block`,
     fontSize: 20,
     fontWeight: 400,
-    height: 22,
+    height: 34,
     padding: 5,
     position: 'relative',
-    verticalAlign: `middle`,
-    width: 250
+    verticalAlign: `middle`
   },
 
   panelHeaderTitleStyle: {

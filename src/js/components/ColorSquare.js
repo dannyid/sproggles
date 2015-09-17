@@ -5,8 +5,8 @@ const styles = {
   colorSquareStyle: {
     backgroundColor: `#FFF`,
     float: 'left',
-    paddingTop: `${1 / 6 * 100}%`, // This is a trick for height to match width
-    width: `${1 / 6 * 100}%`
+    paddingTop: `${1 / 12 * 100}%`, // This is a trick for height to match width
+    width: `${1 / 12 * 100}%`
   }
 };
 

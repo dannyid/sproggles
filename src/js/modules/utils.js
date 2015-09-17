@@ -53,6 +53,7 @@ export function resetCSS(...additionalStyles) {
     azimuth: 'center',
     borderCollapse: 'separate',
     borderSpacing: 0,
+    boxSizing: 'border-box',
     captionSide: 'top',
     color: 'black',
     cursor: 'auto',
