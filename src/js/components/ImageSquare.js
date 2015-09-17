@@ -18,12 +18,13 @@ const styles = {
 
 const ImageSquare = React.createClass({
   render: function() {
+    const {imageUrl} = this.props;
     const imageSquareContainerStyle = resetCSS(styles.imageSquareContainer);
 
     return (
       <div style={imageSquareContainerStyle}>
-        <a target="_blank" href={this.props.imageUrl}>
-          <img src={this.props.imageUrl} style={styles.image} />
+        <a target="_blank" href={imageUrl}>
+          <img src={imageUrl} style={styles.image} />
         </a>
       </div>
     );

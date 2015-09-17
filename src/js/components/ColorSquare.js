@@ -12,7 +12,8 @@ const styles = {
 
 const ColorSquare = React.createClass({
   render: function() {
-    const combinedStyles = resetCSS(styles.colorSquareStyle, {'backgroundColor': this.props.color});
+    const {color} = this.props;
+    const combinedStyles = resetCSS(styles.colorSquareStyle, {'backgroundColor': color});
 
     return (
       <div style={combinedStyles}></div>

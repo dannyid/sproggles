@@ -43,12 +43,14 @@ const PanelToolbar = React.createClass({
           panelToolbarTitleStyle = resetCSS(styles.panelToolbarTitleStyle),
           closeButtonStyle = resetCSS(styles.closeButtonStyle);
 
+    const {toggle} = this.props;
+
     return (
       <div className='drag-handle' style={panelToolbarStyle}>
-        <span style={panelToolbarTitleStyle} onClick={this.props.toggle}>
+        <span style={panelToolbarTitleStyle} onClick={toggle}>
           {this.props.title}
         </span>
-        <a style={closeButtonStyle} onClick={this.props.toggle}>
+        <a style={closeButtonStyle} onClick={toggle}>
           x
         </a>
       </div>

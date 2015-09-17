@@ -6,12 +6,13 @@ import ColorSquare from './ColorSquare';
 
 const ColorsPanel = React.createClass({
   render: function() {
+    const {title, toggle, isOpen} = this.props;
     const colorSquares = this.props.data.map(color => <ColorSquare color={color} />);
 
     return (
       <PanelContainer>
-        <PanelToolbar title={this.props.title} toggle={this.props.toggle} />
-        <PanelBody isOpen={this.props.isOpen}>
+        <PanelToolbar title={title} toggle={toggle} />
+        <PanelBody isOpen={isOpen}>
           {colorSquares}
           <div style={{clear: "both"}}></div>
         </PanelBody>

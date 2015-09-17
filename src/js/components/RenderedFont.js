@@ -15,13 +15,14 @@ const styles = {
 
 const RenderedFont = React.createClass({
   render: function() {
+    const {font} = this.props;
     const listItemStyle = resetCSS(styles.listItem);
-    const linkTextStyle = resetCSS(styles.link, {fontFamily: this.props.font});
+    const linkTextStyle = resetCSS(styles.link, {fontFamily: font});
 
     return (
       <li className="font" style={listItemStyle}>
-        <a target="_blank" style={linkTextStyle} href={`https://typekit.com/search?utf8=✓&q=${this.props.font}`}>
-          {this.props.font}
+        <a target="_blank" style={linkTextStyle} href={`https://typekit.com/search?utf8=✓&q=${font}`}>
+          {font}
         </a>
       </li>
     );

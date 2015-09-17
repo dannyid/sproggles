@@ -15,13 +15,14 @@ const styles = {
 
 const FontsPanel = React.createClass({
   render: function() {
-    const fontList = this.props.data.map(font => <RenderedFont font={font} />);
+    const {data, title, toggle, isOpen} = this.props;
+    const fontList = data.map(font => <RenderedFont font={font} />);
     const fontsContainerStyle = resetCSS(styles.fontsContainer);
 
     return (
       <PanelContainer>
-        <PanelToolbar title={this.props.title} toggle={this.props.toggle} />
-        <PanelBody isOpen={this.props.isOpen}>
+        <PanelToolbar title={title} toggle={toggle} />
+        <PanelBody isOpen={isOpen}>
           <ul style={fontsContainerStyle}>
             {fontList}
           </ul>
