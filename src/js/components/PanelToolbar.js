@@ -21,6 +21,7 @@ const PanelToolbar = React.createClass({
 
         panelToolbarTitleStyle: {
           color: 'inherit',
+          cursor: 'pointer',
           fontSize: 'inherit',
           fontWeight: 'inherit'
         },
@@ -41,12 +42,16 @@ const PanelToolbar = React.createClass({
   },
 
   render: function() {
+    const panelToolbarStyle = preNormalize(this.props.styles.panelToolbarStyle);
+    const panelToolbarTitleStyle = preNormalize(this.props.styles.panelToolbarTitleStyle);
+    const closeButtonStyle = preNormalize(this.props.styles.closeButtonStyle);
+
     return (
-      <div className="panel-toolbar" style={preNormalize(this.props.styles.panelToolbarStyle)}>
-        <span style={preNormalize(this.props.styles.panelToolbarTitleStyle)}>
+      <div className="panel-toolbar" style={panelToolbarStyle}>
+        <span style={panelToolbarTitleStyle} onClick={this.props.toggle}>
           {this.props.title}
         </span>
-        <a className="close-button" style={preNormalize(this.props.styles.closeButtonStyle)} onClick={this.props.toggle}>
+        <a className="close-button" style={closeButtonStyle} onClick={this.props.toggle}>
           x
         </a>
       </div>
