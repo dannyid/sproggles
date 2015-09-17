@@ -47,7 +47,7 @@ export function generateUUID() {
   });
 }
 
-export function resetCSS(...styles) {
+export function resetCSS(...additionalStyles) {
   const normalize = {
     all: 'initial',
     azimuth: 'center',
@@ -81,5 +81,5 @@ export function resetCSS(...styles) {
   };
 
   // Object.assign requires a gulp-babel plugin to function
-  return Object.assign({}, normalize, ...styles);
+  return Object.assign({}, normalize, ...additionalStyles);
 }
