@@ -49,9 +49,9 @@ const PanelHeader = React.createClass({
 
     return (
       <div className='drag-handle' style={panelHeaderStyle}>
-        <span style={panelHeaderTitleStyle} onClick={toggle}>
+        <a style={panelHeaderTitleStyle} onClick={toggle}>
           {title}
-        </span>
+        </a>
         <a style={openArrowStyle} onClick={toggle}>
           {arrow}
         </a>
