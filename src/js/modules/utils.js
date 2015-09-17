@@ -83,3 +83,13 @@ export function resetCSS(...additionalStyles) {
   // Object.assign requires a gulp-babel plugin to function
   return Object.assign({}, normalize, ...additionalStyles);
 }
+
+// Pulled from here: http://beeker.io/jquery-document-ready-equivalent-vanilla-javascript
+export function domReady(callback) {
+  const {readyState} = document;
+  if (readyState === "interactive" || readyState === "complete") {
+   callback();
+  } else {
+    document.addEventListener("DOMContentLoaded", callback);
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import {domReady} from './modules/utils'; // Replacement for jQuery's ready function
 import App from './components/App.js';
 
 const renderApp = (appVisible) => {
@@ -9,7 +9,7 @@ const renderApp = (appVisible) => {
   );
 };
 
-$(() => {
+domReady(() => {
   let appVisible = false;
   // Inject the App but only if it's not already injected
   if (document.getElementById('sproggles-app-container') === null) {
