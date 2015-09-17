@@ -2,7 +2,7 @@ import React from 'react';
 import {resetCSS} from '../modules/utils';
 
 const styles = {
-  PanelHeaderStyle: {
+  panelHeaderStyle: {
     backgroundColor: `dodgerblue`,
     border: `1px solid hsl(210, 100%, 48%)`,
     color: `white`,
@@ -17,7 +17,7 @@ const styles = {
     width: 250
   },
 
-  PanelHeaderTitleStyle: {
+  panelHeaderTitleStyle: {
     color: 'inherit',
     cursor: 'pointer',
     fontSize: 'inherit',
@@ -39,8 +39,8 @@ const styles = {
 
 const PanelHeader = React.createClass({
   render: function() {
-    const PanelHeaderStyle = resetCSS(styles.PanelHeaderStyle),
-          PanelHeaderTitleStyle = resetCSS(styles.PanelHeaderTitleStyle),
+    const panelHeaderStyle = resetCSS(styles.panelHeaderStyle),
+          panelHeaderTitleStyle = resetCSS(styles.panelHeaderTitleStyle),
           openArrowStyle = resetCSS(styles.openArrowStyle);
 
     const {toggle, isOpen, title} = this.props;
@@ -48,8 +48,8 @@ const PanelHeader = React.createClass({
     const arrow = isOpen ? '▼' : '▲';
 
     return (
-      <div className='drag-handle' style={PanelHeaderStyle}>
-        <span style={PanelHeaderTitleStyle} onClick={toggle}>
+      <div className='drag-handle' style={panelHeaderStyle}>
+        <span style={panelHeaderTitleStyle} onClick={toggle}>
           {title}
         </span>
         <a style={openArrowStyle} onClick={toggle}>
