@@ -23,6 +23,14 @@ const styles = {
       top: 10,
       width: 250,
       zIndex: `9999999999999999`
+    },
+
+    open: {
+      display: 'block'
+    },
+
+    closed: {
+      display: 'none'
     }
   }
 };
@@ -54,6 +62,7 @@ const App = React.createClass({
     console.log(reduced.results);
 
     return {
+      visible: true,
       panels: {
         colorsPanel: {
           title: 'Colors',
@@ -108,7 +117,8 @@ const App = React.createClass({
 
   render: function() {
     const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = this.state.panels;
-    const appStyle = resetCSS(styles.appStyle.base);
+    const visible = this.state.visible ? styles.appStyle.opened : styles.appStyle.closed;
+    const appStyle = resetCSS(styles.appStyle.base, visible);
 
     return (
       <Draggable handle='.drag-handle'>
