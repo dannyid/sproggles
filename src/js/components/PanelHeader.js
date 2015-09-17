@@ -24,16 +24,16 @@ const styles = {
     fontWeight: 'inherit'
   },
 
-  closeButtonStyle: {
-    color: `inherit`,
+  openArrowStyle: {
+    color: `#80BFFF`,
     cursor: `pointer`,
     fontFamily: `inherit`,
-    fontSize: 18,
+    fontSize: 12,
     position: `absolute`,
     right: 12,
     textDecoration: `none`,
     transform: `scaleX(1.3)`,
-    top: 6
+    top: 10
   }
 };
 
@@ -41,17 +41,19 @@ const PanelHeader = React.createClass({
   render: function() {
     const PanelHeaderStyle = resetCSS(styles.PanelHeaderStyle),
           PanelHeaderTitleStyle = resetCSS(styles.PanelHeaderTitleStyle),
-          closeButtonStyle = resetCSS(styles.closeButtonStyle);
+          openArrowStyle = resetCSS(styles.openArrowStyle);
 
-    const {toggle} = this.props;
+    const {toggle, isOpen, title} = this.props;
+
+    const arrow = isOpen ? '▼' : '▲';
 
     return (
       <div className='drag-handle' style={PanelHeaderStyle}>
         <span style={PanelHeaderTitleStyle} onClick={toggle}>
-          {this.props.title}
+          {title}
         </span>
-        <a style={closeButtonStyle} onClick={toggle}>
-          x
+        <a style={openArrowStyle} onClick={toggle}>
+          {arrow}
         </a>
       </div>
     );
