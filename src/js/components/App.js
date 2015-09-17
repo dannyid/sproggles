@@ -109,11 +109,11 @@ const App = React.createClass({
 
   render: function() {
     const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = this.state;
-    const baseAppStyle = resetCSS(styles.appStyle.base);
+    const appStyle = resetCSS(styles.appStyle.base);
 
     return (
       <Draggable handle='.drag-handle'>
-        <div className="sproggles-app" style={baseAppStyle}>
+        <div className="sproggles-app" style={appStyle}>
           <ColorsPanel {...colorsPanel} toggle={this.togglePanel('colorsPanel')} />
           <FontsPanel {...fontsPanel} toggle={this.togglePanel('fontsPanel')} />
           <ImagesPanel {...imagesPanel} toggle={this.togglePanel('imagesPanel')} />
