@@ -1,7 +1,5 @@
 import React from 'react';
 import PanelContainer from './PanelContainer';
-import PanelHeader from './PanelHeader';
-import PanelBody from './PanelBody';
 import ColorSquare from './ColorSquare';
 
 const ColorsPanel = React.createClass({
@@ -10,12 +8,9 @@ const ColorsPanel = React.createClass({
     const colorSquares = data.map(color => <ColorSquare color={color} />);
 
     return (
-      <PanelContainer>
-        <PanelHeader title={title} toggle={toggle} />
-        <PanelBody isOpen={isOpen}>
-          {colorSquares}
-          <div style={{clear: "both"}}></div>
-        </PanelBody>
+      <PanelContainer title={title} toggle={toggle} isOpen={isOpen}>
+        {colorSquares}
+        <div style={{clear: "both"}}></div>
       </PanelContainer>
     );
   }
