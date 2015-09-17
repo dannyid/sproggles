@@ -10,8 +10,7 @@
 
   "browser_action": {
     "default_title":  "Sproggles",
-    "default_icon":   "img/logo-128.png",
-    "default_popup":  "popup.html"
+    "default_icon":   "img/logo-128.png"
   },
 
   "content_scripts": [{

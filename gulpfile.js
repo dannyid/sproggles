@@ -28,9 +28,6 @@ var paths = {
     img: [
       './src/img/**/*'
     ],
-    popup: [
-      './src/js/popup.js'
-    ],
     contentScript: [
       './src/js/contentScript.js'
     ],
@@ -77,22 +74,6 @@ gulp.task('clean:js', function(done) {
   del(['./dist/js/**/*.js'], done);
 });
 
-gulp.task('js:popup', ['clean:js'], function() {
-  return browserify({
-    entries: paths.src.popup,
-    extensions: ['.js'],
-    debug: true
-  })
-  .transform(babelify.configure({
-    plugins: ["object-assign"]
-  }))
-  .bundle()
-  .pipe(source('popup.js'))
-  // .pipe(buffer())
-  // .pipe(uglify())
-  .pipe(gulp.dest(paths.dest.js));
-});
-
 gulp.task('js:contentScript', ['clean:js'], function() {
   return browserify({
     entries: paths.src.contentScript,
@@ -125,7 +106,7 @@ gulp.task('js:background', ['clean:js'], function() {
   .pipe(gulp.dest(paths.dest.js));
 });
 
-gulp.task('js', ['js:popup', 'js:contentScript', 'js:background']);
+gulp.task('js', ['js:contentScript', 'js:background']);
 
 
 /********************
