@@ -47,7 +47,7 @@ export function generateUUID() {
   });
 }
 
-export function preNormalize(...styles) {
+export function resetCSS(...styles) {
   const normalize = {
     all: 'initial',
     azimuth: 'center',

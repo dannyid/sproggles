@@ -1,5 +1,5 @@
 import React from 'react';
-import {preNormalize} from '../modules/utils';
+import {resetCSS} from '../modules/utils';
 
 const styles = {
   panelToolbarStyle: {
@@ -38,9 +38,9 @@ const styles = {
 
 const PanelToolbar = React.createClass({
   render: function() {
-    const panelToolbarStyle = preNormalize(styles.panelToolbarStyle),
-          panelToolbarTitleStyle = preNormalize(styles.panelToolbarTitleStyle),
-          closeButtonStyle = preNormalize(styles.closeButtonStyle);
+    const panelToolbarStyle = resetCSS(styles.panelToolbarStyle),
+          panelToolbarTitleStyle = resetCSS(styles.panelToolbarTitleStyle),
+          closeButtonStyle = resetCSS(styles.closeButtonStyle);
 
     return (
       <div style={panelToolbarStyle}>

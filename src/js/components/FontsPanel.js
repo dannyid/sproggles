@@ -3,7 +3,7 @@ import PanelContainer from './PanelContainer';
 import PanelToolbar from './PanelToolbar';
 import PanelBody from './PanelBody';
 import RenderedFont from './RenderedFont';
-import {preNormalize} from '../modules/utils';
+import {resetCSS} from '../modules/utils';
 
 const styles = {
   fontsContainer: {
@@ -16,7 +16,7 @@ const styles = {
 const FontsPanel = React.createClass({
   render: function() {
     const fontList = this.props.data.map(font => <RenderedFont font={font} />);
-    const fontsContainerStyle = preNormalize(styles.fontsContainer);
+    const fontsContainerStyle = resetCSS(styles.fontsContainer);
 
     return (
       <PanelContainer>

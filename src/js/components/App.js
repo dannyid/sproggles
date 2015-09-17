@@ -6,7 +6,7 @@ import ImagesPanel from './ImagesPanel.js';
 import Draggable from 'react-draggable';
 import {completeImageUrl} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
-import {preNormalize} from '../modules/utils';
+import {resetCSS} from '../modules/utils';
 
 const styles = {
   appStyle: {
@@ -110,7 +110,7 @@ const App = React.createClass({
   render: function() {
     return (
       <Draggable>
-        <div className="sproggles-app" style={preNormalize(styles.appStyle.base)}>
+        <div className="sproggles-app" style={resetCSS(styles.appStyle.base)}>
           <ColorsPanel {...this.state.panels.colorsPanel} toggle={this.togglePanel('colorsPanel')} />
           <FontsPanel {...this.state.panels.fontsPanel} toggle={this.togglePanel('fontsPanel')} />
           <ImagesPanel {...this.state.panels.imagesPanel} toggle={this.togglePanel('imagesPanel')} />

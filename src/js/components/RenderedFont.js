@@ -1,5 +1,5 @@
 import React from 'react';
-import {preNormalize} from '../modules/utils';
+import {resetCSS} from '../modules/utils';
 
 const styles = {
   listItem: {
@@ -15,8 +15,8 @@ const styles = {
 
 const RenderedFont = React.createClass({
   render: function() {
-    const listItemStyle = preNormalize(styles.listItem);
-    const linkTextStyle = preNormalize(styles.link, {fontFamily: this.props.font});
+    const listItemStyle = resetCSS(styles.listItem);
+    const linkTextStyle = resetCSS(styles.link, {fontFamily: this.props.font});
 
     return (
       <li className="font" style={listItemStyle}>

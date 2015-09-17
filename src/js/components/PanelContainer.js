@@ -1,5 +1,5 @@
 import React from 'react';
-import {preNormalize} from '../modules/utils';
+import {resetCSS} from '../modules/utils';
 
 const styles = {
   panelContainer: {
@@ -14,7 +14,7 @@ const styles = {
 
 const PanelContainer = React.createClass({
   render: function() {
-    const panelContainerStyle = preNormalize(styles.panelContainer);
+    const panelContainerStyle = resetCSS(styles.panelContainer);
 
     return (
       <div style={panelContainerStyle}>

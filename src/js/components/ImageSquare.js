@@ -1,5 +1,5 @@
 import React from 'react';
-import {preNormalize} from '../modules/utils';
+import {resetCSS} from '../modules/utils';
 
 const styles = {
  imageSquareContainer: {
@@ -18,7 +18,7 @@ const styles = {
 
 const ImageSquare = React.createClass({
   render: function() {
-    const imageSquareContainerStyle = preNormalize(styles.imageSquareContainer);
+    const imageSquareContainerStyle = resetCSS(styles.imageSquareContainer);
 
     return (
       <div style={imageSquareContainerStyle}>

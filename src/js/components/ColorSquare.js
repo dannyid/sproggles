@@ -1,5 +1,5 @@
 import React from 'react';
-import {preNormalize} from '../modules/utils';
+import {resetCSS} from '../modules/utils';
 
 const styles = {
   colorSquareStyle: {
@@ -11,14 +11,8 @@ const styles = {
 };
 
 const ColorSquare = React.createClass({
-  getDefaultProps: function() {
-    return {
-
-    };
-  },
-
   render: function() {
-    const combinedStyles = preNormalize(styles.colorSquareStyle, {'backgroundColor': this.props.color});
+    const combinedStyles = resetCSS(styles.colorSquareStyle, {'backgroundColor': this.props.color});
 
     return (
       <div style={combinedStyles}></div>
