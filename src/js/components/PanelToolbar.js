@@ -6,6 +6,7 @@ const styles = {
     backgroundColor: `dodgerblue`,
     border: `1px solid hsl(210, 100%, 48%)`,
     color: `white`,
+    cursor: `pointer`,
     display: `table-cell`,
     fontSize: 20,
     fontWeight: 400,
@@ -43,7 +44,7 @@ const PanelToolbar = React.createClass({
           closeButtonStyle = resetCSS(styles.closeButtonStyle);
 
     return (
-      <div style={panelToolbarStyle}>
+      <div className='drag-handle' style={panelToolbarStyle}>
         <span style={panelToolbarTitleStyle} onClick={this.props.toggle}>
           {this.props.title}
         </span>
