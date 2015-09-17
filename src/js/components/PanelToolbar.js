@@ -43,11 +43,11 @@ const PanelToolbar = React.createClass({
           closeButtonStyle = preNormalize(styles.closeButtonStyle);
 
     return (
-      <div className="panel-toolbar" style={panelToolbarStyle}>
+      <div style={panelToolbarStyle}>
         <span style={panelToolbarTitleStyle} onClick={this.props.toggle}>
           {this.props.title}
         </span>
-        <a className="close-button" style={closeButtonStyle} onClick={this.props.toggle}>
+        <a style={closeButtonStyle} onClick={this.props.toggle}>
           x
         </a>
       </div>
