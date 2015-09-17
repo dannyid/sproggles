@@ -3,6 +3,7 @@ import $ from 'jquery';
 import App from './components/App.js';
 
 $(() => {
+  let appVisible = true;
   // Inject the App but only if it's not already injected
   if (document.getElementById('sproggles-app-container') === null) {
     const app = document.createElement('div');
@@ -10,22 +11,17 @@ $(() => {
     document.body.insertBefore(app, document.body.firstChild);
 
     React.render(
-      <App />,
+      <App visible={appVisible}/>,
       document.getElementById('sproggles-app-container')
     );
   }
 
   // Only send gotten fonts and colors upon message from popup.js
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.get === "pageData") {
-      // console.log(reduced);
-      // // Send data to popup.js
-      // sendResponse({
-      //   colors: reduced.results.allColors,
-      //   fonts: reduced.results.allFonts,
-      //   images: reduced.results.allImages,
-      //   url: location.origin + (location.pathname || '')
-      // });
+    console.log('Content Script hears click.');
+    if (request.action === "toggleApp") {
+      console.log('The click is a "toggleApp" event.');
+      appVisible = !appVisible;
     }
   });
 });

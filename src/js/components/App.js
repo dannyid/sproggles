@@ -62,7 +62,6 @@ const App = React.createClass({
     console.log(reduced.results);
 
     return {
-      visible: true,
       panels: {
         colorsPanel: {
           title: 'Colors',
@@ -117,7 +116,7 @@ const App = React.createClass({
 
   render: function() {
     const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = this.state.panels;
-    const visible = this.state.visible ? styles.appStyle.opened : styles.appStyle.closed;
+    const visible = this.props.visible ? styles.appStyle.opened : styles.appStyle.closed;
     const appStyle = resetCSS(styles.appStyle.base, visible);
 
     return (

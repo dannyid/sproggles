@@ -6,10 +6,13 @@ import Q from 'q';
 import * as chromeStorage from './modules/chromeStorage';
 import * as mixpanelEvents from './modules/mixpanelEvents';
 
-
-// chrome.browserAction.onClicked.addListener(() => {
-  
-// });
+// When clicked the browserAction toggles the App
+chrome.browserAction.onClicked.addListener(() => {
+  console.log('BrowserAction clicked.');
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+      chrome.tabs.sendMessage(tabs[0].id, {action: "toggleApp"});
+  });
+});
 
 /* When asked for keyword info from page, get it and send it back */
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
