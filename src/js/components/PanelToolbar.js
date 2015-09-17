@@ -1,50 +1,46 @@
 import React from 'react';
 import {preNormalize} from '../modules/utils';
 
-const PanelToolbar = React.createClass({
-  getDefaultProps: function() {
-    return {
-      styles: {
-        panelToolbarStyle: {
-          backgroundColor: `dodgerblue`,
-          border: `1px solid hsl(210, 100%, 48%)`,
-          color: `white`,
-          display: `table-cell`,
-          fontSize: 20,
-          fontWeight: 400,
-          height: 22,
-          padding: 5,
-          position: 'relative',
-          verticalAlign: `middle`,
-          width: 250
-        },
-
-        panelToolbarTitleStyle: {
-          color: 'inherit',
-          cursor: 'pointer',
-          fontSize: 'inherit',
-          fontWeight: 'inherit'
-        },
-
-        closeButtonStyle: {
-          color: `inherit`,
-          cursor: `pointer`,
-          fontFamily: `inherit`,
-          fontSize: 18,
-          position: `absolute`,
-          right: 12,
-          textDecoration: `none`,
-          transform: `scaleX(1.3)`,
-          top: 6
-        }
-      }
-    };
+const styles = {
+  panelToolbarStyle: {
+    backgroundColor: `dodgerblue`,
+    border: `1px solid hsl(210, 100%, 48%)`,
+    color: `white`,
+    display: `table-cell`,
+    fontSize: 20,
+    fontWeight: 400,
+    height: 22,
+    padding: 5,
+    position: 'relative',
+    verticalAlign: `middle`,
+    width: 250
   },
 
+  panelToolbarTitleStyle: {
+    color: 'inherit',
+    cursor: 'pointer',
+    fontSize: 'inherit',
+    fontWeight: 'inherit'
+  },
+
+  closeButtonStyle: {
+    color: `inherit`,
+    cursor: `pointer`,
+    fontFamily: `inherit`,
+    fontSize: 18,
+    position: `absolute`,
+    right: 12,
+    textDecoration: `none`,
+    transform: `scaleX(1.3)`,
+    top: 6
+  }
+};
+
+const PanelToolbar = React.createClass({
   render: function() {
-    const panelToolbarStyle = preNormalize(this.props.styles.panelToolbarStyle);
-    const panelToolbarTitleStyle = preNormalize(this.props.styles.panelToolbarTitleStyle);
-    const closeButtonStyle = preNormalize(this.props.styles.closeButtonStyle);
+    const panelToolbarStyle = preNormalize(styles.panelToolbarStyle),
+          panelToolbarTitleStyle = preNormalize(styles.panelToolbarTitleStyle),
+          closeButtonStyle = preNormalize(styles.closeButtonStyle);
 
     return (
       <div className="panel-toolbar" style={panelToolbarStyle}>
