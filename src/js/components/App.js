@@ -7,6 +7,7 @@ import SEOPanel from './SEOPanel/SEOPanel';
 import Draggable from 'react-draggable';
 import {completeImageUrl, resetCSS} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
+import getSerp from '../modules/getSerp';
 
 const styles = {
   appStyle: {
@@ -24,14 +25,6 @@ const styles = {
       top: 10,
       width: 542,
       zIndex: 9999999999999999
-    },
-
-    open: {
-      display: 'block'
-    },
-
-    closed: {
-      display: 'none'
     }
   }
 };
@@ -82,7 +75,13 @@ const App = React.createClass({
         seoPanel: {
           title: 'SEO',
           isOpen: false,
-          data: {}
+          data: {
+            resultJson: {
+              title: 'The Title',
+              link: 'The Link',
+              description: 'The Description'
+            }
+          }
         }
       }
     };
@@ -110,19 +109,25 @@ const App = React.createClass({
         panels[panelName].isOpen = true;
       }
 
-      // Set state of all panels
       this.setState({panels});
     }.bind(this);
   },
 
-  getSerp: function(url) {
-    return;
+  getResult: function(url) {
+    console.log('Get result');
+    return getSerp(url)
+    .done(data => {
+      let panels = Object.assign({}, this.state.panels);
+
+      panels.seoPanel.data.resultJson = data;
+
+      this.setState({panels});
+    }.bind(this));
   },
 
   render: function() {
     const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = this.state.panels;
-    const visible = this.props.visible ? styles.appStyle.opened : styles.appStyle.closed;
-    const appStyle = resetCSS(styles.appStyle.base, visible);
+    const appStyle = resetCSS(styles.appStyle.base);
 
     return (
       <Draggable handle='.drag-handle'>
@@ -130,7 +135,7 @@ const App = React.createClass({
           <ColorsPanel {...colorsPanel} toggle={this.togglePanel('colorsPanel')} />
           <FontsPanel {...fontsPanel} toggle={this.togglePanel('fontsPanel')} />
           <ImagesPanel {...imagesPanel} toggle={this.togglePanel('imagesPanel')} />
-          <SEOPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} getSerp={this.getSerp} />
+          <SEOPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} getResult={this.getResult} />
         </div>
       </Draggable>
     );
