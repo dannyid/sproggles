@@ -22,8 +22,8 @@ const styles = {
       overflow: `hidden`,
       position: `fixed`,
       top: 10,
-      width: 550,
-      zIndex: `9999999999999999`
+      width: 542,
+      zIndex: 9999999999999999
     },
 
     open: {
@@ -82,7 +82,7 @@ const App = React.createClass({
         seoPanel: {
           title: 'SEO',
           isOpen: false,
-          data: reduced.results.allColors
+          data: {}
         }
       }
     };
@@ -115,6 +115,10 @@ const App = React.createClass({
     }.bind(this);
   },
 
+  getSerp: function(url) {
+    return;
+  },
+
   render: function() {
     const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = this.state.panels;
     const visible = this.props.visible ? styles.appStyle.opened : styles.appStyle.closed;
@@ -126,7 +130,7 @@ const App = React.createClass({
           <ColorsPanel {...colorsPanel} toggle={this.togglePanel('colorsPanel')} />
           <FontsPanel {...fontsPanel} toggle={this.togglePanel('fontsPanel')} />
           <ImagesPanel {...imagesPanel} toggle={this.togglePanel('imagesPanel')} />
-          <SEOPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} />
+          <SEOPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} getSerp={this.getSerp} />
         </div>
       </Draggable>
     );
