@@ -3,34 +3,35 @@ import {resetCSS} from '../../modules/utils';
 
 const styles = {
   searchResultStyle: {
-    fontFamily: 'arial, sans-serif',
-    boxShadow: '0 -1px 0 #e5e5e5, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)',
-    overflow: 'visible',
-    width: 522,
-    height: 84,
-    padding: 5,
-    cursor: 'pointer',
     border: '1px solid transparent',
-    transitionProperty: 'border',
-    transitionDuration: '200ms',
-    textAlign: 'left',
+    boxShadow: '0 -1px 0 #e5e5e5, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)',
+    cursor: 'pointer',
+    display: 'block',
+    fontFamily: 'arial, sans-serif',
+    height: 84,
     margin: '10px auto',
-    display: 'block'
+    overflow: 'visible',
+    padding: 5,
+    textAlign: 'left',
+    transitionDuration: '200ms',
+    transitionProperty: 'border',
+    width: 522
   },
 
   h3Style: {
-    fontSize: 18,
-    padding: 0,
+    fontWeight: 500,
+    lineHeight: 1.1,
     margin: 0,
-    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    padding: 0,
     textOverflow: 'ellipsis',
-    overflow: 'hidden'
+    whiteSpace: 'nowrap'
   },
 
   titleLinkStyle: {
     color: '#1a0dab',
-    textDecoration: 'none',
-    fontWeight: 'normal'
+    fontSize: 18,
+    textDecoration: 'none'
   },
 
   urlLinkStyle: {
@@ -42,9 +43,10 @@ const styles = {
 
   descriptionStyle: {
     color: '#545454',
-    lineHeight: 1.4,
     fontSize: 'small',
-    display: 'block'
+    display: 'block',
+    lineHeight: 1.4
+
   }
 };
 

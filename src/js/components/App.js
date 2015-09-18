@@ -13,8 +13,7 @@ const styles = {
   appStyle: {
     base: {
       background: `white`,
-      // border: `1px solid #CCC`,
-      boxShadow: /*0 -1px 0 #e5e5e5,*/ `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)`,
+      boxShadow: `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)`,
       fontFamily: `Helvetica`,
       fontSize: 16,
       left: 10,
@@ -81,7 +80,7 @@ const App = React.createClass({
           data: reduced.results.allImages
         },
         seoPanel: {
-          title: 'SEO',
+          title: 'SEO/Social',
           isOpen: false,
           data: {
             resultJson: {
@@ -143,7 +142,7 @@ const App = React.createClass({
           <ColorsPanel {...colorsPanel} toggle={this.togglePanel('colorsPanel')} />
           <FontsPanel {...fontsPanel} toggle={this.togglePanel('fontsPanel')} />
           <ImagesPanel {...imagesPanel} toggle={this.togglePanel('imagesPanel')} />
-          <SEOPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} getResult={this.getResult} url={url}/>
+          <SEOPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} getResult={this.getResult} url={url} />
         </div>
       </Draggable>
     );
