@@ -56,13 +56,14 @@ const App = React.createClass({
     console.log(reduced.results);
 
     // Get URL of page to send to SEO panel
-    let url = (() => {
-      let pageUrl = window.location.origin + window.location.pathname;
+    const url = (() => {
+      const pageUrl = window.location.origin + window.location.pathname;
       const start = pageUrl.indexOf('//') + 2;
       return pageUrl.substr(start);
     })();
 
     return {
+      url: url,
       panels: {
         colorsPanel: {
           title: 'Colors',
@@ -87,8 +88,7 @@ const App = React.createClass({
               title: 'The Title',
               link: 'The Link',
               description: 'The Description'
-            },
-            url: url
+            }
           }
         }
       }
@@ -122,7 +122,6 @@ const App = React.createClass({
   },
 
   getResult: function(url) {
-    console.log('Get result');
     return getSerp(url)
     .done(data => {
       let panels = Object.assign({}, this.state.panels);
@@ -134,7 +133,8 @@ const App = React.createClass({
   },
 
   render: function() {
-    const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = this.state.panels;
+    const {url, panels} = this.state;
+    const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = panels;
     const appStyle = resetCSS(styles.appStyle.base);
 
     return (
@@ -143,7 +143,7 @@ const App = React.createClass({
           <ColorsPanel {...colorsPanel} toggle={this.togglePanel('colorsPanel')} />
           <FontsPanel {...fontsPanel} toggle={this.togglePanel('fontsPanel')} />
           <ImagesPanel {...imagesPanel} toggle={this.togglePanel('imagesPanel')} />
-          <SEOPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} getResult={this.getResult} />
+          <SEOPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} getResult={this.getResult} url={url}/>
         </div>
       </Draggable>
     );

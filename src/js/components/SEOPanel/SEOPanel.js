@@ -4,8 +4,7 @@ import SearchResult from './SearchResult';
 
 const SEOPanel = React.createClass({
   componentWillMount: function() {
-    const {getResult, data} = this.props;
-    const {url} = data;
+    const {getResult, data, url} = this.props;
     getResult(url);
   },
 
