@@ -55,6 +55,13 @@ const App = React.createClass({
 
     console.log(reduced.results);
 
+    // Get URL of page to send to SEO panel
+    let url = (() => {
+      let pageUrl = window.location.origin + window.location.pathname;
+      const start = pageUrl.indexOf('//') + 2;
+      return pageUrl.substr(start);
+    })();
+
     return {
       panels: {
         colorsPanel: {
@@ -80,7 +87,8 @@ const App = React.createClass({
               title: 'The Title',
               link: 'The Link',
               description: 'The Description'
-            }
+            },
+            url: url
           }
         }
       }

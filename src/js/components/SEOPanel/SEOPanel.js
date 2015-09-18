@@ -4,14 +4,14 @@ import SearchResult from './SearchResult';
 
 const SEOPanel = React.createClass({
   componentWillMount: function() {
-    const {getResult} = this.props;
-    getResult('http://www.google.com');
+    const {getResult, data} = this.props;
+    const {url} = data;
+    getResult(url);
   },
 
   render: function() {
     const {data, title, toggle, isOpen} = this.props;
     const {resultJson} = data;
-    // const searchResultJson = {title: 'Google', link: 'www.google.com/', description: "Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking ..."};
 
     return (
       <PanelContainer title={title} toggle={toggle} isOpen={isOpen}>
