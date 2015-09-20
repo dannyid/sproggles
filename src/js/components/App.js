@@ -23,7 +23,7 @@ const styles = {
       position: `fixed`,
       top: 10,
       width: 542,
-      zIndex: 9999999999999999
+      zIndex: 2147483647 // Maximum z-index value
     }
   }
 };
