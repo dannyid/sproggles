@@ -9,7 +9,8 @@ const styles = {
 
   link: {
     color: 'black',
-    fontSize: 16
+    fontSize: 16,
+    textDecoration: 'none'
   }
 };
 
