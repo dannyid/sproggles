@@ -77,6 +77,20 @@
       .clear {
         clear: both;
       }
+
+      body .options-div .hbspt-form .actions {
+        margin: 0;
+        padding: 0;
+      }
+
+      body .options-div .hbspt-form input.hs-button,
+      body .options-div .hbspt-form input.hs-button:hover {
+        text-shadow: 0 -1px 0 #D81806;
+        background-color: #D81806;
+        border: 0;
+        background-image: none;
+        box-shadow: none;
+      }
     </style>
   </head>
   <body>
@@ -104,6 +118,19 @@
           <p>
             Have a look around, try things out, and give us your feedback and opinions. Feel free to submit the feedback form below. 
           </p>
+          <hr />
+          <div>
+            <!--[if lte IE 8]>
+            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+            <![endif]-->
+            <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
+            <script>
+              hbspt.forms.create({
+                portalId: '150905',
+                formId: '2f33e21f-3324-437c-8bee-8cc266fc8296'
+              });
+            </script>
+          </div>
         </div>
       </div>
     </div>
