@@ -87,6 +87,12 @@ const App = React.createClass({
               title: 'The Title',
               link: 'The Link',
               description: 'The Description'
+            },
+            shareCounts: {
+              twitterShareCount: '??',
+              facebookShareCount: '??',
+              linkedInShareCount: '??',
+              googlePlusShareCount: '??'
             }
           }
         }
