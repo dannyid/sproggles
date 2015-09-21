@@ -9,7 +9,7 @@ const styles = {
     display: 'block',
     fontFamily: 'arial, sans-serif',
     height: 84,
-    margin: '10px auto',
+    margin: '10px 10px 20px 10px',
     overflow: 'visible',
     padding: 5,
     textAlign: 'left',
