@@ -7,6 +7,7 @@ const styles = {
     marginTop: 10,
     textAlign: 'center'
   },
+
   headerStyle: {
     color: 'rgb(51, 51, 51)',
     display: 'inline-block',

@@ -20,7 +20,8 @@ const styles = {
     color: 'inherit',
     cursor: 'pointer',
     fontSize: 'inherit',
-    fontWeight: 'inherit'
+    fontWeight: 'inherit',
+    textDecoration: 'none'
   },
 
   openArrowStyle: {
