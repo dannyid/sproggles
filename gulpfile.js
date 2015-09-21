@@ -35,7 +35,7 @@ var paths = {
       './src/js/background.js'
     ],
     html: [
-      './src/*.html'
+      './src/html/*.html'
     ],
     manifest: [
       './src/manifest.json'
@@ -45,7 +45,8 @@ var paths = {
     dist: './dist',
     css: './dist/css',
     js: './dist/js',
-    img: './dist/img'
+    img: './dist/img',
+    html: './dist/html'
   }
 };
 
@@ -114,12 +115,12 @@ gulp.task('js', ['js:contentScript', 'js:background']);
 ********************/
 
 gulp.task('clean:html', function(done) {
-  del(['./dist/*.html'], done);
+  del(['./dist/html/*.html'], done);
 });
 
 gulp.task('html', ['clean:html'], function() {
   return gulp.src(paths.src.html)
-  .pipe(gulp.dest(paths.dest.dist));
+  .pipe(gulp.dest(paths.dest.html));
 });
 
 
