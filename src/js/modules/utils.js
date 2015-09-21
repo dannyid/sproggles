@@ -49,8 +49,8 @@ export function generateUUID() {
 
 export function resetCSS(...additionalStyles) {
   const normalize = {
-    all: 'initial',
-    azimuth: 'center',
+    // all: 'initial',
+    // azimuth: 'center',
     borderCollapse: 'separate',
     borderSpacing: 0,
     boxSizing: 'border-box',
@@ -58,9 +58,9 @@ export function resetCSS(...additionalStyles) {
     color: 'black',
     cursor: 'auto',
     direction: 'ltr',
-    elevation: '',
+    // elevation: '',
     emptyCells: 'show',
-    font: '',
+    // font: '',
     fontFamily: 'sans-serif',
     fontSize: 'medium',
     fontStyle: 'normal',
