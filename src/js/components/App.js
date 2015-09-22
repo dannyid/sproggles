@@ -5,9 +5,15 @@ import FontsPanel from './FontsPanel/FontsPanel';
 import ImagesPanel from './ImagesPanel/ImagesPanel';
 import SEOPanel from './SEOPanel/SEOPanel';
 import Draggable from 'react-draggable';
-import {completeImageUrl, resetCSS} from '../modules/utils';
+import {completeImageUrl, resetCSS, formatNum} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
 import getSerp from '../modules/getSerp';
+import {
+  getTwitterShareCount,
+  getFacebookShareCount,
+  getLinkedInShareCount,
+  getPinterestShareCount
+} from '../modules/getSocialCounts';
 
 const styles = {
   appStyle: {
@@ -56,9 +62,7 @@ const App = React.createClass({
 
     // Get URL of page to send to SEO panel
     const url = (() => {
-      const pageUrl = window.location.origin + window.location.pathname;
-      const start = pageUrl.indexOf('//') + 2;
-      return pageUrl.substr(start);
+      return window.location.origin + (window.location.pathname || '');
     })();
 
     return {
@@ -89,10 +93,22 @@ const App = React.createClass({
               description: 'The Description'
             },
             shareCounts: {
-              twitterShareCount: '??',
-              facebookShareCount: '??',
-              linkedInShareCount: '??',
-              googlePlusShareCount: '??'
+              twitter: {
+                count: 0,
+                isSearching: true
+              },
+              facebook: {
+                count: 0,
+                isSearching: true
+              },
+              linkedIn: {
+                count: 0,
+                isSearching: true
+              },
+              pinterest: {
+                count: 0,
+                isSearching: true
+              }
             }
           }
         }
@@ -126,7 +142,8 @@ const App = React.createClass({
     }.bind(this);
   },
 
-  getResult: function(url) {
+  getResult: function() {
+    const {url} = this.state;
     return getSerp(url)
     .done(data => {
       let panels = Object.assign({}, this.state.panels);
@@ -135,6 +152,27 @@ const App = React.createClass({
 
       this.setState({panels});
     }.bind(this));
+  },
+
+  setSocialCountState: function(socialNetwork) {
+    return (data) => {
+      let panels = Object.assign({}, this.state.panels);
+
+      panels.seoPanel.data.shareCounts[socialNetwork] = {
+        count: formatNum(data.count || data.shares),
+        isSearching: false
+      };
+      console.log(socialNetwork, data.count || data.shares);
+      this.setState({panels});
+    }.bind(this);
+  },
+
+  getSocialCounts: function() {
+    const {url} = this.state;
+    getTwitterShareCount(url).done(this.setSocialCountState('twitter'));
+    getFacebookShareCount(url).done(this.setSocialCountState('facebook'));
+    getLinkedInShareCount(url).done(this.setSocialCountState('linkedIn'));
+    getPinterestShareCount(url).done(this.setSocialCountState('pinterest'));
   },
 
   render: function() {
@@ -148,7 +186,12 @@ const App = React.createClass({
           <ColorsPanel {...colorsPanel} toggle={this.togglePanel('colorsPanel')} />
           <FontsPanel {...fontsPanel} toggle={this.togglePanel('fontsPanel')} />
           <ImagesPanel {...imagesPanel} toggle={this.togglePanel('imagesPanel')} />
-          <SEOPanel {...seoPanel} toggle={this.togglePanel('seoPanel')} getResult={this.getResult} url={url} />
+          <SEOPanel
+            {...seoPanel}
+            toggle={this.togglePanel('seoPanel')}
+            getResult={this.getResult}
+            getSocialCounts={this.getSocialCounts}
+          />
         </div>
       </Draggable>
     );

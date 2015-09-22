@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import humanize from 'humanize';
 
 export function convertRgbToHex(color) {
   return '#' + color.slice(4, -1).split(',').map((i) => {
@@ -95,4 +96,8 @@ export function domReady(callback) {
   } else {
     document.addEventListener("DOMContentLoaded", callback);
   }
+}
+
+export function formatNum(num) {
+  return humanize.numberFormat(num, 0);
 }
