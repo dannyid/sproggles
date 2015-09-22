@@ -25,6 +25,7 @@
   },
 
   "web_accessible_resources": [
+    "img/loading-spinner.gif"
   ],
 
   "permissions": [
@@ -33,5 +34,5 @@
     "activeTab"
   ],
 
-  "content_security_policy": "script-src 'self' https://api.pinterest.com https://*.hsforms.net https://*.hubspot.com https://*.hubapi.com https://www.google.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://*.hsforms.net https://*.hubspot.com https://*.hubapi.com https://www.google.com; object-src 'self'"
 }

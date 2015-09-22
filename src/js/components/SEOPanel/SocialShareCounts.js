@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingSpinner from '../LoadingSpinner';
 import {resetCSS} from '../../modules/utils';
 
 const styles = {
@@ -48,6 +49,15 @@ const styles = {
 };
 
 const SocialShareCounts = React.createClass({
+  loadingSpinnerIfSearching: function(network) {
+    if (network.isSearching) {
+      return (
+        <LoadingSpinner />
+      );
+    }
+    return network.count;
+  },
+
   render: function() {
     const {
       twitter,
@@ -74,10 +84,10 @@ const SocialShareCounts = React.createClass({
             <th style={pinterestHeaderStyle}>Pinterest</th>
           </tr>
           <tr>
-            <td style={socialCountsTdStyle}>{twitter.count}</td>
-            <td style={socialCountsTdStyle}>{facebook.count}</td>
-            <td style={socialCountsTdStyle}>{linkedIn.count}</td>
-            <td style={socialCountsTdStyle}>{pinterest.count}</td>
+            <td style={socialCountsTdStyle}>{this.loadingSpinnerIfSearching(twitter)}</td>
+            <td style={socialCountsTdStyle}>{this.loadingSpinnerIfSearching(facebook)}</td>
+            <td style={socialCountsTdStyle}>{this.loadingSpinnerIfSearching(linkedIn)}</td>
+            <td style={socialCountsTdStyle}>{this.loadingSpinnerIfSearching(pinterest)}</td>
           </tr>
         </table>
       </div>

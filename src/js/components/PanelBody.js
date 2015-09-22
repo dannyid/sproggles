@@ -6,7 +6,7 @@ const styles = {
     base: {
       display: `block`,
       position: `relative`,
-      overflow: `scroll`
+      overflow: `auto`
     },
 
     opened: {

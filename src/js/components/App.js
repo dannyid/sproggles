@@ -95,19 +95,19 @@ const App = React.createClass({
             shareCounts: {
               twitter: {
                 count: 0,
-                isSearching: true
+                isSearching: false
               },
               facebook: {
                 count: 0,
-                isSearching: true
+                isSearching: false
               },
               linkedIn: {
                 count: 0,
-                isSearching: true
+                isSearching: false
               },
               pinterest: {
                 count: 0,
-                isSearching: true
+                isSearching: false
               }
             }
           }
@@ -167,8 +167,22 @@ const App = React.createClass({
     }.bind(this);
   },
 
+  setShareCountsSearching: function() {
+    const panels = Object.assign({}, this.state.panels);
+    const {shareCounts} = panels.seoPanel.data;
+
+    Object.keys(shareCounts).forEach(network => {
+      shareCounts[network].isSearching = true;
+    });
+
+    this.setState({panels});
+  },
+
   getSocialCounts: function() {
-    const {url} = this.state;
+    const {url, shareCounts} = this.state;
+
+    this.setShareCountsSearching();
+
     getTwitterShareCount(url).done(this.setSocialCountState('twitter'));
     getFacebookShareCount(url).done(this.setSocialCountState('facebook'));
     getLinkedInShareCount(url).done(this.setSocialCountState('linkedIn'));
