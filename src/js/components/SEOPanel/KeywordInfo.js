@@ -2,9 +2,42 @@ import React from 'react';
 import {resetCSS} from '../../modules/utils';
 
 const styles = {
-  containerStyle: {
-    display: 'block',
+  keywordsSectionStyle: {
+    margin: '10px 10px 20px 10px',
+    textAlign: 'center'
+  },
+
+  inputStyle: {
+    margin: '0 10px',
+    padding: 5
+  },
+
+  buttonStyle: {
+    padding: 5
+  },
+
+  tableStyle: {
+    borderCollapse: 'collapse',
     marginTop: 10,
+    width: '100%'
+  },
+
+  thStyle: {
+    backgroundColor: '#DDD',
+    border: '1px solid #DDD',
+    color: 'black',
+    height: 25,
+    fontSize: 16,
+    width: '25%',
+    textAlign: 'center',
+    padding: 5
+  },
+
+  tdStyle: {
+    border: '1px solid #DDD',
+    height: 35,
+    fontSize: 16,
+    width: '25%',
     textAlign: 'center'
   }
 };
@@ -12,12 +45,14 @@ const styles = {
 const KeywordRow = React.createClass({
   render: function() {
     const {keyword, rank, volume, lastSearched} = this.props;
+    const tdStyle = resetCSS(styles.tdStyle);
+
     return (
       <tr>
-        <td>{keyword}</td>
-        <td>{rank}</td>
-        <td>{volume}</td>
-        <td>{lastSearched}</td>
+        <td style={tdStyle}>{keyword}</td>
+        <td style={tdStyle}>{rank}</td>
+        <td style={tdStyle}>{volume}</td>
+        <td style={tdStyle}>{lastSearched}</td>
       </tr>
     );
   }
@@ -25,22 +60,31 @@ const KeywordRow = React.createClass({
 
 const KeywordInfo = React.createClass({
   render: function() {
-    const keywordRows = this.props.keywordResults.map(result => <KeywordRow {...result} />);
+    const {searchKeyword, keywordResults} = this.props;
+    const keywordRows = keywordResults.map(result => <KeywordRow {...result} />);
+
+    const keywordsSectionStyle = resetCSS(styles.keywordsSectionStyle);
+    const inputStyle = resetCSS(styles.inputStyle);
+    const buttonStyle = resetCSS(styles.buttonStyle);
+    const tableStyle = resetCSS(styles.tableStyle);
+    const thStyle = resetCSS(styles.thStyle);
 
     return (
-      <div className="derived-keywords">
+      <div style={keywordsSectionStyle}>
         <form>
           <label for="keyword">Search keyword:
-            <input name="keyword" type="text" />
+            <input name="keyword" type="text" style={inputStyle} />
           </label>
-          <button type="submit">Search</button>
+          <button type="submit" style={buttonStyle} onClick={searchKeyword}>
+            Search
+          </button>
         </form>
-        <table>
+        <table style={tableStyle}>
           <tr>
-            <th className="keyword-name-header">Keyword</th>
-            <th className="keywork-rank-header">Rank</th>
-            <th className="keyword-volume-header">Search Volume</th>
-            <th>Last Searched</th>
+            <th style={thStyle}>Keyword</th>
+            <th style={thStyle}>Rank</th>
+            <th style={thStyle}>Search Volume</th>
+            <th style={thStyle}>Last Searched</th>
           </tr>
           {keywordRows}
         </table>

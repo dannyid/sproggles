@@ -8,18 +8,20 @@ const styles = {
     textAlign: 'center'
   },
 
-  socialCountsTableStyle: {
+  tableStyle: {
+    borderCollapse: 'collapse',
     width: '100%'
   },
 
-  socialCountsThStyle: {
+  thStyle: {
     base: {
       width: '25%',
       textAlign: 'center',
       border: '1px solid',
       color: 'white',
-      height: '25px',
-      fontSize: '16px'
+      height: 25,
+      fontSize: 16,
+      padding: 5
     },
     twitter: {
       backgroundColor: '#55acee',
@@ -39,12 +41,12 @@ const styles = {
     }
   },
 
-  socialCountsTdStyle: {
+  tdStyle: {
     width: '25%',
     textAlign: 'center',
     border: '1px solid #DDD',
-    height: '35px',
-    fontSize: '18px'
+    height: 35,
+    fontSize: 16
   }
 };
 
@@ -67,16 +69,16 @@ const SocialShareCounts = React.createClass({
     } = this.props.shareCounts;
 
     const socialCountsStyle = resetCSS(styles.socialCountsStyle);
-    const socialCountsTableStyle = resetCSS(styles.socialCountsTableStyle);
-    const socialCountsTdStyle = resetCSS(styles.socialCountsTdStyle);
-    const twitterHeaderStyle = resetCSS(styles.socialCountsThStyle.base, styles.socialCountsThStyle.twitter);
-    const facebookHeaderStyle = resetCSS(styles.socialCountsThStyle.base, styles.socialCountsThStyle.facebook);
-    const linkedInHeaderStyle = resetCSS(styles.socialCountsThStyle.base, styles.socialCountsThStyle.linkedIn);
-    const pinterestHeaderStyle = resetCSS(styles.socialCountsThStyle.base, styles.socialCountsThStyle.pinterest);
+    const tableStyle = resetCSS(styles.tableStyle);
+    const tdStyle = resetCSS(styles.tdStyle);
+    const twitterHeaderStyle = resetCSS(styles.thStyle.base, styles.thStyle.twitter);
+    const facebookHeaderStyle = resetCSS(styles.thStyle.base, styles.thStyle.facebook);
+    const linkedInHeaderStyle = resetCSS(styles.thStyle.base, styles.thStyle.linkedIn);
+    const pinterestHeaderStyle = resetCSS(styles.thStyle.base, styles.thStyle.pinterest);
 
     return (
       <div style={socialCountsStyle}>
-        <table style={socialCountsTableStyle}>
+        <table style={tableStyle}>
           <tr>
             <th style={twitterHeaderStyle}>Twitter</th>
             <th style={facebookHeaderStyle}>Facebook</th>
@@ -84,10 +86,10 @@ const SocialShareCounts = React.createClass({
             <th style={pinterestHeaderStyle}>Pinterest</th>
           </tr>
           <tr>
-            <td style={socialCountsTdStyle}>{this.loadingSpinnerIfSearching(twitter)}</td>
-            <td style={socialCountsTdStyle}>{this.loadingSpinnerIfSearching(facebook)}</td>
-            <td style={socialCountsTdStyle}>{this.loadingSpinnerIfSearching(linkedIn)}</td>
-            <td style={socialCountsTdStyle}>{this.loadingSpinnerIfSearching(pinterest)}</td>
+            <td style={tdStyle}>{this.loadingSpinnerIfSearching(twitter)}</td>
+            <td style={tdStyle}>{this.loadingSpinnerIfSearching(facebook)}</td>
+            <td style={tdStyle}>{this.loadingSpinnerIfSearching(linkedIn)}</td>
+            <td style={tdStyle}>{this.loadingSpinnerIfSearching(pinterest)}</td>
           </tr>
         </table>
       </div>
