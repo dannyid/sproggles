@@ -6,7 +6,7 @@ import SocialShareCounts from './SocialShareCounts';
 
 const SEOPanel = React.createClass({
   componentWillMount: function() {
-    const {getResult, getSocialCounts, data} = this.props;
+    const {getResult, getSocialCounts} = this.props;
     getResult();
     getSocialCounts();
   },
