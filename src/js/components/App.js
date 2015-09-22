@@ -70,7 +70,7 @@ const App = React.createClass({
       panels: {
         colorsPanel: {
           title: 'Colors',
-          isOpen: true,
+          isOpen: false,
           data: reduced.results.allColors
         },
         fontsPanel: {
@@ -85,7 +85,7 @@ const App = React.createClass({
         },
         seoPanel: {
           title: 'SEO/Social',
-          isOpen: false,
+          isOpen: true,
           data: {
             resultJson: {
               title: 'The Title',
@@ -109,7 +109,21 @@ const App = React.createClass({
                 count: 0,
                 isSearching: false
               }
-            }
+            },
+            keywordInfo: [
+              {
+                keyword: 'test',
+                rank: 2,
+                volume: 22000,
+                lastSearched: 1442947343089
+              },
+              {
+                keyword: 'another',
+                rank: 45,
+                volume: 360,
+                lastSearched: 1442945343089
+              }
+            ]
           }
         }
       }
@@ -187,6 +201,10 @@ const App = React.createClass({
     getFacebookShareCount(url).done(this.setSocialCountState('facebook'));
     getLinkedInShareCount(url).done(this.setSocialCountState('linkedIn'));
     getPinterestShareCount(url).done(this.setSocialCountState('pinterest'));
+  },
+
+  getKeywordInfo: function() {
+
   },
 
   render: function() {
