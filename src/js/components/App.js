@@ -176,7 +176,7 @@ const App = React.createClass({
         count: formatNum(data.count || data.shares),
         isSearching: false
       };
-      console.log(socialNetwork, data.count || data.shares);
+      console.log(socialNetwork, (data.count || data.shares));
       this.setState({panels});
     }.bind(this);
   },
@@ -203,16 +203,23 @@ const App = React.createClass({
     getPinterestShareCount(url).done(this.setSocialCountState('pinterest'));
   },
 
-  getKeywordInfo: function(keyword, url) {
+  getKeywordInfo: function(keyword) {
+    const {url} = this.state;
+
     chrome.runtime.sendMessage({
       type: 'getKeywordInfo',
       keyword,
       url
     }, response => {
       const panels = Object.assign({}, this.state.panels);
-      const {keyWordInfo} = panels.seoPanel.data;
+      const {keywordInfo} = panels.seoPanel.data;
 
-      console.log(response);
+      keywordInfo.unshift({
+        keyword: response.keyword,
+        rank: response.rank,
+        volume: response.volume || 'low',
+        lastSearched: new Date().getTime()
+      });
 
       this.setState({panels});
     }.bind(this));

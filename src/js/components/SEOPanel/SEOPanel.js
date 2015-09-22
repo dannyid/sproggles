@@ -10,12 +10,11 @@ const SEOPanel = React.createClass({
     const {getResult, getSocialCounts, getKeywordInfo} = this.props;
     getResult();
     getSocialCounts();
-    getKeywordInfo('hubspot', 'hubspot.com');
   },
 
   render: function() {
-    const {data, title, toggle, isOpen} = this.props;
-    const {resultJson, shareCounts, keywordInfo, getKeywordInfo} = data;
+    const {data, title, toggle, isOpen, getKeywordInfo} = this.props;
+    const {resultJson, shareCounts, keywordInfo} = data;
 
     return (
       <PanelContainer title={title} toggle={toggle} isOpen={isOpen}>
@@ -24,7 +23,7 @@ const SEOPanel = React.createClass({
         <Heading text="Social Share Counts" subtext="" />
         <SocialShareCounts shareCounts={shareCounts} />
         <Heading text="Real-time Keyword Research" subtext="" />
-        <KeywordInfo keywordResults={keywordInfo} getKeywordInfo={getKeywordInfo}/>
+        <KeywordInfo keywordInfo={keywordInfo} getKeywordInfo={getKeywordInfo}/>
       </PanelContainer>
     );
   }
