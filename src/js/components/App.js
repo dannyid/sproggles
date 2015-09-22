@@ -203,8 +203,19 @@ const App = React.createClass({
     getPinterestShareCount(url).done(this.setSocialCountState('pinterest'));
   },
 
-  getKeywordInfo: function() {
+  getKeywordInfo: function(keyword, url) {
+    chrome.runtime.sendMessage({
+      type: 'getKeywordInfo',
+      keyword,
+      url
+    }, response => {
+      const panels = Object.assign({}, this.state.panels);
+      const {keyWordInfo} = panels.seoPanel.data;
 
+      console.log(response);
+
+      this.setState({panels});
+    }.bind(this));
   },
 
   render: function() {
@@ -223,6 +234,7 @@ const App = React.createClass({
             toggle={this.togglePanel('seoPanel')}
             getResult={this.getResult}
             getSocialCounts={this.getSocialCounts}
+            getKeywordInfo={this.getKeywordInfo}
           />
         </div>
       </Draggable>

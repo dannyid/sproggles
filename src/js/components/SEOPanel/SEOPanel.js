@@ -7,14 +7,15 @@ import KeywordInfo from './KeywordInfo';
 
 const SEOPanel = React.createClass({
   componentWillMount: function() {
-    const {getResult, getSocialCounts} = this.props;
+    const {getResult, getSocialCounts, getKeywordInfo} = this.props;
     getResult();
     getSocialCounts();
+    getKeywordInfo('hubspot', 'hubspot.com');
   },
 
   render: function() {
     const {data, title, toggle, isOpen} = this.props;
-    const {resultJson, shareCounts, keywordInfo} = data;
+    const {resultJson, shareCounts, keywordInfo, getKeywordInfo} = data;
 
     return (
       <PanelContainer title={title} toggle={toggle} isOpen={isOpen}>
@@ -23,7 +24,7 @@ const SEOPanel = React.createClass({
         <Heading text="Social Share Counts" subtext="" />
         <SocialShareCounts shareCounts={shareCounts} />
         <Heading text="Real-time Keyword Research" subtext="" />
-        <KeywordInfo keywordResults={keywordInfo} />
+        <KeywordInfo keywordResults={keywordInfo} getKeywordInfo={getKeywordInfo}/>
       </PanelContainer>
     );
   }

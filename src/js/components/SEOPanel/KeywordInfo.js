@@ -13,7 +13,10 @@ const styles = {
   },
 
   buttonStyle: {
-    padding: 5
+    padding: 5,
+    backgroundColor: '#DDD',
+    border: '1px solid #AAA',
+    borderRadius: 2
   },
 
   tableStyle: {
