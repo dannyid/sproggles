@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import {resetCSS} from '../../modules/utils';
 
 const styles = {
@@ -42,7 +43,7 @@ const styles = {
   tdStyle: {
     border: '1px solid #DDD',
     height: 35,
-    fontSize: 16,
+    fontSize: 14,
     padding: 5,
     textAlign: 'center',
     width: '25%'
@@ -53,13 +54,13 @@ const KeywordRow = React.createClass({
   render: function() {
     const {keyword, rank, volume, lastSearched} = this.props;
     const tdStyle = resetCSS(styles.tdStyle);
-
+    const relativeLastSearched = moment(lastSearched).fromNow();
     return (
       <tr>
         <td style={tdStyle}>{keyword}</td>
         <td style={tdStyle}>{rank}</td>
         <td style={tdStyle}>{volume}</td>
-        <td style={tdStyle}>{lastSearched}</td>
+        <td style={tdStyle}>{relativeLastSearched}</td>
       </tr>
     );
   }
