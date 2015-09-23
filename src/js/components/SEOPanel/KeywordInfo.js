@@ -47,6 +47,7 @@ const styles = {
     fontSize: 14,
     padding: 5,
     textAlign: 'center',
+    verticalAlign: 'middle',
     width: '25%'
   }
 };
@@ -55,13 +56,14 @@ const KeywordRow = React.createClass({
   render: function() {
     const {keyword, rank, volume, lastSearched} = this.props;
     const tdStyle = resetCSS(styles.tdStyle);
+    const lastSearchedStyle = resetCSS(styles.tdStyle, {fontSize: 13});
     const relativeLastSearched = moment(lastSearched).fromNow();
     return (
       <tr>
         <td style={tdStyle}>{keyword}</td>
         <td style={tdStyle}>{rank}</td>
         <td style={tdStyle}>{volume}</td>
-        <td style={tdStyle}>{relativeLastSearched}</td>
+        <td style={lastSearchedStyle}>{relativeLastSearched}</td>
       </tr>
     );
   }

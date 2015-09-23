@@ -15,13 +15,13 @@ const styles = {
 
   thStyle: {
     base: {
-      width: '25%',
-      textAlign: 'center',
       border: '1px solid',
       color: 'white',
-      height: 25,
       fontSize: 16,
-      padding: 5
+      height: 25,
+      padding: 5,
+      textAlign: 'center',
+      width: '25%'
     },
     twitter: {
       backgroundColor: '#55acee',
@@ -42,11 +42,12 @@ const styles = {
   },
 
   tdStyle: {
-    width: '25%',
-    textAlign: 'center',
     border: '1px solid #DDD',
+    fontSize: 16,
     height: 35,
-    fontSize: 16
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    width: '25%'
   }
 };
 
