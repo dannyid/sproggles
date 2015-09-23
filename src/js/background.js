@@ -38,11 +38,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 chrome.runtime.onInstalled.addListener(() => {
   const extensionId = chrome.i18n.getMessage('@@extension_id');
 
+  /* Open intro page upon install or update */
   chrome.tabs.create({
     url: `chrome-extension://${extensionId}/html/intro.html`
   });
 
-  // Generate UUID or get the one that's already generated
+  /* Generate UUID or get the one that's already generated */
   chrome.storage.sync.get('uuid', storage => {
     if (typeof storage.uuid === 'undefined') {
       const newUUID = generateUUID();
