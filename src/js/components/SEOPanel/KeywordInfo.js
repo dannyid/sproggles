@@ -69,23 +69,23 @@ const KeywordRow = React.createClass({
 
 const KeywordInfo = React.createClass({
   getInitialState: function() {
-    return {inputtedKeyword: ''};
+    return {inputtedKeywords: ''};
   },
 
   handleClick: function(e) {
-    const {inputtedKeyword} = this.state;
+    const {inputtedKeywords} = this.state;
     const {getKeywordInfo} = this.props;
 
     e.preventDefault();
 
     // This allows you to paste in comma separated keywords;
-    inputtedKeyword.split(',').forEach(getKeywordInfo);
+    inputtedKeywords.split(',').forEach(getKeywordInfo);
 
-    this.setState({inputtedKeyword: ''});
+    this.setState({inputtedKeywords: ''});
   },
 
   handleChange: function(e) {
-    this.setState({inputtedKeyword: e.target.value});
+    this.setState({inputtedKeywords: e.target.value});
   },
 
   render: function() {
@@ -108,7 +108,7 @@ const KeywordInfo = React.createClass({
               placeholder="comma, separated, keywords"
               style={inputStyle}
               onChange={this.handleChange}
-              value={this.state.inputtedKeyword}
+              value={this.state.inputtedKeywords}
             />
           </label>
           <button type="submit" style={buttonStyle} onClick={this.handleClick}>
