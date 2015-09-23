@@ -35,10 +35,6 @@ const styles = {
 };
 
 const App = React.createClass({
-  componentWillMount: function() {
-    return;
-  },
-
   getInitialState: () => {
     // Get fonts and colors on page load
     const elements = $.makeArray($('body *').not('script, link, style'));
