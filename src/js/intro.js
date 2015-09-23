@@ -10,6 +10,7 @@ domReady(function() {
   hbspt.forms.create({
     portalId: '150905',
     target: '.feedback-form',
+    css: '',
     formId: '2f33e21f-3324-437c-8bee-8cc266fc8296'
   });
 });
