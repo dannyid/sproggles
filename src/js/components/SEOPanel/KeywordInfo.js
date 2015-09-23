@@ -11,6 +11,7 @@ const styles = {
     border: '1px solid #AAA',
     borderRadius: 2,
     margin: '0 10px',
+    minWidth: 230,
     padding: 5
   },
 
@@ -75,7 +76,9 @@ const KeywordInfo = React.createClass({
 
     e.preventDefault();
 
-    getKeywordInfo(inputtedKeyword);
+    // This allows you to paste in comma separated keywords;
+    inputtedKeyword.split(',').forEach(getKeywordInfo);
+
     this.setState({inputtedKeyword: ''});
   },
 
@@ -100,6 +103,7 @@ const KeywordInfo = React.createClass({
             <input
               name="keyword"
               type="text"
+              placeholder="comma, separated, values"
               style={inputStyle}
               onChange={this.handleChange}
               value={this.state.inputtedKeyword}
