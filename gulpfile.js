@@ -111,7 +111,6 @@ gulp.task('js:background', ['clean:js'], function() {
 });
 
 gulp.task('js:intro', ['clean:js'], function() {
-  console.log('intro');
   return browserify({
     entries: paths.src.intro,
     extensions: ['.js'],
