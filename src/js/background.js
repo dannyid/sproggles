@@ -36,6 +36,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 /* Assign UUID upon install if the user doesn't already have one */
 chrome.runtime.onInstalled.addListener(() => {
+
+  // Generate UUID or get the one that's already generated
   chrome.storage.sync.get('uuid', storage => {
     if (typeof storage.uuid === 'undefined') {
       const newUUID = generateUUID();
