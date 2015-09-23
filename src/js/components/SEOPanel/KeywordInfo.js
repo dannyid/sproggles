@@ -4,8 +4,13 @@ import {resetCSS} from '../../modules/utils';
 
 const styles = {
   keywordsSectionStyle: {
-    margin: '10px 10px 20px 10px',
+    margin: 10,
     textAlign: 'center'
+  },
+
+  labelStyle: {
+    display: 'inline-block',
+    margin: 0
   },
 
   inputStyle: {
@@ -95,6 +100,7 @@ const KeywordInfo = React.createClass({
     const keywordRows = keywordInfo.map(result => <KeywordRow {...result} />);
 
     const keywordsSectionStyle = resetCSS(styles.keywordsSectionStyle);
+    const labelStyle = resetCSS(styles.labelStyle);
     const inputStyle = resetCSS(styles.inputStyle);
     const buttonStyle = resetCSS(styles.buttonStyle);
     const tableStyle = resetCSS(styles.tableStyle);
@@ -103,7 +109,8 @@ const KeywordInfo = React.createClass({
     return (
       <div style={keywordsSectionStyle}>
         <form>
-          <label for="keyword">Search keyword:
+          <label for="keyword" style={labelStyle}>
+            Search keyword:
             <input
               name="keyword"
               type="text"
