@@ -13,6 +13,7 @@ const styles = {
     borderRadius: 2,
     margin: '0 10px',
     minWidth: 230,
+    outline: 'none',
     padding: 5
   },
 
@@ -104,7 +105,7 @@ const KeywordInfo = React.createClass({
             <input
               name="keyword"
               type="text"
-              placeholder="comma, separated, values"
+              placeholder="comma, separated, keywords"
               style={inputStyle}
               onChange={this.handleChange}
               value={this.state.inputtedKeyword}
