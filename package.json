@@ -29,6 +29,7 @@
   "dependencies": {
     "humanize": "0.0.9",
     "jquery": "^2.1.4",
+    "moment": "^2.10.6",
     "q": "^1.4.1",
     "react": "^0.13.3",
     "react-draggable": "^0.8.1"
