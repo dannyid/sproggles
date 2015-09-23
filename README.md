@@ -2,7 +2,7 @@
 
 ## Complete marketer's toolkit
 
-###[Get it at the Chrome store here](https://chrome.google.com/webstore/detail/sproggles/jbjbbpondgkpmdmkjpnpdfpnnoimehib)
+###[Get it from the Chrome store here](https://chrome.google.com/webstore/detail/sproggles/jbjbbpondgkpmdmkjpnpdfpnnoimehib)
 
 ### To Run:
 
