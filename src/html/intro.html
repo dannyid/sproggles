@@ -83,16 +83,50 @@
         padding: 0;
       }
 
-      body .options-div .hs-form input.hs-button,
-      body .options-div .hs-form input.hs-button:hover,
-      body .options-div .hs-form input.hs-button:active,
-      body .options-div .hs-form input.hs-button:focus {
-        text-shadow: 0 -1px 0 #D81806 !important;
-        background-color: #D81806 !important;
-        border: none !important;
-        background-image: none !important;
-        box-shadow: none !important;
-        outline: none !important;
+      body .options-div .hs-form input.hs-button {
+        text-shadow: 0 -1px 0 #D81806;
+        background-color: #D81806;
+        border: none;
+        background-image: none;
+        box-shadow: none;
+        outline: none;
+        -webkit-transition: color 250ms ease-in-out;
+                transition: color 250ms ease-in-out;
+      }
+
+      input, textarea {
+          width: 92%;
+          padding: 10px 0 10px 10px;
+          margin: 10px 6% 10px 0;
+      /*     border-radius: 10px; */
+          -webkit-appearance: none;
+          border: 1px solid black;
+          outline: none
+      }
+
+      textarea {
+          min-height: 100px
+      }
+
+      input:focus, textarea:focus {
+          border-color: #D81806;
+      }
+
+      .hs-form fieldset.form-columns-1 .hs-input {
+          width: 96%;
+      }
+
+      input.hs-button.primary.large {
+          width: 30%;
+          margin:  0 auto;
+          color:  white;
+          font-size: 20px;
+          padding: 20px;
+          cursor: pointer;
+      }
+      input.hs-button.primary.large:hover {
+          background-color: #A71204;
+          
       }
     </style>
   </head>
