@@ -78,15 +78,15 @@
         clear: both;
       }
 
-      body .options-div .hbspt-form .actions {
+      body .options-div .hs-form .actions {
         margin: 0;
         padding: 0;
       }
 
-      body .options-div .hbspt-form input.hs-button,
-      body .options-div .hbspt-form input.hs-button:hover,
-      body .options-div .hbspt-form input.hs-button:active,
-      body .options-div .hbspt-form input.hs-button:focus {
+      body .options-div .hs-form input.hs-button,
+      body .options-div .hs-form input.hs-button:hover,
+      body .options-div .hs-form input.hs-button:active,
+      body .options-div .hs-form input.hs-button:focus {
         text-shadow: 0 -1px 0 #D81806 !important;
         background-color: #D81806 !important;
         border: none !important;
@@ -113,7 +113,7 @@
       <div id="slider">
         <div class="options-div">
           <p style="font-weight: bold;">
-            Welcome to Sproggles for Chrome version <span id="version-text">0.3.0</span>!
+            Welcome to Sproggles for Chrome version <span id="version-text"></span>!
           </p>
           <p>
             Sproggles helps marketers do the things they do every day faster and easier. Things like keyword research and optimization for your pages, investigating colors, fonts, and images on a page, and much more coming soon.
@@ -121,25 +121,20 @@
           <p>
             Have a look around, try things out, and give us your feedback and opinions. Tell us what takes up time in your day.
           </p>
-          <div>
-            <!--[if lte IE 8]>
-            <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
-            <![endif]-->
-            <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
-            <script>
-              hbspt.forms.create({
-                portalId: '150905',
-                formId: '2f33e21f-3324-437c-8bee-8cc266fc8296'
-              });
-            </script>
+          <div class="feedback-form">
           </div>
         </div>
       </div>
     </div>
     <div class="options-div">
       <div id="footer" role="contentinfo">
-        © 2015 <a href="https://www.sproggles.com/" target="_blank">Sproggles</a>, a part of HubSpot, Inc., 25 First Street, 2<sup>nd</sup> Floor, Cambridge, MA 02141
+        © 2015 <a href="http://www.sproggles.com/" target="_blank">Sproggles</a>, a part of HubSpot, Inc., 25 First Street, 2<sup>nd</sup> Floor, Cambridge, MA 02141
       </div>
     </div>
+    <!--[if lte IE 8]>
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+    <![endif]-->
+    <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
+    <script charset="utf-8" type="text/javascript" src="../js/intro.js"></script>
   </body>
 </html>

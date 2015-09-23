@@ -34,6 +34,9 @@ var paths = {
     background: [
       './src/js/background.js'
     ],
+    intro: [
+      './src/js/intro.js'
+    ],
     html: [
       './src/html/*.html'
     ],
@@ -107,7 +110,25 @@ gulp.task('js:background', ['clean:js'], function() {
   .pipe(gulp.dest(paths.dest.js));
 });
 
-gulp.task('js', ['js:contentScript', 'js:background']);
+gulp.task('js:intro', ['clean:js'], function() {
+  console.log('intro');
+  return browserify({
+    entries: paths.src.intro,
+    extensions: ['.js'],
+    debug: true
+  })
+  .transform(babelify.configure({
+    plugins: ["object-assign"]
+  }))
+  .bundle()
+  .pipe(source('intro.js'))
+  // .pipe(buffer())
+  // .pipe(uglify())
+  .pipe(gulp.dest(paths.dest.js));
+});
+
+
+gulp.task('js', ['js:contentScript', 'js:background', 'js:intro']);
 
 
 /********************
