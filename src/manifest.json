@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Sproggles",
   "description": "Ultimate marketer's toolkit",
-  "version": "0.2.8",
+  "version": "0.3.0",
 
   "background": {
     "scripts": ["js/background.js"]
@@ -10,8 +10,7 @@
 
   "browser_action": {
     "default_title":  "Sproggles",
-    "default_icon":   "img/logo-128.png",
-    "default_popup":  "popup.html"
+    "default_icon":   "img/logo-128.png"
   },
 
   "content_scripts": [{
@@ -26,6 +25,7 @@
   },
 
   "web_accessible_resources": [
+    "img/loading-spinner.gif"
   ],
 
   "permissions": [
@@ -34,5 +34,5 @@
     "activeTab"
   ],
 
-  "content_security_policy": "script-src 'self' https://api.pinterest.com https://*.hsforms.net https://*.hubspot.com https://*.hubapi.com https://www.google.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://*.hsforms.net https://*.hubspot.com https://*.hubapi.com https://www.google.com; object-src 'self'"
 }

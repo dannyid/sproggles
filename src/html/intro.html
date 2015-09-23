@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)chrome-extension://mlomiejdfkolichcflejclcbmpeaniij/walkthrough.html -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Sproggles Configuration Walkthrough</title>
+
+    <style>
+      body {
+        margin: 0;
+        font: 17px Helvetica, sans-serif, sans;
+        color: #666;
+        min-width: 800px;
+      }
+
+      #header-top {
+        display: flex;
+        height: 100px;
+        padding: 0 13%;
+      }
+
+      #header-top .company-name {
+        align-self: center;
+        color: #D81806;
+        display: inline-block;
+        font-size: 2.5em;
+        font-weight: 100;
+        margin: 0;
+        padding-left: 10px;
+      }
+
+      #header-top #logo {
+        height: 70px;
+        width: 70px;
+        float: left;
+        padding-top: 15px;
+      }
+
+      #header-bottom {
+        background-color: #D81806;
+        height: auto;
+        max-height: 120px;
+        margin: 0;
+        padding: 0 13%;
+        position: relative;
+      }
+
+      #header-title {
+        font-size: 1.875em;
+        float: left;
+        color: #fff;
+        height: 80px;
+        padding: 0;
+        margin: 0;
+        font-weight: normal;
+        line-height: 2.5em;
+      }
+
+      .options-div {
+        display: block;
+        padding: 20px 13% 0 13%;
+      }
+
+      #footer {
+        display: block;
+        font-size: .7em;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        margin: 0;
+      }
+
+      a {
+        color: #D81806;
+        text-decoration: none;
+      }
+
+      .clear {
+        clear: both;
+      }
+
+      body .options-div .hs-form .actions {
+        margin: 0;
+        padding: 0;
+      }
+
+      body .options-div .hs-form input.hs-button {
+        text-shadow: 0 -1px 0 #D81806;
+        background-color: #D81806;
+        border: none;
+        background-image: none;
+        box-shadow: none;
+        outline: none;
+      }
+
+      input, textarea {
+          width: 92%;
+          padding: 10px 0 10px 10px;
+          margin: 10px 6% 10px 0;
+          -webkit-appearance: none;
+          border: 1px solid black;
+          outline: none
+      }
+
+      textarea {
+          min-height: 100px
+      }
+
+      input:focus, textarea:focus {
+          border-color: #D81806;
+      }
+
+      .hs-form fieldset.form-columns-1 .hs-input {
+          width: 96% !important;
+      }
+
+      input.hs-button.primary.large {
+          width: 30%;
+          color:  white;
+          font-size: 20px;
+          padding: 20px;
+          cursor: pointer;
+      }
+      input.hs-button.primary.large:hover {
+          background-color: #A71204;
+          
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <div id="header">
+        <div id="header-top">
+          <img id="logo" src="../img/logo-128.png" alt="Sproggles logo">
+          <h1 class="company-name">Sproggles</h1>
+        </div>
+        <div id="header-bottom">
+          <h2 id="header-title">
+            Introduction
+          </h2>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div id="slider">
+        <div class="options-div">
+          <p style="font-weight: bold;">
+            Welcome to Sproggles version <span id="version-text"></span>!
+          </p>
+          <p>
+            Sproggles helps marketers do the things they do every day faster and easier. Things like keyword research and optimization for your pages, investigating colors, fonts, and images on a page, and much more coming soon.
+          </p>
+          <p>
+            Have a look around, try things out, and give us your feedback and opinions. Tell us what takes up time in your day.
+          </p>
+          <div class="feedback-form">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="options-div">
+      <div id="footer" role="contentinfo">
+        © 2015 <a href="http://www.sproggles.com/" target="_blank">Sproggles</a>, a part of HubSpot, Inc., 25 First Street, 2<sup>nd</sup> Floor, Cambridge, MA 02141
+      </div>
+    </div>
+    <!--[if lte IE 8]>
+    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+    <![endif]-->
+    <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/v2.js"></script>
+    <script charset="utf-8" type="text/javascript" src="../js/intro.js"></script>
+  </body>
+</html>

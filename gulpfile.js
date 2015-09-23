@@ -28,17 +28,17 @@ var paths = {
     img: [
       './src/img/**/*'
     ],
-    popup: [
-      './src/js/popup.js'
-    ],
     contentScript: [
       './src/js/contentScript.js'
     ],
     background: [
       './src/js/background.js'
     ],
+    intro: [
+      './src/js/intro.js'
+    ],
     html: [
-      './src/*.html'
+      './src/html/*.html'
     ],
     manifest: [
       './src/manifest.json'
@@ -48,7 +48,8 @@ var paths = {
     dist: './dist',
     css: './dist/css',
     js: './dist/js',
-    img: './dist/img'
+    img: './dist/img',
+    html: './dist/html'
   }
 };
 
@@ -77,27 +78,15 @@ gulp.task('clean:js', function(done) {
   del(['./dist/js/**/*.js'], done);
 });
 
-gulp.task('js:popup', ['clean:js'], function() {
-  return browserify({
-    entries: paths.src.popup,
-    extensions: ['.js'],
-    debug: true
-  })
-  .transform(babelify)
-  .bundle()
-  .pipe(source('popup.js'))
-  // .pipe(buffer())
-  // .pipe(uglify())
-  .pipe(gulp.dest(paths.dest.js));
-});
-
 gulp.task('js:contentScript', ['clean:js'], function() {
   return browserify({
     entries: paths.src.contentScript,
     extensions: ['.js'],
     debug: true
   })
-  .transform(babelify)
+  .transform(babelify.configure({
+    plugins: ["object-assign"]
+  }))
   .bundle()
   .pipe(source('contentScript.js'))
   // .pipe(buffer())
@@ -111,7 +100,9 @@ gulp.task('js:background', ['clean:js'], function() {
     extensions: ['.js'],
     debug: true
   })
-  .transform(babelify)
+  .transform(babelify.configure({
+    plugins: ["object-assign"]
+  }))
   .bundle()
   .pipe(source('background.js'))
   // .pipe(buffer())
@@ -119,7 +110,24 @@ gulp.task('js:background', ['clean:js'], function() {
   .pipe(gulp.dest(paths.dest.js));
 });
 
-gulp.task('js', ['js:popup', 'js:contentScript', 'js:background']);
+gulp.task('js:intro', ['clean:js'], function() {
+  return browserify({
+    entries: paths.src.intro,
+    extensions: ['.js'],
+    debug: true
+  })
+  .transform(babelify.configure({
+    plugins: ["object-assign"]
+  }))
+  .bundle()
+  .pipe(source('intro.js'))
+  // .pipe(buffer())
+  // .pipe(uglify())
+  .pipe(gulp.dest(paths.dest.js));
+});
+
+
+gulp.task('js', ['js:contentScript', 'js:background', 'js:intro']);
 
 
 /********************
@@ -127,12 +135,12 @@ gulp.task('js', ['js:popup', 'js:contentScript', 'js:background']);
 ********************/
 
 gulp.task('clean:html', function(done) {
-  del(['./dist/*.html'], done);
+  del(['./dist/html/*.html'], done);
 });
 
 gulp.task('html', ['clean:html'], function() {
   return gulp.src(paths.src.html)
-  .pipe(gulp.dest(paths.dest.dist));
+  .pipe(gulp.dest(paths.dest.html));
 });
 
 

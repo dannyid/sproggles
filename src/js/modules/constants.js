@@ -5,7 +5,7 @@ export default {
   FACEBOOK_SHARE_COUNT_URL: 'https://graph.facebook.com/?id=',
   FACEBOOK_LIKE_COUNT_URL: 'https://graph.facebook.com/',
   GOOGLE_PLUS_SHARE_COUNT_URL: 'https://clients6.google.com/rpc?key=YOUR_API_KEY',
-  PINTEREST_SHARE_COUNT_URL: 'https://api.pinterest.com/v1/urls/count.json',
+  PINTEREST_SHARE_COUNT_URL: 'https://widgets.pinterest.com/v1/urls/count.json',
   LINKEDIN_SHARE_COUNT_URL: 'https://www.linkedin.com/countserv/count/share?format=json&url=',
   MIXPANEL_EVENT_URL: 'http://api.mixpanel.com/track/?data=',
   KEYWORDS_URL: 'http://serpeeker.herokuapp.com/keywords',
