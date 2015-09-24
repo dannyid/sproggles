@@ -4,6 +4,8 @@ import Heading from './Heading';
 import SearchResult from './SearchResult';
 import SocialShareCounts from './SocialShareCounts';
 import KeywordInfo from './KeywordInfo';
+import moment from 'moment';
+
 
 const SEOPanel = React.createClass({
   render: function() {
@@ -18,10 +20,11 @@ const SEOPanel = React.createClass({
     } = this.props;
 
     const {resultJson, shareCounts, keywordInfo} = data;
+    const lastUpdated = moment(resultJson.lastUpdated).fromNow();
 
     return (
       <PanelContainer title={title} isOpen={isOpen} toggle={toggle}>
-        <Heading text="Google result" subtext="(click to see on Google)" />
+        <Heading text="Google result" subtext={`(Last Updated: ${lastUpdated})`} />
         <SearchResult resultJson={resultJson} getResult={getResult} />
         <Heading text="Social Share Counts" subtext="" />
         <SocialShareCounts shareCounts={shareCounts} getSocialCounts={getSocialCounts} />
