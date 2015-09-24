@@ -5,7 +5,7 @@ import FontsPanel from './FontsPanel/FontsPanel';
 import ImagesPanel from './ImagesPanel/ImagesPanel';
 import SEOPanel from './SEOPanel/SEOPanel';
 import Draggable from 'react-draggable';
-import {completeImageUrl, resetCSS, formatNum} from '../modules/utils';
+import {completeImageUrl, resetCSS} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
 import getSerp from '../modules/getSerp';
 import * as chromeStorage from '../modules/chromeStorage';
@@ -103,6 +103,13 @@ const App = React.createClass({
   },
 
   componentWillMount: function() {
+    // Save state before navigating away from page
+    window.onbeforeunload = function() {
+      let data = {};
+      data[this.state.url] = this.state;
+      chromeStorage.set(data);
+    }.bind(this);
+
     // If there's a saved state for this site, use it
     // Otherwise generate all the data anew
     chromeStorage
@@ -144,10 +151,13 @@ const App = React.createClass({
   },
 
   componentWillUnmount: function() {
-    // Save data to localstorage upon app closing
+    // Save data to Chrome storage upon app closing
     let data = {};
     data[this.state.url] = this.state;
     chromeStorage.set(data);
+
+    // Remove listener for navigating away from page
+    window.onbeforeunload = null;
   },
 
   closeAllPanels: function(panels) {
@@ -181,10 +191,10 @@ const App = React.createClass({
       let panels = Object.assign({}, this.state.panels);
 
       panels.seoPanel.data.shareCounts[socialNetwork] = {
-        count: formatNum(data.count || data.shares),
+        count: data.count || data.shares || 0,
         isSearching: false
       };
-      console.log(socialNetwork, (data.count || data.shares));
+      console.log(socialNetwork, (data.count || data.shares || 0));
       this.setState({panels});
     }.bind(this);
   },
@@ -217,10 +227,10 @@ const App = React.createClass({
 
     this.setShareCountsSearching();
 
-    getTwitterShareCount(url).done(this.setSocialCountState('twitter'));
-    getFacebookShareCount(url).done(this.setSocialCountState('facebook'));
-    getLinkedInShareCount(url).done(this.setSocialCountState('linkedIn'));
-    getPinterestShareCount(url).done(this.setSocialCountState('pinterest'));
+    getTwitterShareCount(url).done(this.setSocialCountState('twitter')).fail(() => console.log('twitter fail'));
+    getFacebookShareCount(url).done(this.setSocialCountState('facebook')).fail(() => console.log('facebook fail'));
+    getLinkedInShareCount(url).done(this.setSocialCountState('linkedIn')).fail(() => console.log('linkedin fail'));
+    getPinterestShareCount(url).done(this.setSocialCountState('pinterest')).fail(() => console.log('pinterest fail'));
   },
 
   getKeywordInfo: function(keyword) {
