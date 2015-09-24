@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import {resetCSS} from '../../modules/utils';
+import {resetCSS, formatNum} from '../../modules/utils';
 
 const styles = {
   keywordsSectionStyle: {
@@ -31,14 +31,28 @@ const styles = {
 
   tableStyle: {
     borderCollapse: 'collapse',
+    display: 'table',
     marginTop: 10,
     width: '100%'
+  },
+
+  theadStyle: {
+    display: 'table-row-group'
+  },
+
+  tbodyStyle: {
+    display: 'table-row-group'
+  },
+
+  trStyle: {
+    display: 'table-row'
   },
 
   thStyle: {
     backgroundColor: '#DDD',
     border: '1px solid #DDD',
     color: 'black',
+    display: 'table-cell',
     height: 25,
     fontSize: 16,
     width: '25%',
@@ -48,6 +62,7 @@ const styles = {
 
   tdStyle: {
     border: '1px solid #DDD',
+    display: 'table-cell',
     height: 35,
     fontSize: 14,
     padding: 5,
@@ -60,14 +75,15 @@ const styles = {
 const KeywordRow = React.createClass({
   render: function() {
     const {keyword, rank, volume, lastSearched} = this.props;
+    const trStyle = resetCSS(styles.trStyle);
     const tdStyle = resetCSS(styles.tdStyle);
     const lastSearchedStyle = resetCSS(styles.tdStyle, {fontSize: 13});
     const relativeLastSearched = moment(lastSearched).fromNow();
     return (
-      <tr>
+      <tr style={trStyle}>
         <td style={tdStyle}>{keyword}</td>
         <td style={tdStyle}>{rank}</td>
-        <td style={tdStyle}>{volume}</td>
+        <td style={tdStyle}>{formatNum(volume)}</td>
         <td style={lastSearchedStyle}>{relativeLastSearched}</td>
       </tr>
     );
@@ -104,12 +120,15 @@ const KeywordInfo = React.createClass({
     const inputStyle = resetCSS(styles.inputStyle);
     const buttonStyle = resetCSS(styles.buttonStyle);
     const tableStyle = resetCSS(styles.tableStyle);
+    const theadStyle = resetCSS(styles.theadStyle);
+    const tbodyStyle = resetCSS(styles.tbodyStyle);
     const thStyle = resetCSS(styles.thStyle);
+    const trStyle = resetCSS(styles.trStyle);
 
     return (
       <div style={keywordsSectionStyle}>
         <form>
-          <label for="keyword" style={labelStyle}>
+          <label htmlFor="keyword" style={labelStyle}>
             Search keyword:
             <input
               name="keyword"
@@ -125,13 +144,17 @@ const KeywordInfo = React.createClass({
           </button>
         </form>
         <table style={tableStyle}>
-          <tr>
-            <th style={thStyle}>Keyword</th>
-            <th style={thStyle}>Rank</th>
-            <th style={thStyle}>Search Volume</th>
-            <th style={thStyle}>Last Searched</th>
-          </tr>
-          {keywordRows}
+          <thead style={theadStyle}>
+            <tr style={trStyle}>
+              <th style={thStyle}>Keyword</th>
+              <th style={thStyle}>Rank</th>
+              <th style={thStyle}>Search Volume</th>
+              <th style={thStyle}>Last Searched</th>
+            </tr>
+          </thead>
+          <tbody style={tbodyStyle}>
+            {keywordRows}
+          </tbody>
         </table>
       </div>
     );

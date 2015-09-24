@@ -1,6 +1,6 @@
 import React from 'react';
 import LoadingSpinner from '../LoadingSpinner';
-import {resetCSS} from '../../modules/utils';
+import {resetCSS, formatNum} from '../../modules/utils';
 
 const styles = {
   socialCountsStyle: {
@@ -10,13 +10,27 @@ const styles = {
 
   tableStyle: {
     borderCollapse: 'collapse',
+    display: 'table',
     width: '100%'
+  },
+
+  theadStyle: {
+    display: 'table-row-group'
+  },
+
+  tbodyStyle: {
+    display: 'table-row-group'
+  },
+
+  trStyle: {
+    display: 'table-row'
   },
 
   thStyle: {
     base: {
       border: '1px solid',
       color: 'white',
+      display: 'table-cell',
       fontSize: 16,
       height: 25,
       padding: 5,
@@ -43,6 +57,7 @@ const styles = {
 
   tdStyle: {
     border: '1px solid #DDD',
+    display: 'table-cell',
     fontSize: 16,
     height: 35,
     textAlign: 'center',
@@ -58,7 +73,7 @@ const SocialShareCounts = React.createClass({
         <LoadingSpinner />
       );
     }
-    return network.count;
+    return formatNum(network.count);
   },
 
   render: function() {
@@ -71,6 +86,9 @@ const SocialShareCounts = React.createClass({
 
     const socialCountsStyle = resetCSS(styles.socialCountsStyle);
     const tableStyle = resetCSS(styles.tableStyle);
+    const theadStyle = resetCSS(styles.theadStyle);
+    const tbodyStyle = resetCSS(styles.tbodyStyle);
+    const trStyle = resetCSS(styles.trStyle);
     const tdStyle = resetCSS(styles.tdStyle);
     const twitterHeaderStyle = resetCSS(styles.thStyle.base, styles.thStyle.twitter);
     const facebookHeaderStyle = resetCSS(styles.thStyle.base, styles.thStyle.facebook);
@@ -80,18 +98,22 @@ const SocialShareCounts = React.createClass({
     return (
       <div style={socialCountsStyle}>
         <table style={tableStyle}>
-          <tr>
-            <th style={twitterHeaderStyle}>Twitter</th>
-            <th style={facebookHeaderStyle}>Facebook</th>
-            <th style={linkedInHeaderStyle}>LinkedIn</th>
-            <th style={pinterestHeaderStyle}>Pinterest</th>
-          </tr>
-          <tr>
-            <td style={tdStyle}>{this.loadingSpinnerIfSearching(twitter)}</td>
-            <td style={tdStyle}>{this.loadingSpinnerIfSearching(facebook)}</td>
-            <td style={tdStyle}>{this.loadingSpinnerIfSearching(linkedIn)}</td>
-            <td style={tdStyle}>{this.loadingSpinnerIfSearching(pinterest)}</td>
-          </tr>
+          <thead style={theadStyle}>
+            <tr style={trStyle}>
+              <th style={twitterHeaderStyle}>Twitter</th>
+              <th style={facebookHeaderStyle}>Facebook</th>
+              <th style={linkedInHeaderStyle}>LinkedIn</th>
+              <th style={pinterestHeaderStyle}>Pinterest</th>
+            </tr>
+          </thead>
+          <tbody style={tbodyStyle}>
+            <tr style={trStyle}>
+              <td style={tdStyle}>{this.loadingSpinnerIfSearching(twitter)}</td>
+              <td style={tdStyle}>{this.loadingSpinnerIfSearching(facebook)}</td>
+              <td style={tdStyle}>{this.loadingSpinnerIfSearching(linkedIn)}</td>
+              <td style={tdStyle}>{this.loadingSpinnerIfSearching(pinterest)}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     );
