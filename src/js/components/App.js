@@ -136,6 +136,8 @@ const App = React.createClass({
         panels.imagesPanel.data = reduced.results.allImages;
 
         this.setState({panels});
+        this.getResult();
+        this.getSocialCounts();
       }
     }.bind(this));
   },
@@ -172,18 +174,6 @@ const App = React.createClass({
     }.bind(this);
   },
 
-  getResult: function() {
-    const {url} = this.state;
-    return getSerp(url)
-    .done(data => {
-      let panels = Object.assign({}, this.state.panels);
-
-      panels.seoPanel.data.resultJson = data;
-
-      this.setState({panels});
-    }.bind(this));
-  },
-
   setSocialCountState: function(socialNetwork) {
     return (data) => {
       let panels = Object.assign({}, this.state.panels);
@@ -206,6 +196,18 @@ const App = React.createClass({
     });
 
     this.setState({panels});
+  },
+
+  getResult: function() {
+    const {url} = this.state;
+    return getSerp(url)
+    .done(data => {
+      let panels = Object.assign({}, this.state.panels);
+
+      panels.seoPanel.data.resultJson = data;
+
+      this.setState({panels});
+    }.bind(this));
   },
 
   getSocialCounts: function() {

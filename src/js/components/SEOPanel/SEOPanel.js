@@ -6,12 +6,6 @@ import SocialShareCounts from './SocialShareCounts';
 import KeywordInfo from './KeywordInfo';
 
 const SEOPanel = React.createClass({
-  componentWillMount: function() {
-    const {getResult, getSocialCounts, getKeywordInfo} = this.props;
-    getResult();
-    getSocialCounts();
-  },
-
   render: function() {
     const {data, title, toggle, isOpen, getKeywordInfo} = this.props;
     const {resultJson, shareCounts, keywordInfo} = data;
