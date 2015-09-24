@@ -208,7 +208,7 @@ const App = React.createClass({
       url
     }, response => {
       const panels = Object.assign({}, this.state.panels);
-      const {keywordInfo} = panels.seoPanel.data;
+      let {keywordInfo} = panels.seoPanel.data;
 
       keywordInfo.unshift({
         keyword: response.keyword,
@@ -216,6 +216,9 @@ const App = React.createClass({
         volume: response.volume || 'low',
         lastSearched: new Date().getTime()
       });
+
+      // Only keep 10 items in array
+      keywordInfo.splice(10);
 
       this.setState({panels});
     }.bind(this));
