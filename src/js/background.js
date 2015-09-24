@@ -6,7 +6,10 @@ import Q from 'q';
 import * as chromeStorage from './modules/chromeStorage';
 import * as mixpanelEvents from './modules/mixpanelEvents';
 
-// When clicked the browserAction toggles the App
+/*
+  When clicked, the browserAction sends a
+  message to the content script to toggle the App
+*/
 chrome.browserAction.onClicked.addListener(() => {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
       chrome.tabs.sendMessage(tabs[0].id, {action: "toggleApp"});
