@@ -8,6 +8,7 @@ import Draggable from 'react-draggable';
 import {completeImageUrl, resetCSS, formatNum} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
 import getSerp from '../modules/getSerp';
+import * as chromeStorage from '../modules/chromeStorage';
 import {
   getTwitterShareCount,
   getFacebookShareCount,
@@ -53,8 +54,6 @@ const App = React.createClass({
         reduced.results.allImages.push(imageUrl);
       }
     });
-
-    console.log(reduced.results);
 
     // Get URL of page to send to SEO panel
     const url = (() => {
@@ -218,7 +217,7 @@ const App = React.createClass({
       });
 
       // Only keep 10 items in array
-      keywordInfo.splice(10);
+      keywordInfo.splice();
 
       this.setState({panels});
     }.bind(this));
