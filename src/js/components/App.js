@@ -37,46 +37,23 @@ const styles = {
 
 const App = React.createClass({
   getInitialState: () => {
-    // Get fonts and colors on page load
-    const elements = $.makeArray($('body *').not('script, link, style'));
-    const images = $.makeArray($('body img'));
-
-    // Whittle DOM nodes down into list of colors and fonts
-    let reduced = reduceColorsAndFonts(elements);
-
-    // Derive all the images and add them to the reduced result
-    images.forEach((i) => {
-      const imgSrc = $(i).attr('src') || '';
-      const imageUrl = completeImageUrl(imgSrc);
-
-      // Dedupe images and only add one of each
-      if (imageUrl && $.inArray(imageUrl, reduced.results.allImages) === -1) {
-        reduced.results.allImages.push(imageUrl);
-      }
-    });
-
-    // Get URL of page to send to SEO panel
-    const url = (() => {
-      return window.location.origin + (window.location.pathname || '');
-    })();
-
     return {
-      url: url,
+      url: window.location.origin + (window.location.pathname || ''),
       panels: {
         colorsPanel: {
           title: 'Colors',
           isOpen: false,
-          data: reduced.results.allColors
+          data: []
         },
         fontsPanel: {
           title: 'Fonts',
           isOpen: false,
-          data: reduced.results.allFonts
+          data: []
         },
         imagesPanel: {
           title: 'Images',
           isOpen: false,
-          data: reduced.results.allImages
+          data: []
         },
         seoPanel: {
           title: 'SEO/Social',
@@ -123,6 +100,50 @@ const App = React.createClass({
         }
       }
     };
+  },
+
+  componentWillMount: function() {
+    chromeStorage
+    .get(this.state.url)
+    .then(savedState => {
+      // If there's a saved state for this site, use it
+      // Otherwise generate all the data anew
+      if (Object.keys(savedState).length > 0) {
+        this.setState(savedState[this.state.url]);
+      } else {
+        // Get fonts and colors on page load
+        const elements = $.makeArray($('body *').not('script, link, style'));
+        const images = $.makeArray($('body img'));
+
+        // Whittle DOM nodes down into list of colors and fonts
+        let reduced = reduceColorsAndFonts(elements);
+
+        // Derive all the images and add them to the reduced result
+        images.forEach((i) => {
+          const imgSrc = $(i).attr('src') || '';
+          const imageUrl = completeImageUrl(imgSrc);
+
+          // Dedupe images and only add one of each
+          if (imageUrl && $.inArray(imageUrl, reduced.results.allImages) === -1) {
+            reduced.results.allImages.push(imageUrl);
+          }
+        });
+
+        let panels = Object.assign({}, this.state.panels);
+
+        panels.colorsPanel.data = reduced.results.allColors;
+        panels.fontsPanel.data = reduced.results.allFonts;
+        panels.imagesPanel.data = reduced.results.allImages;
+
+        this.setState({panels});
+      }
+    }.bind(this));
+  },
+
+  componentWillUnmount: function() {
+    let data = {};
+    data[this.state.url] = this.state;
+    chromeStorage.set(data);
   },
 
   closeAllPanels: function(panels) {
