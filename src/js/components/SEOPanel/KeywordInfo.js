@@ -75,15 +75,18 @@ const styles = {
 const KeywordRow = React.createClass({
   render: function() {
     const {keyword, rank, volume, lastUpdated} = this.props;
+    const formattedVolume = formatNum(volume);
+    const relativelastUpdated = moment(lastUpdated).fromNow();
+
     const trStyle = resetCSS(styles.trStyle);
     const tdStyle = resetCSS(styles.tdStyle);
     const lastUpdatedStyle = resetCSS(styles.tdStyle, {fontSize: 13});
-    const relativelastUpdated = moment(lastUpdated).fromNow();
+
     return (
       <tr style={trStyle}>
         <td style={tdStyle}>{keyword}</td>
         <td style={tdStyle}>{rank}</td>
-        <td style={tdStyle}>{formatNum(volume)}</td>
+        <td style={tdStyle}>{formattedVolume}</td>
         <td style={lastUpdatedStyle}>{relativelastUpdated}</td>
       </tr>
     );
@@ -93,6 +96,12 @@ const KeywordRow = React.createClass({
 const KeywordInfo = React.createClass({
   getInitialState: function() {
     return {inputtedKeywords: ''};
+  },
+
+  componentDidMount: function() {
+    React.findDOMNode(this.refs.keywordInput).onkeydown = function(e) {
+      e.stopPropagation();
+    };
   },
 
   handleClick: function(e) {
@@ -131,6 +140,7 @@ const KeywordInfo = React.createClass({
           <label htmlFor="keyword" style={labelStyle}>
             Search keyword:
             <input
+              ref="keywordInput"
               name="keyword"
               type="text"
               placeholder="comma, separated, keywords"
