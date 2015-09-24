@@ -59,6 +59,7 @@ const App = React.createClass({
           title: 'SEO/Social',
           isOpen: true,
           data: {
+            lastUpdated: null,
             resultJson: {
               title: 'The Title',
               link: 'The Link',
@@ -82,20 +83,7 @@ const App = React.createClass({
                 isSearching: false
               }
             },
-            keywordInfo: [
-              {
-                keyword: 'test',
-                rank: 2,
-                volume: 22000,
-                lastSearched: 1442947343089
-              },
-              {
-                keyword: 'another',
-                rank: 45,
-                volume: 360,
-                lastSearched: 1442945343089
-              }
-            ]
+            keywordInfo: []
           }
         }
       }
