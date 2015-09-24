@@ -3,7 +3,6 @@ import {domReady} from './modules/utils'; // Replacement for jQuery's ready func
 import App from './components/App.js';
 
 function mountApp() {
-  console.log('mountApp');
   React.render(
     <App />,
     document.getElementById('sproggles-app-container')
@@ -12,7 +11,6 @@ function mountApp() {
 }
 
 function unmountApp() {
-  console.log('unmountApp');
   const appContainer = document.getElementById('sproggles-app-container');
   // The below returns false is there's no React component mounted
   return React.unmountComponentAtNode(appContainer);
