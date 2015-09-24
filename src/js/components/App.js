@@ -59,11 +59,11 @@ const App = React.createClass({
           title: 'SEO/Social',
           isOpen: true,
           data: {
-            lastUpdated: null,
             resultJson: {
               title: 'The Title',
               link: 'The Link',
-              description: 'The Description'
+              description: 'The Description',
+              lastUpdated: null
             },
             shareCounts: {
               twitter: {
@@ -201,10 +201,14 @@ const App = React.createClass({
   getResult: function() {
     const {url} = this.state;
     return getSerp(url)
-    .done(data => {
-      let panels = Object.assign({}, this.state.panels);
+    .done(resultData => {
+      const panels = Object.assign({}, this.state.panels);
+      const {resultJson} = panels.seoPanel.data;
 
-      panels.seoPanel.data.resultJson = data;
+      resultJson.title = resultData.title;
+      resultJson.link = resultData.link;
+      resultJson.description = resultData.description;
+      resultJson.lastUpdated = new Date().getTime();
 
       this.setState({panels});
     }.bind(this));
@@ -219,6 +223,10 @@ const App = React.createClass({
     getFacebookShareCount(url).done(this.setSocialCountState('facebook')).fail(() => console.log('facebook fail'));
     getLinkedInShareCount(url).done(this.setSocialCountState('linkedIn')).fail(() => console.log('linkedin fail'));
     getPinterestShareCount(url).done(this.setSocialCountState('pinterest')).fail(() => console.log('pinterest fail'));
+  },
+
+  getSocialCountsFail: function() {
+    return;
   },
 
   getKeywordInfo: function(keyword) {
@@ -236,7 +244,7 @@ const App = React.createClass({
         keyword: response.keyword,
         rank: response.rank,
         volume: response.volume || 'low',
-        lastSearched: new Date().getTime()
+        lastUpdated: new Date().getTime()
       });
 
       // Only keep 10 items in array
