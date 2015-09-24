@@ -103,22 +103,23 @@ const App = React.createClass({
   },
 
   componentWillMount: function() {
+    // If there's a saved state for this site, use it
+    // Otherwise generate all the data anew
     chromeStorage
     .get(this.state.url)
     .then(savedState => {
-      // If there's a saved state for this site, use it
-      // Otherwise generate all the data anew
       if (Object.keys(savedState).length > 0) {
         this.setState(savedState[this.state.url]);
       } else {
         // Get fonts and colors on page load
         const elements = $.makeArray($('body *').not('script, link, style'));
-        const images = $.makeArray($('body img'));
 
         // Whittle DOM nodes down into list of colors and fonts
-        let reduced = reduceColorsAndFonts(elements);
+        const reduced = reduceColorsAndFonts(elements);
 
         // Derive all the images and add them to the reduced result
+        const images = $.makeArray($('body img'));
+
         images.forEach((i) => {
           const imgSrc = $(i).attr('src') || '';
           const imageUrl = completeImageUrl(imgSrc);
@@ -143,6 +144,7 @@ const App = React.createClass({
   },
 
   componentWillUnmount: function() {
+    // Save data to localstorage upon app closing
     let data = {};
     data[this.state.url] = this.state;
     chromeStorage.set(data);
