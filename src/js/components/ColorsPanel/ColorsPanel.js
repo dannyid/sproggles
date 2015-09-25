@@ -38,7 +38,7 @@ const ColorsPanel = React.createClass({
     clearTimeout(this.state.timeout);
     const timeout = setTimeout(() => {
       this.setState({selectedColor: null, timeout: null});
-    }, 2000);
+    }, 1200);
 
     this.setState({selectedColor, timeout});
     copyToClipboard(selectedColor);
