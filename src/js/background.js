@@ -37,7 +37,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-/* Assign UUID upon install if the user doesn't already have one */
 chrome.runtime.onInstalled.addListener(() => {
   const extensionId = chrome.i18n.getMessage('@@extension_id');
 

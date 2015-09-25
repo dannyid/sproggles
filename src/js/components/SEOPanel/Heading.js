@@ -18,8 +18,8 @@ const styles = {
   },
 
   subtextStyle: {
-    color: 'rgba(0, 0, 0, 0.498039)',
-    fontSize: 14,
+    color: 'rgba(0, 0, 0, 0.4)',
+    fontSize: 13,
     marginLeft: 5
   },
 
@@ -27,10 +27,11 @@ const styles = {
     color: '#1a0dab',
     cursor: 'pointer',
     display: 'inline-block',
-    paddingBottom: 5, /* This becomes paddingLeft when rotated 90° */
+    marginLeft: 5,
     position: 'relative',
     textDecoration: 'none',
-    transform: 'rotate(90deg)'
+    top: 2,
+    transform: 'rotate(110deg)'
   }
 };
 
