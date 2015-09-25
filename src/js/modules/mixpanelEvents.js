@@ -52,5 +52,3 @@ export const firstInstalled = createEvent('Extension first installed');
 export const feedbackSubmitted = createEvent('Feedback submitted');
 
 export const keywordSearched = createEvent('Keyword searched');
-
-export const helpClicked = createEvent('Help Clicked');

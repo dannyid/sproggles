@@ -1,6 +1,5 @@
 import React from 'react';
 import {mergeCSS} from '../../modules/utils';
-import copyToClipboard from '../../modules/copyToClipboard';
 
 const styles = {
   colorSquare: {
@@ -13,8 +12,9 @@ const styles = {
 };
 
 const ColorSquare = React.createClass({
-  copyColor: function() {
-    copyToClipboard(this.props.color);
+  handleClick: function(e) {
+    const {copyColor, color} = this.props;
+    copyColor(color);
   },
 
   render: function() {
@@ -22,7 +22,7 @@ const ColorSquare = React.createClass({
     const colorSquareStyle = mergeCSS(styles.colorSquare, {'backgroundColor': color});
 
     return (
-      <div style={colorSquareStyle} onClick={this.copyColor}></div>
+      <div style={colorSquareStyle} onClick={this.handleClick}></div>
     );
   }
 });
