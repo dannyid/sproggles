@@ -12,10 +12,9 @@ import {
   GOOGLE_PLUS_SHARE_COUNT_URL
 } from './constants';
 
-
 export function getTwitterShareCount(url) {
   return $getJSON(TWITTER_SHARE_COUNT_URL + url)
-  .then(result => result.count)
+  .then(result => result.count);
 }
 
 export function getFacebookShareCount(url) {
