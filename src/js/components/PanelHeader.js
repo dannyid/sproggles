@@ -1,4 +1,5 @@
 import React from 'react';
+import HelpIcon from './HelpIcon';
 
 const styles = {
   panelHeader: {
@@ -42,11 +43,14 @@ const PanelHeader = React.createClass({
 
     const arrow = isOpen ? '▼' : '▲';
 
+    const helpIcon = isOpen ? <HelpIcon /> : null;
+
     return (
       <div className='drag-handle' style={styles.panelHeader}>
         <a style={styles.panelHeaderTitle} onClick={toggle}>
           {title}
         </a>
+        {helpIcon}
         <a style={styles.openArrow} onClick={toggle}>
           {arrow}
         </a>

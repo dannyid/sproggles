@@ -4,6 +4,7 @@ import ColorsPanel from './ColorsPanel/ColorsPanel';
 import FontsPanel from './FontsPanel/FontsPanel';
 import ImagesPanel from './ImagesPanel/ImagesPanel';
 import SEOPanel from './SEOPanel/SEOPanel';
+import HelpIcon from './HelpIcon';
 import Draggable from 'react-draggable';
 import {completeImageUrl} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
@@ -19,15 +20,15 @@ import {
 
 const styles = {
   app: {
-    background: `white`,
-    boxShadow: `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)`,
-    fontFamily: `Helvetica`,
+    background: 'white',
+    boxShadow: '0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)',
+    fontFamily: 'Helvetica',
     fontSize: 16,
     left: 10,
     padding: 0,
     opacity: 0.98,
-    overflow: `hidden`,
-    position: `fixed`,
+    overflow: 'show',
+    position: 'fixed',
     top: 10,
     width: 542,
     zIndex: 2147483647 // Maximum z-index value
