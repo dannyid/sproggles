@@ -63,24 +63,27 @@ const App = React.createClass({
               title: 'The Title',
               link: 'The Link',
               description: 'The Description',
-              lastUpdated: null
+              lastUpdated: new Date().getTime()
             },
             shareCounts: {
-              twitter: {
-                count: 0,
-                isSearching: false
-              },
-              facebook: {
-                count: 0,
-                isSearching: false
-              },
-              linkedIn: {
-                count: 0,
-                isSearching: false
-              },
-              pinterest: {
-                count: 0,
-                isSearching: false
+              lastUpdated: new Date().getTime(),
+              networks: {
+                twitter: {
+                  count: 0,
+                  isSearching: false
+                },
+                facebook: {
+                  count: 0,
+                  isSearching: false
+                },
+                linkedIn: {
+                  count: 0,
+                  isSearching: false
+                },
+                pinterest: {
+                  count: 0,
+                  isSearching: false
+                }
               }
             },
             keywordInfo: []
@@ -162,7 +165,7 @@ const App = React.createClass({
       // Copy panels object from state to modify it and then set it back as state
       let panels = Object.assign({}, this.state.panels);
 
-      // If panel is already open, close it, overwise switch panels
+      // If panel is already open, close it, otherwise switch panels
       if (panels[panelName].isOpen) {
         panels[panelName].isOpen = false;
       } else {
@@ -178,7 +181,7 @@ const App = React.createClass({
     return (data) => {
       let panels = Object.assign({}, this.state.panels);
 
-      panels.seoPanel.data.shareCounts[socialNetwork] = {
+      panels.seoPanel.data.shareCounts.networks[socialNetwork] = {
         count: data.count || data.shares || 0,
         isSearching: false
       };
@@ -187,12 +190,12 @@ const App = React.createClass({
     }.bind(this);
   },
 
-  setShareCountsSearching: function() {
+  setShareCountsSearching: function(boolean) {
     const panels = Object.assign({}, this.state.panels);
-    const {shareCounts} = panels.seoPanel.data;
+    const {networks} = panels.seoPanel.data.shareCounts;
 
-    Object.keys(shareCounts).forEach(network => {
-      shareCounts[network].isSearching = true;
+    Object.keys(networks).forEach(socialNetwork => {
+      networks[socialNetwork].isSearching = boolean;
     });
 
     this.setState({panels});
@@ -215,18 +218,45 @@ const App = React.createClass({
   },
 
   getSocialCounts: function() {
-    const {url, shareCounts} = this.state;
+    const {url} = this.state;
 
-    this.setShareCountsSearching();
+    this.setShareCountsSearching(true);
 
-    getTwitterShareCount(url).done(this.setSocialCountState('twitter')).fail(() => console.log('twitter fail'));
-    getFacebookShareCount(url).done(this.setSocialCountState('facebook')).fail(() => console.log('facebook fail'));
-    getLinkedInShareCount(url).done(this.setSocialCountState('linkedIn')).fail(() => console.log('linkedin fail'));
-    getPinterestShareCount(url).done(this.setSocialCountState('pinterest')).fail(() => console.log('pinterest fail'));
+    getTwitterShareCount(url)
+      .done(this.setSocialCountState('twitter'))
+      .fail(this.getSocialCountsFail('twitter'));
+
+    getFacebookShareCount(url)
+      .done(this.setSocialCountState('facebook'))
+      .fail(this.getSocialCountsFail('facebook'));
+
+    getLinkedInShareCount(url)
+      .done(this.setSocialCountState('linkedIn'))
+      .fail(this.getSocialCountsFail('linkedIn'));
+
+    getPinterestShareCount(url)
+      .done(this.setSocialCountState('pinterest'))
+      .fail(this.getSocialCountsFail('pinterest'));
+
+    // Timeout after 5 seconds
+    setTimeout(() => {
+      this.setShareCountsSearching(false);
+    }.bind(this), 5000);
   },
 
-  getSocialCountsFail: function() {
-    return;
+  getSocialCountsFail: function(socialNetwork) {
+    return (data) => {
+      console.log(socialNetwork, 'fail');
+      let panels = Object.assign({}, this.state.panels);
+
+      panels.seoPanel.data.shareCounts.lastUpdated = new Date().getTime();
+      panels.seoPanel.data.shareCounts.networks[socialNetwork] = {
+        count: 'Please try again.',
+        isSearching: false
+      };
+
+      this.setState({panels});
+    }.bind(this);
   },
 
   getKeywordInfo: function(keyword) {

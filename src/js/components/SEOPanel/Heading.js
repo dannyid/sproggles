@@ -21,15 +21,34 @@ const styles = {
     color: 'rgba(0, 0, 0, 0.498039)',
     fontSize: 14,
     marginLeft: 5
+  },
+
+  reloadArrowStyle: {
+    bottom: -2,
+    color: '#1a0dab',
+    cursor: 'pointer',
+    paddingLeft: 5,
+    position: 'relative',
+    textDecoration: 'none',
+    transform: 'rotate(90deg)'
   }
 };
 
 const Header = React.createClass({
   render: function() {
-    const {text, subtext} = this.props;
+    const {text, subtext, reload} = this.props;
     const containerStyle = resetCSS(styles.containerStyle);
     const headerStyle = resetCSS(styles.headerStyle);
     const subtextStyle = resetCSS(styles.subtextStyle);
+    const reloadArrowStyle = resetCSS(styles.reloadArrowStyle);
+
+    const reloadIcon = (function() {
+      if (reload === '') {
+        return '';
+      } else {
+        return <a onClick={reload} style={reloadArrowStyle}>&#x21bb;</a>;
+      }
+    })();
 
     return (
       <span style={containerStyle}>
@@ -39,6 +58,7 @@ const Header = React.createClass({
         <span style={subtextStyle}>
           {subtext}
         </span>
+        {reloadIcon}
       </span>
     );
   }

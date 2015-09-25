@@ -1,6 +1,7 @@
 import React from 'react';
 import LoadingSpinner from '../LoadingSpinner';
 import {resetCSS, formatNum} from '../../modules/utils';
+import moment from 'moment';
 
 const styles = {
   socialCountsStyle: {
@@ -82,7 +83,7 @@ const SocialShareCounts = React.createClass({
       facebook,
       linkedIn,
       pinterest
-    } = this.props.shareCounts;
+    } = this.props.shareCounts.networks;
 
     const socialCountsStyle = resetCSS(styles.socialCountsStyle);
     const tableStyle = resetCSS(styles.tableStyle);

@@ -20,16 +20,39 @@ const SEOPanel = React.createClass({
     } = this.props;
 
     const {resultJson, shareCounts, keywordInfo} = data;
-    const lastUpdated = moment(resultJson.lastUpdated).fromNow();
+    const googleResultlastUpdated = moment(resultJson.lastUpdated).fromNow();
+    const socialCountslastUpdated = moment(shareCounts.lastUpdated).fromNow();
+
 
     return (
       <PanelContainer title={title} isOpen={isOpen} toggle={toggle}>
-        <Heading text="Google result" subtext={`(Last Updated: ${lastUpdated})`} />
-        <SearchResult resultJson={resultJson} getResult={getResult} />
-        <Heading text="Social Share Counts" subtext="" />
-        <SocialShareCounts shareCounts={shareCounts} getSocialCounts={getSocialCounts} />
-        <Heading text="Real-time Keyword Research" subtext="" />
-        <KeywordInfo keywordInfo={keywordInfo} getKeywordInfo={getKeywordInfo}/>
+        <Heading
+          text='Google result'
+          subtext={`(Last Updated: ${googleResultlastUpdated})`}
+          reload={getResult}
+        />
+        <SearchResult
+          resultJson={resultJson}
+          getResult={getResult}
+        />
+        <Heading
+          text='Social Share Counts'
+          subtext={`(Last Updated: ${socialCountslastUpdated})`}
+          reload={getSocialCounts}
+        />
+        <SocialShareCounts
+          shareCounts={shareCounts}
+          getSocialCounts={getSocialCounts}
+        />
+        <Heading
+          text='Real-time Keyword Research'
+          subtext=''
+          reload=''
+        />
+        <KeywordInfo
+          keywordInfo={keywordInfo}
+          getKeywordInfo={getKeywordInfo}
+        />
       </PanelContainer>
     );
   }
