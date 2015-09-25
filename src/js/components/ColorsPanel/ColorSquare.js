@@ -19,10 +19,10 @@ const ColorSquare = React.createClass({
 
   render: function() {
     const {color} = this.props;
-    const combinedStyles = mergeCSS(styles.colorSquareStyle, {'backgroundColor': color});
+    const colorSquareStyle = mergeCSS(styles.colorSquareStyle, {'backgroundColor': color});
 
     return (
-      <div style={combinedStyles} onClick={this.copyColor}></div>
+      <div style={colorSquareStyle} onClick={this.copyColor}></div>
     );
   }
 });
