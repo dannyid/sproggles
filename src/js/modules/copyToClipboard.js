@@ -1,3 +1,5 @@
+import * as mixpanelEvents from './mixpanelEvents';
+
 export default (text) => {
   const input = document.createElement('input');
   input.style.position = 'fixed';
@@ -7,4 +9,5 @@ export default (text) => {
   input.select();
   document.execCommand('Copy');
   document.body.removeChild(input);
+  mixpanelEvents.colorCopied(text);
 };

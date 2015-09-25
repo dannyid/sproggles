@@ -9,6 +9,7 @@ import {completeImageUrl} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
 import getSerp from '../modules/getSerp';
 import * as chromeStorage from '../modules/chromeStorage';
+import * as mixpanelEvents from '../modules/mixpanelEvents';
 import {
   getTwitterShareCount,
   getFacebookShareCount,
@@ -150,6 +151,10 @@ const App = React.createClass({
     window.onbeforeunload = null;
   },
 
+  componentDidMount: function() {
+    mixpanelEvents.popupOpened(this.state.url);
+  },
+
   closeAllPanels: function(panels) {
     Object.keys(panels).forEach(panel => {
       panels[panel].isOpen = false;
@@ -160,6 +165,8 @@ const App = React.createClass({
     return function(e) {
       e.preventDefault();
       e.stopPropagation();
+
+      mixpanelEvents.tabClicked(panelName);
 
       // Copy panels object from state to modify it and then set it back as state
       let panels = Object.assign({}, this.state.panels);
@@ -262,6 +269,8 @@ const App = React.createClass({
 
   getKeywordInfo: function(keyword) {
     const {url} = this.state;
+
+    mixpanelEvents.keywordSearched(keyword);
 
     chrome.runtime.sendMessage({
       type: 'getKeywordInfo',
