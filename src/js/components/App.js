@@ -5,7 +5,7 @@ import FontsPanel from './FontsPanel/FontsPanel';
 import ImagesPanel from './ImagesPanel/ImagesPanel';
 import SEOPanel from './SEOPanel/SEOPanel';
 import Draggable from 'react-draggable';
-import {completeImageUrl, mergeCSS} from '../modules/utils';
+import {completeImageUrl} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
 import getSerp from '../modules/getSerp';
 import * as chromeStorage from '../modules/chromeStorage';
@@ -17,21 +17,19 @@ import {
 } from '../modules/getSocialCounts';
 
 const styles = {
-  appStyle: {
-    base: {
-      background: `white`,
-      boxShadow: `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)`,
-      fontFamily: `Helvetica`,
-      fontSize: 16,
-      left: 10,
-      padding: 0,
-      opacity: 0.98,
-      overflow: `hidden`,
-      position: `fixed`,
-      top: 10,
-      width: 542,
-      zIndex: 2147483647 // Maximum z-index value
-    }
+  app: {
+    background: `white`,
+    boxShadow: `0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)`,
+    fontFamily: `Helvetica`,
+    fontSize: 16,
+    left: 10,
+    padding: 0,
+    opacity: 0.98,
+    overflow: `hidden`,
+    position: `fixed`,
+    top: 10,
+    width: 542,
+    zIndex: 2147483647 // Maximum z-index value
   }
 };
 
@@ -290,11 +288,10 @@ const App = React.createClass({
   render: function() {
     const {url, panels} = this.state;
     const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = panels;
-    const appStyle = mergeCSS(styles.appStyle.base);
 
     return (
       <Draggable handle='.drag-handle'>
-        <div className="sproggles-app" style={appStyle}>
+        <div className="sproggles-app" style={styles.app}>
           <ColorsPanel {...colorsPanel} toggle={this.togglePanel('colorsPanel')} />
           <FontsPanel {...fontsPanel} toggle={this.togglePanel('fontsPanel')} />
           <ImagesPanel {...imagesPanel} toggle={this.togglePanel('imagesPanel')} />

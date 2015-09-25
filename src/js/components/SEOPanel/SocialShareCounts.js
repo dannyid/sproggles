@@ -4,19 +4,19 @@ import {mergeCSS, formatNum} from '../../modules/utils';
 import moment from 'moment';
 
 const styles = {
-  socialCountsStyle: {
+  socialCounts: {
     display: 'block',
     margin: '10px 10px 10px 10px',
     textAlign: 'center'
   },
 
-  tableStyle: {
+  table: {
     borderCollapse: 'collapse',
     display: 'table',
     width: '100%'
   },
 
-  theadStyle: {
+  thead: {
     display: 'table-row-group'
   },
 
@@ -24,11 +24,11 @@ const styles = {
     display: 'table-row-group'
   },
 
-  trStyle: {
+  tr: {
     display: 'table-row'
   },
 
-  thStyle: {
+  th: {
     base: {
       border: '1px solid',
       color: 'white',
@@ -57,7 +57,7 @@ const styles = {
     }
   },
 
-  tdStyle: {
+  td: {
     border: '1px solid #DDD',
     display: 'table-cell',
     fontSize: 16,
@@ -86,34 +86,28 @@ const SocialShareCounts = React.createClass({
       pinterest
     } = this.props.shareCounts.networks;
 
-    const socialCountsStyle = mergeCSS(styles.socialCountsStyle);
-    const tableStyle = mergeCSS(styles.tableStyle);
-    const theadStyle = mergeCSS(styles.theadStyle);
-    const tbodyStyle = mergeCSS(styles.tbodyStyle);
-    const trStyle = mergeCSS(styles.trStyle);
-    const tdStyle = mergeCSS(styles.tdStyle);
-    const twitterHeaderStyle = mergeCSS(styles.thStyle.base, styles.thStyle.twitter);
-    const facebookHeaderStyle = mergeCSS(styles.thStyle.base, styles.thStyle.facebook);
-    const linkedInHeaderStyle = mergeCSS(styles.thStyle.base, styles.thStyle.linkedIn);
-    const pinterestHeaderStyle = mergeCSS(styles.thStyle.base, styles.thStyle.pinterest);
+    const twitterHeaderStyle = mergeCSS(styles.th.base, styles.th.twitter);
+    const facebookHeaderStyle = mergeCSS(styles.th.base, styles.th.facebook);
+    const linkedInHeaderStyle = mergeCSS(styles.th.base, styles.th.linkedIn);
+    const pinterestHeaderStyle = mergeCSS(styles.th.base, styles.th.pinterest);
 
     return (
-      <div style={socialCountsStyle}>
-        <table style={tableStyle}>
-          <thead style={theadStyle}>
-            <tr style={trStyle}>
+      <div style={styles.socialCounts}>
+        <table style={styles.table}>
+          <thead style={styles.thead}>
+            <tr style={styles.tr}>
               <th style={twitterHeaderStyle}>Twitter</th>
               <th style={facebookHeaderStyle}>Facebook</th>
               <th style={linkedInHeaderStyle}>LinkedIn</th>
               <th style={pinterestHeaderStyle}>Pinterest</th>
             </tr>
           </thead>
-          <tbody style={tbodyStyle}>
-            <tr style={trStyle}>
-              <td style={tdStyle}>{this.loadingSpinnerIfSearching(twitter)}</td>
-              <td style={tdStyle}>{this.loadingSpinnerIfSearching(facebook)}</td>
-              <td style={tdStyle}>{this.loadingSpinnerIfSearching(linkedIn)}</td>
-              <td style={tdStyle}>{this.loadingSpinnerIfSearching(pinterest)}</td>
+          <tbody style={styles.tbodyStyle}>
+            <tr style={styles.tr}>
+              <td style={styles.td}>{this.loadingSpinnerIfSearching(twitter)}</td>
+              <td style={styles.td}>{this.loadingSpinnerIfSearching(facebook)}</td>
+              <td style={styles.td}>{this.loadingSpinnerIfSearching(linkedIn)}</td>
+              <td style={styles.td}>{this.loadingSpinnerIfSearching(pinterest)}</td>
             </tr>
           </tbody>
         </table>

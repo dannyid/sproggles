@@ -1,15 +1,14 @@
 import React from 'react';
-import {mergeCSS} from '../../modules/utils';
 
 const styles = {
-  containerStyle: {
+  container: {
     display: 'block',
     marginBottom: 10,
     marginTop: 20,
     textAlign: 'center'
   },
 
-  headerStyle: {
+  header: {
     color: 'rgb(51, 51, 51)',
     display: 'inline-block',
     fontSize: 18,
@@ -18,13 +17,13 @@ const styles = {
     textAlign: 'center'
   },
 
-  subtextStyle: {
+  subtext: {
     color: 'rgba(0, 0, 0, 0.4)',
     fontSize: 13,
     marginLeft: 5
   },
 
-  reloadArrowStyle: {
+  reloadArrow: {
     color: '#1a0dab',
     cursor: 'pointer',
     display: 'inline-block',
@@ -39,25 +38,21 @@ const styles = {
 const Header = React.createClass({
   render: function() {
     const {text, subtext, reload} = this.props;
-    const containerStyle = mergeCSS(styles.containerStyle);
-    const headerStyle = mergeCSS(styles.headerStyle);
-    const subtextStyle = mergeCSS(styles.subtextStyle);
-    const reloadArrowStyle = mergeCSS(styles.reloadArrowStyle);
 
     const reloadIcon = (function() {
       if (reload === '') {
         return '';
       } else {
-        return <a onClick={reload} style={reloadArrowStyle}>&#x21bb;</a>;
+        return <a onClick={reload} style={styles.reloadArrow}>&#x21bb;</a>;
       }
     })();
 
     return (
-      <span style={containerStyle}>
-        <h4 style={headerStyle}>
+      <span style={styles.container}>
+        <h4 style={styles.header}>
           {text}
         </h4>
-        <span style={subtextStyle}>
+        <span style={styles.subtext}>
           {subtext}
         </span>
         {reloadIcon}

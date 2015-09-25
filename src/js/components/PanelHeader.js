@@ -1,8 +1,7 @@
 import React from 'react';
-import {mergeCSS} from '../modules/utils';
 
 const styles = {
-  panelHeaderStyle: {
+  panelHeader: {
     backgroundColor: `dodgerblue`,
     border: `1px solid hsl(210, 100%, 48%)`,
     color: `white`,
@@ -16,7 +15,7 @@ const styles = {
     verticalAlign: `middle`
   },
 
-  panelHeaderTitleStyle: {
+  panelHeaderTitle: {
     color: 'inherit',
     cursor: 'pointer',
     fontSize: 'inherit',
@@ -24,7 +23,7 @@ const styles = {
     textDecoration: 'none'
   },
 
-  openArrowStyle: {
+  openArrow: {
     color: `#80BFFF`,
     cursor: `pointer`,
     fontFamily: `inherit`,
@@ -39,20 +38,16 @@ const styles = {
 
 const PanelHeader = React.createClass({
   render: function() {
-    const panelHeaderStyle = mergeCSS(styles.panelHeaderStyle),
-          panelHeaderTitleStyle = mergeCSS(styles.panelHeaderTitleStyle),
-          openArrowStyle = mergeCSS(styles.openArrowStyle);
-
     const {toggle, isOpen, title} = this.props;
 
     const arrow = isOpen ? '▼' : '▲';
 
     return (
-      <div className='drag-handle' style={panelHeaderStyle}>
-        <a style={panelHeaderTitleStyle} onClick={toggle}>
+      <div className='drag-handle' style={styles.panelHeader}>
+        <a style={styles.panelHeaderTitle} onClick={toggle}>
           {title}
         </a>
-        <a style={openArrowStyle} onClick={toggle}>
+        <a style={styles.openArrow} onClick={toggle}>
           {arrow}
         </a>
       </div>

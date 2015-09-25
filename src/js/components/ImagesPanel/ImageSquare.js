@@ -1,5 +1,4 @@
 import React from 'react';
-import {mergeCSS} from '../../modules/utils';
 
 const styles = {
  imageSquareContainer: {
@@ -19,10 +18,9 @@ const styles = {
 const ImageSquare = React.createClass({
   render: function() {
     const {imageUrl} = this.props;
-    const imageSquareContainerStyle = mergeCSS(styles.imageSquareContainer);
 
     return (
-      <div style={imageSquareContainerStyle}>
+      <div style={styles.imageSquareContainer}>
         <a target="_blank" href={imageUrl}>
           <img src={imageUrl} style={styles.image} />
         </a>

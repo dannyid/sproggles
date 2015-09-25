@@ -3,18 +3,18 @@ import moment from 'moment';
 import {mergeCSS, formatNum} from '../../modules/utils';
 
 const styles = {
-  keywordsSectionStyle: {
+  keywordsSection: {
     display: 'block',
     margin: 10,
     textAlign: 'center'
   },
 
-  labelStyle: {
+  label: {
     display: 'inline-block',
     margin: 0
   },
 
-  inputStyle: {
+  input: {
     border: '1px solid #AAA',
     borderRadius: 2,
     margin: '0 10px',
@@ -23,33 +23,33 @@ const styles = {
     padding: 5
   },
 
-  buttonStyle: {
+  button: {
     backgroundColor: '#DDD',
     border: '1px solid #AAA',
     borderRadius: 2,
     padding: 5
   },
 
-  tableStyle: {
+  table: {
     borderCollapse: 'collapse',
     display: 'table',
     marginTop: 10,
     width: '100%'
   },
 
-  theadStyle: {
+  thead: {
     display: 'table-row-group'
   },
 
-  tbodyStyle: {
+  tbody: {
     display: 'table-row-group'
   },
 
-  trStyle: {
+  tr: {
     display: 'table-row'
   },
 
-  thStyle: {
+  th: {
     backgroundColor: '#DDD',
     border: '1px solid #DDD',
     color: 'black',
@@ -61,7 +61,7 @@ const styles = {
     padding: 5
   },
 
-  tdStyle: {
+  td: {
     border: '1px solid #DDD',
     display: 'table-cell',
     height: 35,
@@ -78,16 +78,13 @@ const KeywordRow = React.createClass({
     const {keyword, rank, volume, lastUpdated} = this.props;
     const formattedVolume = formatNum(volume);
     const relativelastUpdated = moment(lastUpdated).fromNow();
-
-    const trStyle = mergeCSS(styles.trStyle);
-    const tdStyle = mergeCSS(styles.tdStyle);
-    const lastUpdatedStyle = mergeCSS(styles.tdStyle, {fontSize: 13});
+    const lastUpdatedStyle = mergeCSS(styles.td, {fontSize: 13});
 
     return (
-      <tr style={trStyle}>
-        <td style={tdStyle}>{keyword}</td>
-        <td style={tdStyle}>{rank}</td>
-        <td style={tdStyle}>{formattedVolume}</td>
+      <tr style={styles.tr}>
+        <td style={styles.td}>{keyword}</td>
+        <td style={styles.td}>{rank}</td>
+        <td style={styles.td}>{formattedVolume}</td>
         <td style={lastUpdatedStyle}>{relativelastUpdated}</td>
       </tr>
     );
@@ -125,45 +122,35 @@ const KeywordInfo = React.createClass({
     const {getKeywordInfo, keywordInfo} = this.props;
     const keywordRows = keywordInfo.map(result => <KeywordRow {...result} />);
 
-    const keywordsSectionStyle = mergeCSS(styles.keywordsSectionStyle);
-    const labelStyle = mergeCSS(styles.labelStyle);
-    const inputStyle = mergeCSS(styles.inputStyle);
-    const buttonStyle = mergeCSS(styles.buttonStyle);
-    const tableStyle = mergeCSS(styles.tableStyle);
-    const theadStyle = mergeCSS(styles.theadStyle);
-    const tbodyStyle = mergeCSS(styles.tbodyStyle);
-    const thStyle = mergeCSS(styles.thStyle);
-    const trStyle = mergeCSS(styles.trStyle);
-
     return (
-      <div style={keywordsSectionStyle}>
+      <div style={styles.keywordsSection}>
         <form>
-          <label htmlFor="keyword" style={labelStyle}>
+          <label htmlFor="keyword" style={styles.label}>
             Search keyword:
             <input
               ref="keywordInput"
               name="keyword"
               type="text"
               placeholder="comma, separated, keywords"
-              style={inputStyle}
+              style={styles.input}
               onChange={this.handleChange}
               value={this.state.inputtedKeywords}
             />
           </label>
-          <button type="submit" style={buttonStyle} onClick={this.handleClick}>
+          <button type="submit" style={styles.button} onClick={this.handleClick}>
             Search
           </button>
         </form>
-        <table style={tableStyle}>
-          <thead style={theadStyle}>
-            <tr style={trStyle}>
-              <th style={thStyle}>Keyword</th>
-              <th style={thStyle}>Rank</th>
-              <th style={thStyle}>Search Volume</th>
-              <th style={thStyle}>Last Updated</th>
+        <table style={styles.table}>
+          <thead style={styles.thead}>
+            <tr style={styles.tr}>
+              <th style={styles.th}>Keyword</th>
+              <th style={styles.th}>Rank</th>
+              <th style={styles.th}>Search Volume</th>
+              <th style={styles.th}>Last Updated</th>
             </tr>
           </thead>
-          <tbody style={tbodyStyle}>
+          <tbody style={styles.tbody}>
             {keywordRows}
           </tbody>
         </table>

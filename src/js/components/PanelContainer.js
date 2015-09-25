@@ -1,10 +1,9 @@
 import React from 'react';
 import PanelHeader from './PanelHeader';
 import PanelBody from './PanelBody';
-import {mergeCSS} from '../modules/utils';
 
 const styles = {
-  panelContainer: {
+  panelContainerStyle: {
     fontFamily: `Helvetica`,
     fontSize: 14,
     padding: 0,
@@ -17,10 +16,9 @@ const styles = {
 const PanelContainer = React.createClass({
   render: function() {
     const {title, toggle, isOpen} = this.props;
-    const panelContainerStyle = mergeCSS(styles.panelContainer);
 
     return (
-      <div style={panelContainerStyle}>
+      <div style={styles.panelContainerStyle}>
         <PanelHeader title={title} toggle={toggle} isOpen={isOpen} />
         <PanelBody isOpen={isOpen}>
           {this.props.children}

@@ -2,7 +2,7 @@ import React from 'react';
 import {mergeCSS} from '../../modules/utils';
 
 const styles = {
-  searchResultStyle: {
+  searchResult: {
     border: '1px solid transparent',
     boxShadow: '0 -1px 0 #e5e5e5, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)',
     cursor: 'pointer',
@@ -18,7 +18,7 @@ const styles = {
     width: 522
   },
 
-  h3Style: {
+  h3: {
     fontWeight: 500,
     lineHeight: 1.1,
     margin: 0,
@@ -28,20 +28,20 @@ const styles = {
     whiteSpace: 'nowrap'
   },
 
-  titleLinkStyle: {
+  titleLink: {
     color: '#1a0dab',
     fontSize: 18,
     textDecoration: 'none'
   },
 
-  urlLinkStyle: {
+  urlLink: {
     color: '#006621',
     fontSize: 14,
     fontStyle: 'normal',
     display: 'block'
   },
 
-  descriptionStyle: {
+  description: {
     color: '#545454',
     fontSize: 'small',
     display: 'block',
@@ -54,25 +54,20 @@ const SearchResult = React.createClass({
   render: function() {
     const {color} = this.props;
     const {title, link, description} = this.props.resultJson;
-    const searchResultStyle = mergeCSS(styles.searchResultStyle);
-    const h3Style = mergeCSS(styles.h3Style);
-    const titleLinkStyle = mergeCSS(styles.titleLinkStyle);
-    const urlLinkStyle = mergeCSS(styles.urlLinkStyle);
-    const descriptionStyle = mergeCSS(styles.descriptionStyle);
 
     return (
-      <div style={searchResultStyle}>
+      <div style={styles.searchResult}>
         <div className="serp">
-          <h3 style={h3Style}>
-            <a style={titleLinkStyle}>
+          <h3 style={styles.h3}>
+            <a style={styles.titleLink}>
               {title}
             </a>
           </h3>
           <div>
-            <cite style={urlLinkStyle}>
+            <cite style={styles.urlLink}>
               {link}
             </cite>
-            <span style={descriptionStyle}>
+            <span style={styles.description}>
               {description}
             </span>
           </div>
