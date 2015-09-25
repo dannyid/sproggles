@@ -4,7 +4,8 @@ import {mergeCSS} from '../../modules/utils';
 const styles = {
   containerStyle: {
     display: 'block',
-    marginTop: 10,
+    marginBottom: 10,
+    marginTop: 20,
     textAlign: 'center'
   },
 

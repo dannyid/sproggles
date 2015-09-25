@@ -5,7 +5,8 @@ import moment from 'moment';
 
 const styles = {
   socialCountsStyle: {
-    margin: '10px 10px 20px 10px',
+    display: 'block',
+    margin: '10px 10px 10px 10px',
     textAlign: 'center'
   },
 

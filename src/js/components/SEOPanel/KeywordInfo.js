@@ -4,6 +4,7 @@ import {mergeCSS, formatNum} from '../../modules/utils';
 
 const styles = {
   keywordsSectionStyle: {
+    display: 'block',
     margin: 10,
     textAlign: 'center'
   },
