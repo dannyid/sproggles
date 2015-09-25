@@ -178,14 +178,16 @@ const App = React.createClass({
   },
 
   setSocialCountState: function(socialNetwork) {
-    return (data) => {
-      let panels = Object.assign({}, this.state.panels);
+    return (count) => {
+      const panels = Object.assign({}, this.state.panels);
+      const {shareCounts} = panels.seoPanel.data;
 
-      panels.seoPanel.data.shareCounts.networks[socialNetwork] = {
-        count: data.count || data.shares || 0,
+      shareCounts.lastUpdated = new Date().getTime();
+      shareCounts.networks[socialNetwork] = {
+        count,
         isSearching: false
       };
-      console.log(socialNetwork, (data.count || data.shares || 0));
+
       this.setState({panels});
     }.bind(this);
   },

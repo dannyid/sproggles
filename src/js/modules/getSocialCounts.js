@@ -14,19 +14,22 @@ import {
 
 
 export function getTwitterShareCount(url) {
-  return $getJSON(TWITTER_SHARE_COUNT_URL + url);
+  return $getJSON(TWITTER_SHARE_COUNT_URL + url)
+  .then(result => result.count)
 }
 
 export function getFacebookShareCount(url) {
-  return $getJSON(FACEBOOK_SHARE_COUNT_URL + url);
+  return $getJSON(FACEBOOK_SHARE_COUNT_URL + url)
+  .then(result => result.shares);
 }
 
 export function getFacebookLikeCount(url) {
   return $getJSON(FACEBOOK_LIKE_COUNT_URL + url);
-}
+  }
 
 export function getLinkedInShareCount(url) {
-  return $getJSON(LINKEDIN_SHARE_COUNT_URL + url);
+  return $getJSON(LINKEDIN_SHARE_COUNT_URL + url)
+  .then(result => result.count);
 }
 
 export function getPinterestShareCount(url) {
@@ -41,10 +44,11 @@ export function getPinterestShareCount(url) {
     const jsonStart = data.indexOf('{');
     const jsonEnd = data.indexOf('}');
     const json = data.slice(jsonStart, jsonEnd + 1);
-    return JSON.parse(json);
+    return JSON.parse(json).count;
   });
 }
 
 export function getGooglePlusShareCount(url) {
-  return $getJSON(GOOGLE_PLUS_SHARE_COUNT_URL + url);
+  return $getJSON(GOOGLE_PLUS_SHARE_COUNT_URL + url).
+  then(result => result.count);
 }
