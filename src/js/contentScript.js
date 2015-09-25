@@ -20,7 +20,7 @@ domReady(() => {
   // Inject app container div
   const app = document.createElement('div');
   app.id = 'sproggles-app-container';
-  document.body.insertBefore(app, document.body.firstChild);
+  document.body.appendChild(app);
 
   // Receive browserAction click event from background script and toggle app
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
