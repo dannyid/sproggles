@@ -24,10 +24,10 @@ const styles = {
   },
 
   reloadArrowStyle: {
-    bottom: -2,
     color: '#1a0dab',
     cursor: 'pointer',
-    paddingLeft: 5,
+    display: 'inline-block',
+    paddingBottom: 5, /* This becomes paddingLeft when rotated 90° */
     position: 'relative',
     textDecoration: 'none',
     transform: 'rotate(90deg)'
