@@ -3,7 +3,7 @@ import PanelHeader from './PanelHeader';
 import PanelBody from './PanelBody';
 
 const styles = {
-  panelContainerStyle: {
+  panelContainer: {
     fontFamily: `Helvetica`,
     fontSize: 14,
     padding: 0,
@@ -18,7 +18,7 @@ const PanelContainer = React.createClass({
     const {title, toggle, isOpen} = this.props;
 
     return (
-      <div style={styles.panelContainerStyle}>
+      <div style={styles.panelContainer}>
         <PanelHeader title={title} toggle={toggle} isOpen={isOpen} />
         <PanelBody isOpen={isOpen}>
           {this.props.children}

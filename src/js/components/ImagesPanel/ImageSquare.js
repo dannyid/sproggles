@@ -9,7 +9,7 @@ const styles = {
     position: 'relative'
   },
 
-  image: {
+  img: {
     width: '100%',
     display: 'block'
   }
@@ -22,7 +22,7 @@ const ImageSquare = React.createClass({
     return (
       <div style={styles.imageSquareContainer}>
         <a target="_blank" href={imageUrl}>
-          <img src={imageUrl} style={styles.image} />
+          <img src={imageUrl} style={styles.img} />
         </a>
       </div>
     );

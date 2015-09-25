@@ -3,7 +3,7 @@ import PanelContainer from '../PanelContainer';
 import RenderedFont from './RenderedFont';
 
 const styles = {
-  fontsContainer: {
+  ul: {
     background: '#FFF',
     padding: 10,
     display: 'inline-block'
@@ -17,7 +17,7 @@ const FontsPanel = React.createClass({
 
     return (
       <PanelContainer title={title} toggle={toggle} isOpen={isOpen}>
-        <ul style={styles.fontsContainer}>
+        <ul style={styles.ul}>
           {fontList}
         </ul>
       </PanelContainer>

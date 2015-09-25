@@ -2,12 +2,12 @@ import React from 'react';
 import {mergeCSS} from '../../modules/utils';
 
 const styles = {
-  listItem: {
+  li: {
     listStyle: 'none',
     display: 'block'
   },
 
-  link: {
+  a: {
     color: 'black',
     fontSize: 16,
     textDecoration: 'none'
@@ -17,10 +17,10 @@ const styles = {
 const RenderedFont = React.createClass({
   render: function() {
     const {font} = this.props;
-    const linkTextStyle = mergeCSS(styles.link, {fontFamily: font});
+    const linkTextStyle = mergeCSS(styles.a, {fontFamily: font});
 
     return (
-      <li className="font" style={styles.listItem}>
+      <li className="font" style={styles.li}>
         <a target="_blank" style={linkTextStyle} href={`https://typekit.com/search?utf8=✓&q=${font}`}>
           {font}
         </a>
