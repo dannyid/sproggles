@@ -27,7 +27,7 @@ const SEOPanel = React.createClass({
     return (
       <PanelContainer title={title} isOpen={isOpen} toggle={toggle}>
         <Heading
-          text='Google result'
+          text='Google Result'
           subtext={`(Last Updated: ${googleResultlastUpdated})`}
           reload={getResult}
         />
