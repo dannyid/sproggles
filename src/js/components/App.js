@@ -37,6 +37,7 @@ const styles = {
 
 const App = React.createClass({
   getInitialState: () => {
+    const now = new Date().getTime();
     return {
       url: window.location.origin + (window.location.pathname || ''),
       panels: {
@@ -63,10 +64,10 @@ const App = React.createClass({
               title: 'The Title',
               link: 'The Link',
               description: 'The Description',
-              lastUpdated: new Date().getTime()
+              lastUpdated: now
             },
             shareCounts: {
-              lastUpdated: new Date().getTime(),
+              lastUpdated: now,
               networks: {
                 twitter: {
                   count: 0,
