@@ -3,7 +3,7 @@ import Q from 'q';
 export const get = (item) => {
   const deferred = Q.defer();
 
-  chrome.storage.sync.get(item, (data) => {
+  chrome.storage.local.get(item, (data) => {
     deferred.resolve(data);
   });
 
@@ -13,7 +13,7 @@ export const get = (item) => {
 export const set = item => {
   const deferred = Q.defer();
 
-  chrome.storage.sync.set(item, (data) => {
+  chrome.storage.local.set(item, (data) => {
     deferred.resolve(data);
   });
 
