@@ -22,6 +22,13 @@ domReady(() => {
   app.id = 'sproggles-app-container';
   document.body.appendChild(app);
 
+  const extensionId = chrome.i18n.getMessage('@@extension_id');
+  const resetStyle = document.createElement('link');
+  resetStyle.type = 'text/css';
+  resetStyle.rel = 'stylesheet';
+  resetStyle.href = `chrome-extension://${extensionId}/css/style.min.css`;
+  document.head.appendChild(resetStyle);
+
   // Receive browserAction click event from background script and toggle app
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "toggleApp") {

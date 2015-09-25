@@ -25,7 +25,8 @@
   },
 
   "web_accessible_resources": [
-    "img/loading-spinner.gif"
+    "img/loading-spinner.gif",
+    "css/style.min.css"
   ],
 
   "permissions": [
