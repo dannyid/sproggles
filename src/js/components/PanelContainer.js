@@ -1,7 +1,7 @@
 import React from 'react';
 import PanelHeader from './PanelHeader';
 import PanelBody from './PanelBody';
-import {resetCSS} from '../modules/utils';
+import {mergeCSS} from '../modules/utils';
 
 const styles = {
   panelContainer: {
@@ -17,7 +17,7 @@ const styles = {
 const PanelContainer = React.createClass({
   render: function() {
     const {title, toggle, isOpen} = this.props;
-    const panelContainerStyle = resetCSS(styles.panelContainer);
+    const panelContainerStyle = mergeCSS(styles.panelContainer);
 
     return (
       <div style={panelContainerStyle}>

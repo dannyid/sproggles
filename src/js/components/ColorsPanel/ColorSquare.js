@@ -1,5 +1,5 @@
 import React from 'react';
-import {resetCSS} from '../../modules/utils';
+import {mergeCSS} from '../../modules/utils';
 
 const styles = {
   colorSquareStyle: {
@@ -13,7 +13,7 @@ const styles = {
 const ColorSquare = React.createClass({
   render: function() {
     const {color} = this.props;
-    const combinedStyles = resetCSS(styles.colorSquareStyle, {'backgroundColor': color});
+    const combinedStyles = mergeCSS(styles.colorSquareStyle, {'backgroundColor': color});
 
     return (
       <div style={combinedStyles}></div>

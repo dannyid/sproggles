@@ -1,5 +1,5 @@
 import React from 'react';
-import {resetCSS} from '../modules/utils';
+import {mergeCSS} from '../modules/utils';
 
 const styles = {
   panelBodyContainer: {
@@ -27,7 +27,7 @@ const PanelBody = React.createClass({
       ? styles.panelBodyContainer.opened
       : styles.panelBodyContainer.closed;
 
-    const panelBodyContainerStyle = resetCSS(styles.panelBodyContainer.base, openCloseStyle);
+    const panelBodyContainerStyle = mergeCSS(styles.panelBodyContainer.base, openCloseStyle);
 
     return (
       <div style={panelBodyContainerStyle}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PanelContainer from '../PanelContainer';
 import RenderedFont from './RenderedFont';
-import {resetCSS} from '../../modules/utils';
+import {mergeCSS} from '../../modules/utils';
 
 const styles = {
   fontsContainer: {
@@ -15,7 +15,7 @@ const FontsPanel = React.createClass({
   render: function() {
     const {data, title, toggle, isOpen} = this.props;
     const fontList = data.map(font => <RenderedFont font={font} />);
-    const fontsContainerStyle = resetCSS(styles.fontsContainer);
+    const fontsContainerStyle = mergeCSS(styles.fontsContainer);
 
     return (
       <PanelContainer title={title} toggle={toggle} isOpen={isOpen}>

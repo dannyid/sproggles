@@ -24,44 +24,9 @@ export function generateUUID() {
   });
 }
 
-export function resetCSS(...additionalStyles) {
-  const normalize = {
-    // // all: 'initial',
-    // // azimuth: 'center',
-    // borderCollapse: 'separate',
-    // borderSpacing: 0,
-    // boxSizing: 'border-box',
-    // captionSide: 'top',
-    // color: 'black',
-    // cursor: 'auto',
-    // direction: 'ltr',
-    // // elevation: '',
-    // emptyCells: 'show',
-    // // font: '',
-    // fontFamily: 'sans-serif',
-    // fontSize: 'medium',
-    // fontStyle: 'normal',
-    // fontVariant: 'normal',
-    // fontWeight: 'normal',
-    // letterSpacing: 'normal',
-    // lineHeight: 'normal',
-    // listStyleImage: 'none',
-    // listStylePosition: 'outside',
-    // listStyleType: 'disc',
-    // margin: 0,
-    // orphans: 2,
-    // padding: 0,
-    // textAlign: 'left',
-    // textIndent: 0,
-    // textTransform: 'none',
-    // visibility: 'visible',
-    // whiteSpace: 'normal',
-    // widows: 2,
-    // wordSpacing: 'normal'
-  };
-
+export function mergeCSS(...styles) {
   // Object.assign requires a gulp-babel plugin to function
-  return Object.assign({}, normalize, ...additionalStyles);
+  return Object.assign({}, ...styles);
 }
 
 // Pulled from here: http://beeker.io/jquery-document-ready-equivalent-vanilla-javascript

@@ -1,5 +1,5 @@
 import React from 'react';
-import {resetCSS} from '../../modules/utils';
+import {mergeCSS} from '../../modules/utils';
 
 const styles = {
   listItem: {
@@ -17,8 +17,8 @@ const styles = {
 const RenderedFont = React.createClass({
   render: function() {
     const {font} = this.props;
-    const listItemStyle = resetCSS(styles.listItem);
-    const linkTextStyle = resetCSS(styles.link, {fontFamily: font});
+    const listItemStyle = mergeCSS(styles.listItem);
+    const linkTextStyle = mergeCSS(styles.link, {fontFamily: font});
 
     return (
       <li className="font" style={listItemStyle}>

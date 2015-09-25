@@ -1,5 +1,5 @@
 import React from 'react';
-import {resetCSS} from '../../modules/utils';
+import {mergeCSS} from '../../modules/utils';
 
 const styles = {
   searchResultStyle: {
@@ -54,11 +54,11 @@ const SearchResult = React.createClass({
   render: function() {
     const {color} = this.props;
     const {title, link, description} = this.props.resultJson;
-    const searchResultStyle = resetCSS(styles.searchResultStyle);
-    const h3Style = resetCSS(styles.h3Style);
-    const titleLinkStyle = resetCSS(styles.titleLinkStyle);
-    const urlLinkStyle = resetCSS(styles.urlLinkStyle);
-    const descriptionStyle = resetCSS(styles.descriptionStyle);
+    const searchResultStyle = mergeCSS(styles.searchResultStyle);
+    const h3Style = mergeCSS(styles.h3Style);
+    const titleLinkStyle = mergeCSS(styles.titleLinkStyle);
+    const urlLinkStyle = mergeCSS(styles.urlLinkStyle);
+    const descriptionStyle = mergeCSS(styles.descriptionStyle);
 
     return (
       <div style={searchResultStyle}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import {resetCSS, formatNum} from '../../modules/utils';
+import {mergeCSS, formatNum} from '../../modules/utils';
 
 const styles = {
   keywordsSectionStyle: {
@@ -78,9 +78,9 @@ const KeywordRow = React.createClass({
     const formattedVolume = formatNum(volume);
     const relativelastUpdated = moment(lastUpdated).fromNow();
 
-    const trStyle = resetCSS(styles.trStyle);
-    const tdStyle = resetCSS(styles.tdStyle);
-    const lastUpdatedStyle = resetCSS(styles.tdStyle, {fontSize: 13});
+    const trStyle = mergeCSS(styles.trStyle);
+    const tdStyle = mergeCSS(styles.tdStyle);
+    const lastUpdatedStyle = mergeCSS(styles.tdStyle, {fontSize: 13});
 
     return (
       <tr style={trStyle}>
@@ -124,15 +124,15 @@ const KeywordInfo = React.createClass({
     const {getKeywordInfo, keywordInfo} = this.props;
     const keywordRows = keywordInfo.map(result => <KeywordRow {...result} />);
 
-    const keywordsSectionStyle = resetCSS(styles.keywordsSectionStyle);
-    const labelStyle = resetCSS(styles.labelStyle);
-    const inputStyle = resetCSS(styles.inputStyle);
-    const buttonStyle = resetCSS(styles.buttonStyle);
-    const tableStyle = resetCSS(styles.tableStyle);
-    const theadStyle = resetCSS(styles.theadStyle);
-    const tbodyStyle = resetCSS(styles.tbodyStyle);
-    const thStyle = resetCSS(styles.thStyle);
-    const trStyle = resetCSS(styles.trStyle);
+    const keywordsSectionStyle = mergeCSS(styles.keywordsSectionStyle);
+    const labelStyle = mergeCSS(styles.labelStyle);
+    const inputStyle = mergeCSS(styles.inputStyle);
+    const buttonStyle = mergeCSS(styles.buttonStyle);
+    const tableStyle = mergeCSS(styles.tableStyle);
+    const theadStyle = mergeCSS(styles.theadStyle);
+    const tbodyStyle = mergeCSS(styles.tbodyStyle);
+    const thStyle = mergeCSS(styles.thStyle);
+    const trStyle = mergeCSS(styles.trStyle);
 
     return (
       <div style={keywordsSectionStyle}>

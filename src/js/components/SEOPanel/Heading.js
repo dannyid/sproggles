@@ -1,5 +1,5 @@
 import React from 'react';
-import {resetCSS} from '../../modules/utils';
+import {mergeCSS} from '../../modules/utils';
 
 const styles = {
   containerStyle: {
@@ -38,10 +38,10 @@ const styles = {
 const Header = React.createClass({
   render: function() {
     const {text, subtext, reload} = this.props;
-    const containerStyle = resetCSS(styles.containerStyle);
-    const headerStyle = resetCSS(styles.headerStyle);
-    const subtextStyle = resetCSS(styles.subtextStyle);
-    const reloadArrowStyle = resetCSS(styles.reloadArrowStyle);
+    const containerStyle = mergeCSS(styles.containerStyle);
+    const headerStyle = mergeCSS(styles.headerStyle);
+    const subtextStyle = mergeCSS(styles.subtextStyle);
+    const reloadArrowStyle = mergeCSS(styles.reloadArrowStyle);
 
     const reloadIcon = (function() {
       if (reload === '') {

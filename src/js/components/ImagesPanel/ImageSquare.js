@@ -1,5 +1,5 @@
 import React from 'react';
-import {resetCSS} from '../../modules/utils';
+import {mergeCSS} from '../../modules/utils';
 
 const styles = {
  imageSquareContainer: {
@@ -19,7 +19,7 @@ const styles = {
 const ImageSquare = React.createClass({
   render: function() {
     const {imageUrl} = this.props;
-    const imageSquareContainerStyle = resetCSS(styles.imageSquareContainer);
+    const imageSquareContainerStyle = mergeCSS(styles.imageSquareContainer);
 
     return (
       <div style={imageSquareContainerStyle}>

@@ -5,7 +5,7 @@ import FontsPanel from './FontsPanel/FontsPanel';
 import ImagesPanel from './ImagesPanel/ImagesPanel';
 import SEOPanel from './SEOPanel/SEOPanel';
 import Draggable from 'react-draggable';
-import {completeImageUrl, resetCSS} from '../modules/utils';
+import {completeImageUrl, mergeCSS} from '../modules/utils';
 import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
 import getSerp from '../modules/getSerp';
 import * as chromeStorage from '../modules/chromeStorage';
@@ -289,7 +289,7 @@ const App = React.createClass({
   render: function() {
     const {url, panels} = this.state;
     const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = panels;
-    const appStyle = resetCSS(styles.appStyle.base);
+    const appStyle = mergeCSS(styles.appStyle.base);
 
     return (
       <Draggable handle='.drag-handle'>

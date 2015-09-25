@@ -1,5 +1,5 @@
 import React from 'react';
-import {resetCSS} from '../modules/utils';
+import {mergeCSS} from '../modules/utils';
 
 const styles = {
   panelHeaderStyle: {
@@ -39,9 +39,9 @@ const styles = {
 
 const PanelHeader = React.createClass({
   render: function() {
-    const panelHeaderStyle = resetCSS(styles.panelHeaderStyle),
-          panelHeaderTitleStyle = resetCSS(styles.panelHeaderTitleStyle),
-          openArrowStyle = resetCSS(styles.openArrowStyle);
+    const panelHeaderStyle = mergeCSS(styles.panelHeaderStyle),
+          panelHeaderTitleStyle = mergeCSS(styles.panelHeaderTitleStyle),
+          openArrowStyle = mergeCSS(styles.openArrowStyle);
 
     const {toggle, isOpen, title} = this.props;
 
