@@ -60,11 +60,11 @@ const App = React.createClass({
           data: {
             googleResult: {
               isSearching: false,
+              lastUpdated: now,
               resultJson: {
                 title: 'The Title',
                 link: 'The Link',
-                description: 'The Description',
-                lastUpdated: now
+                description: 'The Description'
               }
             },
             shareCounts: {
@@ -127,7 +127,9 @@ const App = React.createClass({
   injectInitialAppState: function(savedState) {
     if (Object.keys(savedState).length > 0) {
       this.setState(savedState[this.state.url]);
+      console.log('saved state', this.state);
     } else {
+      console.log('scrape dom anew');
       this.scrapeDomAndSetState();
     }
   },
@@ -211,12 +213,12 @@ const App = React.createClass({
     return getSerp(url)
     .done(resultData => {
       const panels = Object.assign({}, this.state.panels);
-      const {resultJson} = panels.seoPanel.data.googleResult;
+      const {googleResult} = panels.seoPanel.data;
 
-      resultJson.title = resultData.title;
-      resultJson.link = resultData.link;
-      resultJson.description = resultData.description;
-      resultJson.lastUpdated = new Date().getTime();
+      googleResult.resultJson.title = resultData.title;
+      googleResult.resultJson.link = resultData.link;
+      googleResult.resultJson.description = resultData.description;
+      googleResult.lastUpdated = new Date().getTime();
 
       this.setState({panels});
     }.bind(this));
