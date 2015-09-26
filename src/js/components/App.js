@@ -1,13 +1,11 @@
 import React from 'react';
-import $ from 'jquery';
 import ColorsPanel from './ColorsPanel/ColorsPanel';
 import FontsPanel from './FontsPanel/FontsPanel';
 import ImagesPanel from './ImagesPanel/ImagesPanel';
 import SEOPanel from './SEOPanel/SEOPanel';
 import HelpIcon from './HelpIcon';
 import Draggable from 'react-draggable';
-import {completeImageUrl} from '../modules/utils';
-import reduceColorsAndFonts from '../modules/reduceColorsAndFonts';
+import getColorsFontsAndImages from '../modules/getColorsFontsAndImages';
 import getSerp from '../modules/getSerp';
 import * as chromeStorage from '../modules/chromeStorage';
 import * as mixpanelEvents from '../modules/mixpanelEvents';
@@ -106,40 +104,7 @@ const App = React.createClass({
     // Otherwise generate all the data anew
     chromeStorage
     .get(this.state.url)
-    .then(savedState => {
-      if (Object.keys(savedState).length > 0) {
-        this.setState(savedState[this.state.url]);
-      } else {
-        // Get fonts and colors on page load
-        const elements = $.makeArray($('body *').not('script, link, style'));
-
-        // Whittle DOM nodes down into list of colors and fonts
-        const reduced = reduceColorsAndFonts(elements);
-
-        // Derive all the images and add them to the reduced result
-        const images = $.makeArray($('body img'));
-
-        images.forEach((i) => {
-          const imgSrc = $(i).attr('src') || '';
-          const imageUrl = completeImageUrl(imgSrc);
-
-          // Dedupe images and only add one of each
-          if (imageUrl && $.inArray(imageUrl, reduced.results.allImages) === -1) {
-            reduced.results.allImages.push(imageUrl);
-          }
-        });
-
-        let panels = Object.assign({}, this.state.panels);
-
-        panels.colorsPanel.data = reduced.results.allColors;
-        panels.fontsPanel.data = reduced.results.allFonts;
-        panels.imagesPanel.data = reduced.results.allImages;
-
-        this.setState({panels});
-        this.getResult();
-        this.getSocialCounts();
-      }
-    }.bind(this));
+    .then(this.injectInitialAppState);
   },
 
   componentWillUnmount: function() {
@@ -154,6 +119,23 @@ const App = React.createClass({
 
   componentDidMount: function() {
     mixpanelEvents.popupOpened(this.state.url);
+  },
+
+  injectInitialAppState: function(savedState) {
+    if (Object.keys(savedState).length > 0) {
+      this.setState(savedState[this.state.url]);
+    } else {
+      const panels = Object.assign({}, this.state.panels);
+      const reducedResults = getColorsFontsAndImages();
+
+      panels.colorsPanel.data = reducedResults.allColors;
+      panels.fontsPanel.data = reducedResults.allFonts;
+      panels.imagesPanel.data = reducedResults.allImages;
+
+      this.setState({panels});
+      this.getResult();
+      this.getSocialCounts();
+    }
   },
 
   closeAllPanels: function(panels) {
