@@ -31,7 +31,7 @@ const SEOPanel = React.createClass({
           reload={getResult}
         />
         <SearchResult
-          resultJson={googleResult.resultJson}
+          googleResult={googleResult}
           getResult={getResult}
         />
         <Heading

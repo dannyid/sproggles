@@ -59,12 +59,12 @@ const App = React.createClass({
           isOpen: true,
           data: {
             googleResult: {
-              isSearching: false,
+              isSearching: true,
               lastUpdated: now,
               resultJson: {
-                title: 'The Title',
-                link: 'The Link',
-                description: 'The Description'
+                title: '',
+                link: '',
+                description: ''
               }
             },
             shareCounts: {
@@ -72,19 +72,19 @@ const App = React.createClass({
               networks: {
                 twitter: {
                   count: 0,
-                  isSearching: false
+                  isSearching: true
                 },
                 facebook: {
                   count: 0,
-                  isSearching: false
+                  isSearching: true
                 },
                 linkedIn: {
                   count: 0,
-                  isSearching: false
+                  isSearching: true
                 },
                 pinterest: {
                   count: 0,
-                  isSearching: false
+                  isSearching: true
                 }
               }
             },
@@ -216,6 +216,7 @@ const App = React.createClass({
       googleResult.resultJson.title = resultData.title;
       googleResult.resultJson.link = resultData.link;
       googleResult.resultJson.description = resultData.description;
+      googleResult.isSearching = false;
       googleResult.lastUpdated = new Date().getTime();
 
       this.setState({panels});

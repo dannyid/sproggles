@@ -1,5 +1,6 @@
 import React from 'react';
 import {mergeCSS} from '../../modules/utils';
+import LoadingSpinner from '../LoadingSpinner';
 
 const styles = {
   searchResult: {
@@ -16,6 +17,13 @@ const styles = {
     transitionDuration: '200ms',
     transitionProperty: 'border',
     width: 522
+  },
+
+  centerLoader: {
+    alignItems: 'center',
+    display: 'flex',
+    height: '100%',
+    justifyContent: 'center'
   },
 
   h3: {
@@ -51,27 +59,42 @@ const styles = {
 };
 
 const SearchResult = React.createClass({
-  render: function() {
-    const {color} = this.props;
-    const {title, link, description} = this.props.resultJson;
+  placeholderOrRealResult: function() {
+    const {color, googleResult} = this.props;
+    const {lastUpdated, isSearching, resultJson} = googleResult;
+    const {title, link, description} = resultJson;
+
+    if (isSearching) {
+      return (
+        <div style={styles.centerLoader}>
+          <LoadingSpinner />
+        </div>
+      );
+    }
 
     return (
-      <div style={styles.searchResult}>
-        <div className="serp">
-          <h3 style={styles.h3}>
-            <a style={styles.titleLink}>
-              {title}
-            </a>
-          </h3>
-          <div>
-            <cite style={styles.urlLink}>
-              {link}
-            </cite>
-            <span style={styles.description}>
-              {description}
-            </span>
-          </div>
+      <div>
+        <h3 style={styles.h3}>
+          <a style={styles.titleLink}>
+            {title}
+          </a>
+        </h3>
+        <div>
+          <cite style={styles.urlLink}>
+            {link}
+          </cite>
+          <span style={styles.description}>
+            {description}
+          </span>
         </div>
+      </div>
+    );
+  },
+
+  render: function() {
+    return (
+      <div style={styles.searchResult}>
+        {this.placeholderOrRealResult()}
       </div>
     );
   }
