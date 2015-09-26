@@ -2,6 +2,7 @@ import React from 'react';
 import PanelContainer from '../PanelContainer';
 import ColorSquare from './ColorSquare';
 import copyToClipboard from '../../modules/copyToClipboard';
+import * as mixpanelEvents from '../../modules/mixpanelEvents'
 
 const styles = {
   colorCopiedContainer: {
@@ -42,6 +43,7 @@ const ColorsPanel = React.createClass({
 
     this.setState({selectedColor, timeout});
     copyToClipboard(selectedColor);
+    mixpanelEvents.colorCopied(selectedColor);
   },
 
   renderCopiedMessage: function() {
