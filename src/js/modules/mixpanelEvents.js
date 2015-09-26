@@ -23,16 +23,16 @@ function createEventJSON(eventName, specificElement) {
 function fireMixpanelEvent(eventData) {
   if (prod()) {
     $get(MIXPANEL_EVENT_URL + eventData, function(data) {
-      console.log('Mixpanel event fired:', eventName);
+      console.log('Mixpanel event fired.');
     });
   } else {
-    console.log(`'${eventName}' event not fired (because in QA)`);
+    console.log(`Mixpanel event not fired (because in QA)`);
   }
 }
 
 function createEvent(eventName) {
-  return specificElement => {
-    createEventJSON(eventName, specificElement)
+  return (specificElement) => {
+    return createEventJSON(eventName, specificElement)
     .then(fireMixpanelEvent);
   };
 }
