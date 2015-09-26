@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import {mergeCSS, formatNum} from '../../modules/utils';
+import * as mixpanelEvents from '../../modules/mixpanelEvents';
 
 const styles = {
   keywordsSection: {
@@ -107,10 +108,10 @@ const KeywordInfo = React.createClass({
     const {getKeywordInfo} = this.props;
 
     e.preventDefault();
+    mixpanelEvents.keywordSearched(inputtedKeywords);
 
     // This allows you to paste in comma separated keywords;
     inputtedKeywords.split(',').forEach(getKeywordInfo);
-
     this.setState({inputtedKeywords: ''});
   },
 
