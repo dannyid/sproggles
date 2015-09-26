@@ -17,7 +17,12 @@ export default () => {
     const imageUrl = completeImageUrl(imgSrc);
 
     // Dedupe images and only add one of each
-    if (imageUrl && $.inArray(imageUrl, reduced.results.allImages) === -1) {
+    // Also exclude extension's own images
+    if (
+      imageUrl &&
+      $.inArray(imageUrl, reduced.results.allImages) === -1 &&
+      imageUrl.indexOf('chrome-extension') === -1
+    ) {
       reduced.results.allImages.push(imageUrl);
     }
   });
