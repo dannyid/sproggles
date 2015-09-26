@@ -19,10 +19,9 @@ const SEOPanel = React.createClass({
       getKeywordInfo
     } = this.props;
 
-    const {resultJson, shareCounts, keywordInfo} = data;
-    const googleResultlastUpdated = moment(resultJson.lastUpdated).fromNow();
+    const {googleResult, shareCounts, keywordInfo} = data;
+    const googleResultlastUpdated = moment(googleResult.lastUpdated).fromNow();
     const socialCountslastUpdated = moment(shareCounts.lastUpdated).fromNow();
-
 
     return (
       <PanelContainer title={title} isOpen={isOpen} toggle={toggle}>
@@ -32,7 +31,7 @@ const SEOPanel = React.createClass({
           reload={getResult}
         />
         <SearchResult
-          resultJson={resultJson}
+          resultJson={googleResult.resultJson}
           getResult={getResult}
         />
         <Heading

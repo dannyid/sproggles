@@ -58,11 +58,14 @@ const App = React.createClass({
           title: 'SEO/Social',
           isOpen: true,
           data: {
-            resultJson: {
-              title: 'The Title',
-              link: 'The Link',
-              description: 'The Description',
-              lastUpdated: now
+            googleResult: {
+              isSearching: false,
+              resultJson: {
+                title: 'The Title',
+                link: 'The Link',
+                description: 'The Description',
+                lastUpdated: now
+              }
             },
             shareCounts: {
               lastUpdated: now,
@@ -194,10 +197,17 @@ const App = React.createClass({
 
   getResult: function() {
     const {url} = this.state;
+    const panels = Object.assign({}, this.state.panels);
+    const {googleResult} = panels.seoPanel.data
+
+    googleResult.isSearching = true;
+
+    this.setState({panels});
+
     return getSerp(url)
     .done(resultData => {
       const panels = Object.assign({}, this.state.panels);
-      const {resultJson} = panels.seoPanel.data;
+      const {resultJson} = panels.seoPanel.data.googleResult;
 
       resultJson.title = resultData.title;
       resultJson.link = resultData.link;
