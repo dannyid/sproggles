@@ -36,19 +36,11 @@ function createEvent(eventName) {
 }
 
 export const tabClicked = createEvent('Tab clicked');
-
 export const popupOpened = createEvent('Popup opened');
-
 export const popupFailed = createEvent('Popup failed');
-
 export const darkThemeClicked = createEvent('Dark theme clicked');
-
 export const feedbackButtonClicked = createEvent('Feedback button clicked');
-
 export const colorCopied = createEvent('Color copied to clipboard');
-
 export const firstInstalled = createEvent('Extension first installed');
-
 export const feedbackSubmitted = createEvent('Feedback submitted');
-
 export const keywordSearched = createEvent('Keyword searched');
