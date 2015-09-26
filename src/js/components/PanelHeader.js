@@ -6,7 +6,7 @@ const styles = {
     backgroundColor: `dodgerblue`,
     border: `1px solid hsl(210, 100%, 48%)`,
     color: `white`,
-    cursor: `pointer`,
+    cursor: `-webkit-grab`,
     display: `block`,
     fontSize: 20,
     fontWeight: 400,
