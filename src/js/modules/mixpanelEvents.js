@@ -20,18 +20,20 @@ function createEventJSON(eventName, specificElement) {
   return deferred.promise;
 }
 
-function createEvent(eventName) {
-  return (specificElement) => {
-    createEventJSON(eventName, specificElement)
-    .then(eventData => {
-      if (prod()) {
-        $get(MIXPANEL_EVENT_URL + eventData, function(data) {
-          console.log('Mixpanel event fired:', eventName);
-        });
-      } else {
-        console.log(`'${eventName}' event not fired (because in QA)`);
-      }
+function fireMixpanelEvent(eventData) {
+  if (prod()) {
+    $get(MIXPANEL_EVENT_URL + eventData, function(data) {
+      console.log('Mixpanel event fired:', eventName);
     });
+  } else {
+    console.log(`'${eventName}' event not fired (because in QA)`);
+  }
+}
+
+function createEvent(eventName) {
+  return specificElement => {
+    createEventJSON(eventName, specificElement)
+    .then(fireMixpanelEvent);
   };
 }
 
