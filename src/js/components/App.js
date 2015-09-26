@@ -128,17 +128,21 @@ const App = React.createClass({
     if (Object.keys(savedState).length > 0) {
       this.setState(savedState[this.state.url]);
     } else {
-      const panels = Object.assign({}, this.state.panels);
-      const reducedResults = getColorsFontsAndImages();
-
-      panels.colorsPanel.data = reducedResults.allColors;
-      panels.fontsPanel.data = reducedResults.allFonts;
-      panels.imagesPanel.data = reducedResults.allImages;
-
-      this.setState({panels});
-      this.getResult();
-      this.getSocialCounts();
+      this.scrapeDomAndSetState();
     }
+  },
+
+  scrapeDomAndSetState: function() {
+    const panels = Object.assign({}, this.state.panels);
+    const reducedResults = getColorsFontsAndImages();
+
+    panels.colorsPanel.data = reducedResults.allColors;
+    panels.fontsPanel.data = reducedResults.allFonts;
+    panels.imagesPanel.data = reducedResults.allImages;
+
+    this.setState({panels});
+    this.getResult();
+    this.getSocialCounts();
   },
 
   closeAllPanels: function(panels) {
@@ -281,7 +285,7 @@ const App = React.createClass({
       });
 
       // Only keep 10 items in array
-      keywordInfo.splice();
+      // keywordInfo.splice(10);
 
       this.setState({panels});
     }.bind(this));
