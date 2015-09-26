@@ -96,7 +96,7 @@ const App = React.createClass({
   },
 
   componentWillMount: function() {
-    // Save state before navigating away from page
+    // Add listener to save state before navigating away from page
     window.onbeforeunload = function() {
       let data = {};
       data[this.state.url] = this.state;
