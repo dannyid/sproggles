@@ -127,9 +127,7 @@ const App = React.createClass({
   injectInitialAppState: function(savedState) {
     if (Object.keys(savedState).length > 0) {
       this.setState(savedState[this.state.url]);
-      console.log('saved state', this.state);
     } else {
-      console.log('scrape dom anew');
       this.scrapeDomAndSetState();
     }
   },
