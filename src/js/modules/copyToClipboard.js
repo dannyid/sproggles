@@ -1,5 +1,3 @@
-import * as mixpanelEvents from './mixpanelEvents';
-
 export default (text) => {
   const input = document.createElement('input');
   input.style.position = 'fixed';

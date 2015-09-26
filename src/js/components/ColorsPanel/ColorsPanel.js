@@ -2,7 +2,7 @@ import React from 'react';
 import PanelContainer from '../PanelContainer';
 import ColorSquare from './ColorSquare';
 import copyToClipboard from '../../modules/copyToClipboard';
-import * as mixpanelEvents from '../../modules/mixpanelEvents'
+import * as mixpanelEvents from '../../modules/mixpanelEvents';
 
 const styles = {
   colorCopiedContainer: {
