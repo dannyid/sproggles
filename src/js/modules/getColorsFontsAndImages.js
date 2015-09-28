@@ -15,18 +15,15 @@ export default () => {
   images.forEach((i) => {
     const imgSrc = $(i).attr('src') || '';
     const imageUrl = completeImageUrl(imgSrc);
+    const imageNotDupe = $.inArray(imageUrl, reduced.results.allImages) === -1;
+    const imageNotFromExtension = imageUrl.indexOf('chrome-extension') === -1;
 
     // Dedupe images and only add one of each
     // Also exclude extension's own images
-    if (
-      imageUrl &&
-      $.inArray(imageUrl, reduced.results.allImages) === -1 &&
-      imageUrl.indexOf('chrome-extension') === -1
-    ) {
+    if (imageUrl && imageNotDupe && imageNotFromExtension) {
       reduced.results.allImages.push(imageUrl);
     }
   });
-  console.log(reduced.results);
 
   return reduced.results;
 };
