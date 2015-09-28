@@ -20,6 +20,7 @@ const styles = {
   subtext: {
     color: 'rgba(0, 0, 0, 0.4)',
     fontSize: 13,
+    fontStyle: 'italic',
     marginLeft: 5
   },
 
