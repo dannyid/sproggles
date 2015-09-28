@@ -11,14 +11,16 @@ const styles = {
 };
 
 const FontsPanel = React.createClass({
-  render: function() {
-    const {data, title, toggle, isOpen} = this.props;
-    const fontList = data.map(font => <RenderedFont font={font} />);
+  renderFontList: function() {
+    return this.props.data.map(font => <RenderedFont font={font} />);
+  },
 
+  render: function() {
+    const {title, toggle, isOpen} = this.props;
     return (
       <PanelContainer title={title} toggle={toggle} isOpen={isOpen}>
         <ul style={styles.ul}>
-          {fontList}
+          {this.renderFontList()}
         </ul>
       </PanelContainer>
     );
