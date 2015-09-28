@@ -27,7 +27,7 @@ const SEOPanel = React.createClass({
       <PanelContainer title={title} isOpen={isOpen} toggle={toggle}>
         <Heading
           text='Google Result'
-          subtext={`(Last Updated: ${googleResultlastUpdated})`}
+          subtext={`as of ${googleResultlastUpdated}`}
           reload={getResult}
         />
         <SearchResult
@@ -36,7 +36,7 @@ const SEOPanel = React.createClass({
         />
         <Heading
           text='Social Share Counts'
-          subtext={`(Last Updated: ${socialCountslastUpdated})`}
+          subtext={`as of ${socialCountslastUpdated}`}
           reload={getSocialCounts}
         />
         <SocialShareCounts
