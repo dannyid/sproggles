@@ -6,7 +6,8 @@ const styles = {
     base: {
       display: `block`,
       position: `relative`,
-      overflow: `auto`
+      overflowX: 'hidden',
+      overflowY: `auto`
     },
 
     opened: {
