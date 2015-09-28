@@ -98,7 +98,7 @@ const App = React.createClass({
   componentWillMount: function() {
     // Add listener to save state before navigating away from page
     window.onbeforeunload = function() {
-      let data = {};
+      const data = {};
       data[this.state.url] = this.state;
       chromeStorage.set(data);
     }.bind(this);
@@ -112,7 +112,7 @@ const App = React.createClass({
 
   componentWillUnmount: function() {
     // Save data to Chrome storage upon app closing
-    let data = {};
+    const data = {};
     data[this.state.url] = this.state;
     chromeStorage.set(data);
 
@@ -159,7 +159,7 @@ const App = React.createClass({
       mixpanelEvents.tabClicked(panelName);
 
       // Copy panels object from state to modify it and then set it back as state
-      let panels = Object.assign({}, this.state.panels);
+      const panels = Object.assign({}, this.state.panels);
 
       // If panel is already open, close it, otherwise switch panels
       if (panels[panelName].isOpen) {
@@ -202,7 +202,7 @@ const App = React.createClass({
   getResult: function() {
     const {url} = this.state;
     const panels = Object.assign({}, this.state.panels);
-    const {googleResult} = panels.seoPanel.data
+    const {googleResult} = panels.seoPanel.data;
 
     googleResult.isSearching = true;
 
@@ -253,10 +253,11 @@ const App = React.createClass({
   getSocialCountsFail: function(socialNetwork) {
     return (data) => {
       console.log(socialNetwork, 'fail');
-      let panels = Object.assign({}, this.state.panels);
+      const panels = Object.assign({}, this.state.panels);
+      const {shareCounts} = panels.seoPanel.data;
 
-      panels.seoPanel.data.shareCounts.lastUpdated = new Date().getTime();
-      panels.seoPanel.data.shareCounts.networks[socialNetwork] = {
+      shareCounts.lastUpdated = new Date().getTime();
+      shareCounts.networks[socialNetwork] = {
         count: 'Please try again.',
         isSearching: false
       };
@@ -276,7 +277,7 @@ const App = React.createClass({
       url
     }, response => {
       const panels = Object.assign({}, this.state.panels);
-      let {keywordInfo} = panels.seoPanel.data;
+      const {keywordInfo} = panels.seoPanel.data;
 
       keywordInfo.unshift({
         keyword: response.keyword,

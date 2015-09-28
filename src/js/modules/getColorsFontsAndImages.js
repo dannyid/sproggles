@@ -29,4 +29,4 @@ export default () => {
   console.log(reduced.results);
 
   return reduced.results;
-}
+};

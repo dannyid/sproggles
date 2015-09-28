@@ -21,7 +21,7 @@ const RenderedFont = React.createClass({
 
     return (
       <li className="font" style={styles.li}>
-        <a target="_blank" style={linkTextStyle} href={`https://typekit.com/search?utf8=✓&q=${font}`}>
+        <a target="_blank" style={linkTextStyle} href={`https://typekit.com/search?utf8=✓&query=${font}`}>
           {font}
         </a>
       </li>
