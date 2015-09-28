@@ -8,7 +8,7 @@ const styles = {
     textAlign: 'center'
   },
 
-  header: {
+  heading: {
     color: 'rgb(51, 51, 51)',
     display: 'inline-block',
     fontSize: 18,
@@ -28,7 +28,7 @@ const styles = {
     color: '#1a0dab',
     cursor: 'pointer',
     display: 'inline-block',
-    marginLeft: 5,
+    marginLeft: 7,
     position: 'relative',
     textDecoration: 'none',
     top: 2,
@@ -36,30 +36,30 @@ const styles = {
   }
 };
 
-const Header = React.createClass({
+const Heading = React.createClass({
+  renderReloadArrow: function() {
+    const {reload} = this.props;
+    if (reload === '') {
+      return '';
+    } else {
+      return <a onClick={reload} style={styles.reloadArrow}>&#x21bb;</a>;
+    }
+  },
+
   render: function() {
-    const {text, subtext, reload} = this.props;
-
-    const reloadIcon = (function() {
-      if (reload === '') {
-        return '';
-      } else {
-        return <a onClick={reload} style={styles.reloadArrow}>&#x21bb;</a>;
-      }
-    })();
-
+    const {text, subtext} = this.props;
     return (
       <span style={styles.container}>
-        <h4 style={styles.header}>
+        <h4 style={styles.heading}>
           {text}
         </h4>
         <span style={styles.subtext}>
           {subtext}
         </span>
-        {reloadIcon}
+        {this.renderReloadArrow()}
       </span>
     );
   }
 });
 
-export default Header;
+export default Heading;
