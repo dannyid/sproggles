@@ -191,12 +191,12 @@ const App = React.createClass({
     }.bind(this);
   },
 
-  setShareCountsSearching(boolean) {
+  setShareCountsSearching(isSearching) {
     const panels = {...this.state.panels};
     const {networks} = panels.seoPanel.data.shareCounts;
 
     Object.keys(networks).forEach(socialNetwork => {
-      networks[socialNetwork].isSearching = boolean;
+      networks[socialNetwork].isSearching = isSearching;
     });
 
     this.setState({panels});
@@ -299,8 +299,15 @@ const App = React.createClass({
   },
 
   render() {
-    const {url, panels} = this.state;
-    const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = panels;
+    const {
+      url,
+      panels: {
+        colorsPanel,
+        fontsPanel,
+        imagesPanel,
+        seoPanel
+      }
+    } = this.state;
 
     return (
       <Draggable handle='.drag-handle'>
