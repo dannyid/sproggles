@@ -47,3 +47,5 @@ export const colorCopied = createEvent('Color copied to clipboard');
 export const firstInstalled = createEvent('Extension first installed');
 export const feedbackSubmitted = createEvent('Feedback submitted');
 export const keywordSearched = createEvent('Keyword searched');
+export const refreshGoogleResult = createEvent('Refresh Google result');
+export const refreshSocialCounts = createEvent('Refresh social counts');

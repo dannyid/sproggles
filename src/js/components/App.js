@@ -208,8 +208,9 @@ const App = React.createClass({
     const {googleResult} = panels.seoPanel.data;
 
     googleResult.isSearching = true;
-
     this.setState({panels});
+
+    mixpanelEvents.refreshGoogleResult(url);
 
     return getSerp(url)
     .done(resultData => {
@@ -230,6 +231,8 @@ const App = React.createClass({
     const {url} = this.state;
 
     this.setShareCountsSearching(true);
+
+    mixpanelEvents.refreshSocialCounts(url);
 
     getTwitterShareCount(url)
       .done(this.setSocialCountState('twitter'))
