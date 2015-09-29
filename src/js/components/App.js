@@ -223,7 +223,7 @@ const App = React.createClass({
       googleResult.lastUpdated = new Date().getTime();
 
       this.setState({panels});
-    }.bind(this));
+    });
   },
 
   getSocialCounts() {
