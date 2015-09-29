@@ -255,7 +255,6 @@ const App = React.createClass({
 
   getSocialCountsFail: function(socialNetwork) {
     return (data) => {
-      console.log(socialNetwork, 'fail');
       const panels = {...this.state.panels};
       const {shareCounts} = panels.seoPanel.data;
 
