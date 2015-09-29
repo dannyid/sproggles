@@ -1,15 +1,16 @@
 import {get as $get} from 'jquery';
 import prod from './productionCheck';
-import {MIXPANEL_EVENT_URL, MIXPANEL_TOKEN} from './constants';
+import {MIXPANEL_EVENT_URL, MIXPANEL_TOKEN, VERSION_NUMBER} from './constants';
 import Q from 'q';
 
 function createEventJSON(eventName, specificElement) {
-  let deferred = Q.defer();
+  const deferred = Q.defer();
 
   chrome.storage.sync.get('uuid', storage => {
     deferred.resolve(window.btoa(`{
       "event": "${eventName}",
       "properties": {
+        "version": "${VERSION_NUMBER}",
         "token": "${MIXPANEL_TOKEN}",
         "uuid": "${storage.uuid}",
         "specificElement": "${specificElement}"

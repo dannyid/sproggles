@@ -7,6 +7,7 @@ import HelpIcon from './HelpIcon';
 import Draggable from 'react-draggable';
 import getColorsFontsAndImages from '../modules/getColorsFontsAndImages';
 import getSerp from '../modules/getSerp';
+import {VERSION_NUMBER} from '../modules/constants';
 import * as chromeStorage from '../modules/chromeStorage';
 import * as mixpanelEvents from '../modules/mixpanelEvents';
 import {
@@ -36,7 +37,9 @@ const styles = {
 const App = React.createClass({
   getInitialState: () => {
     const now = new Date().getTime();
+
     return {
+      version: VERSION_NUMBER,
       url: window.location.origin + (window.location.pathname || ''),
       panels: {
         colorsPanel: {
