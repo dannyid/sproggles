@@ -1,5 +1,7 @@
 import React from 'react';
 import * as mixpanelEvents from '../modules/mixpanelEvents';
+import {CURRENT_EXTENSION_ID} from '../modules/constants';
+
 
 const styles = {
   iconContainer: {
@@ -38,9 +40,8 @@ const HelpIcon = React.createClass({
   },
 
   render() {
-    const extensionId = chrome.i18n.getMessage('@@extension_id');
-    const imageUrl = `chrome-extension://${extensionId}/img/help-icon-128.png`;
-    const helpUrl = `chrome-extension://${extensionId}/html/intro.html`;
+    const imageUrl = `chrome-extension://${CURRENT_EXTENSION_ID}/img/help-icon-128.png`;
+    const helpUrl = `chrome-extension://${CURRENT_EXTENSION_ID}/html/intro.html`;
 
     return (
       <div style={styles.iconContainer.base}>

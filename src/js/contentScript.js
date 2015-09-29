@@ -1,5 +1,6 @@
 import React from 'react';
 import {domReady} from './modules/utils'; // Replacement for jQuery's ready function
+import {CURRENT_EXTENSION_ID} from './modules/constants';
 import App from './components/App.js';
 
 function mountApp() {
@@ -22,11 +23,10 @@ domReady(() => {
   app.id = 'sproggles-app-container';
   document.body.appendChild(app);
 
-  const extensionId = chrome.i18n.getMessage('@@extension_id');
   const resetStyle = document.createElement('link');
   resetStyle.type = 'text/css';
   resetStyle.rel = 'stylesheet';
-  resetStyle.href = `chrome-extension://${extensionId}/css/style.min.css`;
+  resetStyle.href = `chrome-extension://${CURRENT_EXTENSION_ID}/css/style.min.css`;
   document.head.appendChild(resetStyle);
 
   // Receive browserAction click event from background script and toggle app

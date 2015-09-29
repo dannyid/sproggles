@@ -15,5 +15,6 @@ export default {
   PROD_EXTENSION_ID: 'jbjbbpondgkpmdmkjpnpdfpnnoimehib',
   REAL_FORM_ID: '2f33e21f-3324-437c-8bee-8cc266fc8296',
   TEST_FORM_ID: '62052d58-3688-4528-81fc-102ea654df06',
-  VERSION_NUMBER: chrome.runtime.getManifest().version
+  VERSION_NUMBER: chrome.runtime.getManifest().version,
+  CURRENT_EXTENSION_ID: chrome.i18n.getMessage('@@extension_id')
 };

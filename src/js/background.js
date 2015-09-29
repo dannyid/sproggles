@@ -2,6 +2,7 @@ import searchGoogle from './modules/searchGoogle';
 import calculateRankFromSerp from './modules/calculateRankFromSerp';
 import {getSingleKeywordVolume} from './modules/getVolume';
 import {generateUUID} from './modules/utils';
+import {CURRENT_EXTENSION_ID} from './modules/constants';
 import Q from 'q';
 import * as chromeStorage from './modules/chromeStorage';
 import * as mixpanelEvents from './modules/mixpanelEvents';
@@ -38,11 +39,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 chrome.runtime.onInstalled.addListener(() => {
-  const extensionId = chrome.i18n.getMessage('@@extension_id');
-
   /* Open intro page upon install or update */
   chrome.tabs.create({
-    url: `chrome-extension://${extensionId}/html/intro.html`
+    url: `chrome-extension://${CURRENT_EXTENSION_ID}/html/intro.html`
   });
 
   /* Generate UUID or get the one that's already generated */

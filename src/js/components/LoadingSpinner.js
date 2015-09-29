@@ -1,9 +1,9 @@
 import React from 'react';
+import {CURRENT_EXTENSION_ID} from '../modules/constants';
 
 const LoadingSpinner = React.createClass({
   render() {
-    const extensionId = chrome.i18n.getMessage('@@extension_id');
-    const imageUrl = `chrome-extension://${extensionId}/img/loading-spinner.gif`;
+    const imageUrl = `chrome-extension://${CURRENT_EXTENSION_ID}/img/loading-spinner.gif`;
 
     return (
       <img src={imageUrl} style={{width: 16}}/>
