@@ -35,7 +35,7 @@ const styles = {
 };
 
 const App = React.createClass({
-  getInitialState: () => {
+  getInitialState() {
     const now = new Date().getTime();
 
     return {
@@ -98,7 +98,7 @@ const App = React.createClass({
     };
   },
 
-  componentWillMount: function() {
+  componentWillMount() {
     // Add listener to save state before navigating away from page
     window.onbeforeunload = function() {
       const data = {};
@@ -113,7 +113,7 @@ const App = React.createClass({
     .then(this.injectInitialAppState);
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     // Save data to Chrome storage upon app closing
     const data = {};
     data[this.state.url] = this.state;
@@ -123,11 +123,11 @@ const App = React.createClass({
     window.onbeforeunload = null;
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     mixpanelEvents.popupOpened(this.state.url);
   },
 
-  injectInitialAppState: function(savedState) {
+  injectInitialAppState(savedState) {
     if (Object.keys(savedState).length > 0) {
       this.setState(savedState[this.state.url]);
     } else {
@@ -135,7 +135,7 @@ const App = React.createClass({
     }
   },
 
-  scrapeDomAndSetState: function() {
+  scrapeDomAndSetState() {
     const panels = {...this.state.panels};
     const reducedResults = getColorsFontsAndImages();
 
@@ -148,13 +148,13 @@ const App = React.createClass({
     this.getSocialCounts();
   },
 
-  closeAllPanels: function(panels) {
+  closeAllPanels(panels) {
     Object.keys(panels).forEach(panel => {
       panels[panel].isOpen = false;
     });
   },
 
-  togglePanel: function(panelName) {
+  togglePanel(panelName) {
     return function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -176,7 +176,7 @@ const App = React.createClass({
     }.bind(this);
   },
 
-  setSocialCountState: function(socialNetwork) {
+  setSocialCountState(socialNetwork) {
     return (count) => {
       const panels = {...this.state.panels};
       const {shareCounts} = panels.seoPanel.data;
@@ -191,7 +191,7 @@ const App = React.createClass({
     }.bind(this);
   },
 
-  setShareCountsSearching: function(boolean) {
+  setShareCountsSearching(boolean) {
     const panels = {...this.state.panels};
     const {networks} = panels.seoPanel.data.shareCounts;
 
@@ -202,7 +202,7 @@ const App = React.createClass({
     this.setState({panels});
   },
 
-  getResult: function() {
+  getResult() {
     const {url} = this.state;
     const panels = {...this.state.panels};
     const {googleResult} = panels.seoPanel.data;
@@ -226,7 +226,7 @@ const App = React.createClass({
     }.bind(this));
   },
 
-  getSocialCounts: function() {
+  getSocialCounts() {
     const {url} = this.state;
 
     this.setShareCountsSearching(true);
@@ -253,7 +253,7 @@ const App = React.createClass({
     }.bind(this), 5000);
   },
 
-  getSocialCountsFail: function(socialNetwork) {
+  getSocialCountsFail(socialNetwork) {
     return (data) => {
       const panels = {...this.state.panels};
       const {shareCounts} = panels.seoPanel.data;
@@ -268,7 +268,7 @@ const App = React.createClass({
     }.bind(this);
   },
 
-  getKeywordInfo: function(keyword) {
+  getKeywordInfo(keyword) {
     const {url} = this.state;
 
     mixpanelEvents.keywordSearched(keyword);
@@ -295,7 +295,7 @@ const App = React.createClass({
     }.bind(this));
   },
 
-  render: function() {
+  render() {
     const {url, panels} = this.state;
     const {colorsPanel, fontsPanel, imagesPanel, seoPanel} = panels;
 
