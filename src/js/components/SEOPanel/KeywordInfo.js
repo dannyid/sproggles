@@ -119,7 +119,7 @@ const KeywordInfo = React.createClass({
   },
 
   renderKeywordRows() {
-    return this.props.keywordInfo.map(result => <KeywordRow key={result.keyword} {...result} />);
+    return this.props.keywordInfo.map((result, index) => <KeywordRow key={index} {...result} />);
   },
 
   render() {
