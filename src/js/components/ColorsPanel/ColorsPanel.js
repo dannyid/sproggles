@@ -36,6 +36,7 @@ const ColorsPanel = React.createClass({
   },
 
   copyColor(selectedColor) {
+    // Show "copied" message upon copy and then remove it after 1.2 seconds
     clearTimeout(this.state.timeout);
     const timeout = setTimeout(() => {
       this.setState({selectedColor: null, timeout: null});
