@@ -119,10 +119,11 @@ const KeywordInfo = React.createClass({
     this.setState({inputtedKeywords: e.target.value});
   },
 
-  render() {
-    const {getKeywordInfo, keywordInfo} = this.props;
-    const keywordRows = keywordInfo.map(result => <KeywordRow {...result} />);
+  renderKeywordRows() {
+    return this.props.keywordInfo.map(result => <KeywordRow key={result.keyword} {...result} />);
+  },
 
+  render() {
     return (
       <div style={styles.keywordsSection}>
         <form>
@@ -152,7 +153,7 @@ const KeywordInfo = React.createClass({
             </tr>
           </thead>
           <tbody style={styles.tbody}>
-            {keywordRows}
+            {this.renderKeywordRows()}
           </tbody>
         </table>
       </div>
