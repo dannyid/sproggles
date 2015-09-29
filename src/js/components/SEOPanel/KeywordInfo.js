@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import {mergeCSS, formatNum} from '../../modules/utils';
+import {formatNum} from '../../modules/utils';
 import * as mixpanelEvents from '../../modules/mixpanelEvents';
 
 const styles = {
@@ -79,7 +79,7 @@ const KeywordRow = React.createClass({
     const {keyword, rank, volume, lastUpdated} = this.props;
     const formattedVolume = formatNum(volume);
     const relativelastUpdated = moment(lastUpdated).fromNow();
-    const lastUpdatedStyle = mergeCSS(styles.td, {fontSize: 13});
+    const lastUpdatedStyle = {...styles.td, ...{fontSize: 13}};
 
     return (
       <tr style={styles.tr}>

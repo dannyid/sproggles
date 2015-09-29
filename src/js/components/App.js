@@ -133,7 +133,7 @@ const App = React.createClass({
   },
 
   scrapeDomAndSetState: function() {
-    const panels = Object.assign({}, this.state.panels);
+    const panels = {...this.state.panels};
     const reducedResults = getColorsFontsAndImages();
 
     panels.colorsPanel.data = reducedResults.allColors;
@@ -159,7 +159,7 @@ const App = React.createClass({
       mixpanelEvents.tabClicked(panelName);
 
       // Copy panels object from state to modify it and then set it back as state
-      const panels = Object.assign({}, this.state.panels);
+      const panels = {...this.state.panels};
 
       // If panel is already open, close it, otherwise switch panels
       if (panels[panelName].isOpen) {
@@ -175,7 +175,7 @@ const App = React.createClass({
 
   setSocialCountState: function(socialNetwork) {
     return (count) => {
-      const panels = Object.assign({}, this.state.panels);
+      const panels = {...this.state.panels};
       const {shareCounts} = panels.seoPanel.data;
 
       shareCounts.lastUpdated = new Date().getTime();
@@ -189,7 +189,7 @@ const App = React.createClass({
   },
 
   setShareCountsSearching: function(boolean) {
-    const panels = Object.assign({}, this.state.panels);
+    const panels = {...this.state.panels};
     const {networks} = panels.seoPanel.data.shareCounts;
 
     Object.keys(networks).forEach(socialNetwork => {
@@ -201,7 +201,7 @@ const App = React.createClass({
 
   getResult: function() {
     const {url} = this.state;
-    const panels = Object.assign({}, this.state.panels);
+    const panels = {...this.state.panels};
     const {googleResult} = panels.seoPanel.data;
 
     googleResult.isSearching = true;
@@ -210,7 +210,7 @@ const App = React.createClass({
 
     return getSerp(url)
     .done(resultData => {
-      const panels = Object.assign({}, this.state.panels);
+      const panels = {...this.state.panels};
       const {googleResult} = panels.seoPanel.data;
 
       googleResult.resultJson.title = resultData.title;
@@ -253,7 +253,7 @@ const App = React.createClass({
   getSocialCountsFail: function(socialNetwork) {
     return (data) => {
       console.log(socialNetwork, 'fail');
-      const panels = Object.assign({}, this.state.panels);
+      const panels = {...this.state.panels};
       const {shareCounts} = panels.seoPanel.data;
 
       shareCounts.lastUpdated = new Date().getTime();
@@ -276,7 +276,7 @@ const App = React.createClass({
       keyword,
       url
     }, response => {
-      const panels = Object.assign({}, this.state.panels);
+      const panels = {...this.state.panels};
       const {keywordInfo} = panels.seoPanel.data;
 
       keywordInfo.unshift({

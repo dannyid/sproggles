@@ -1,5 +1,4 @@
 import React from 'react';
-import {mergeCSS} from '../../modules/utils';
 
 const styles = {
   colorSquare: {
@@ -18,8 +17,8 @@ const ColorSquare = React.createClass({
   },
 
   render: function() {
-    const {color} = this.props;
-    const colorSquareStyle = mergeCSS(styles.colorSquare, {'backgroundColor': color});
+    const bgColor = {'backgroundColor': this.props.color};
+    const colorSquareStyle = {...styles.colorSquare, ...bgColor};
 
     return (
       <div style={colorSquareStyle} onClick={this.handleClick}></div>

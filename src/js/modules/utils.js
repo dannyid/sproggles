@@ -24,11 +24,6 @@ export function generateUUID() {
   });
 }
 
-export function mergeCSS(...styles) {
-  // Object.assign requires a gulp-babel plugin to function
-  return Object.assign({}, ...styles);
-}
-
 // Pulled from here: http://beeker.io/jquery-document-ready-equivalent-vanilla-javascript
 export function domReady(callback) {
   const {readyState} = document;

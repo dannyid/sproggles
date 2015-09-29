@@ -1,5 +1,4 @@
 import React from 'react';
-import {mergeCSS} from '../../modules/utils';
 
 const styles = {
   li: {
@@ -16,8 +15,8 @@ const styles = {
 
 const RenderedFont = React.createClass({
   render: function() {
-    const {font} = this.props;
-    const linkTextStyle = mergeCSS(styles.a, {fontFamily: font});
+    const font = {fontFamily: this.props.font};
+    const linkTextStyle = {...styles.a, ...font};
 
     return (
       <li className="font" style={styles.li}>

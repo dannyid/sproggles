@@ -1,5 +1,4 @@
 import React from 'react';
-import {mergeCSS} from '../../modules/utils';
 import LoadingSpinner from '../LoadingSpinner';
 
 const styles = {

@@ -1,5 +1,4 @@
 import React from 'react';
-import {mergeCSS} from '../../modules/utils';
 
 const styles = {
   colorPreview: {
@@ -13,8 +12,8 @@ const styles = {
 
 const ColorPreview = React.createClass({
   render: function() {
-    const {previewColor} = this.props;
-    const colorPreviewStyle = mergeCSS(styles.colorPreview, {'backgroundColor': previewColor});
+    const bgColor = {'backgroundColor': this.props.previewColor};
+    const colorPreviewStyle = {...styles.colorPreview, ...bgColor};
 
     return (
       <div style={colorPreviewStyle}></div>

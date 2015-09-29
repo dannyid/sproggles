@@ -1,6 +1,5 @@
 import React from 'react';
 import * as mixpanelEvents from '../modules/mixpanelEvents';
-import {mergeCSS} from '../modules/utils';
 
 const styles = {
   iconContainer: {

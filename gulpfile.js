@@ -85,7 +85,7 @@ gulp.task('js:contentScript', ['clean:js'], function() {
     debug: true
   })
   .transform(babelify.configure({
-    plugins: ["object-assign"]
+    optional: ["es7.objectRestSpread"]
   }))
   .bundle()
   .pipe(source('contentScript.js'))
@@ -101,7 +101,7 @@ gulp.task('js:background', ['clean:js'], function() {
     debug: true
   })
   .transform(babelify.configure({
-    plugins: ["object-assign"]
+    optional: ["es7.objectRestSpread"]
   }))
   .bundle()
   .pipe(source('background.js'))
@@ -117,7 +117,7 @@ gulp.task('js:intro', ['clean:js'], function() {
     debug: true
   })
   .transform(babelify.configure({
-    plugins: ["object-assign"]
+    optional: ["es7.objectRestSpread"]
   }))
   .bundle()
   .pipe(source('intro.js'))

@@ -1,6 +1,6 @@
 import React from 'react';
 import LoadingSpinner from '../LoadingSpinner';
-import {mergeCSS, formatNum} from '../../modules/utils';
+import {formatNum} from '../../modules/utils';
 import moment from 'moment';
 
 const styles = {
@@ -86,10 +86,10 @@ const SocialShareCounts = React.createClass({
       pinterest
     } = this.props.shareCounts.networks;
 
-    const twitterHeaderStyle = mergeCSS(styles.th.base, styles.th.twitter);
-    const facebookHeaderStyle = mergeCSS(styles.th.base, styles.th.facebook);
-    const linkedInHeaderStyle = mergeCSS(styles.th.base, styles.th.linkedIn);
-    const pinterestHeaderStyle = mergeCSS(styles.th.base, styles.th.pinterest);
+    const twitterHeaderStyle = {...styles.th.base, ...styles.th.twitter};
+    const facebookHeaderStyle = {...styles.th.base, ...styles.th.facebook};
+    const linkedInHeaderStyle = {...styles.th.base, ...styles.th.linkedIn};
+    const pinterestHeaderStyle = {...styles.th.base, ...styles.th.pinterest};
 
     return (
       <div style={styles.socialCounts}>
