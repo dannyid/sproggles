@@ -108,7 +108,6 @@ const KeywordInfo = React.createClass({
     const {getKeywordInfo} = this.props;
 
     e.preventDefault();
-    mixpanelEvents.keywordSearched(inputtedKeywords);
 
     // This allows you to paste in comma separated keywords;
     inputtedKeywords.split(',').forEach(getKeywordInfo);
