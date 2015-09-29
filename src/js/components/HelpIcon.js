@@ -33,11 +33,11 @@ const styles = {
 };
 
 const HelpIcon = React.createClass({
-  handleClick: function() {
+  handleClick() {
     mixpanelEvents.feedbackButtonClicked();
   },
 
-  render: function() {
+  render() {
     const extensionId = chrome.i18n.getMessage('@@extension_id');
     const imageUrl = `chrome-extension://${extensionId}/img/help-icon-128.png`;
     const helpUrl = `chrome-extension://${extensionId}/html/intro.html`;

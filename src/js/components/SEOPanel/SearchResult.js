@@ -58,7 +58,7 @@ const styles = {
 };
 
 const SearchResult = React.createClass({
-  placeholderOrRealResult: function() {
+  placeholderOrRealResult() {
     const {color, googleResult} = this.props;
     const {lastUpdated, isSearching, resultJson} = googleResult;
     const {title, link, description} = resultJson;
@@ -90,7 +90,7 @@ const SearchResult = React.createClass({
     );
   },
 
-  render: function() {
+  render() {
     return (
       <div style={styles.searchResult}>
         {this.placeholderOrRealResult()}

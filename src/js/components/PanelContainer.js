@@ -14,7 +14,7 @@ const styles = {
 };
 
 const PanelContainer = React.createClass({
-  render: function() {
+  render() {
     const {title, toggle, isOpen} = this.props;
 
     return (

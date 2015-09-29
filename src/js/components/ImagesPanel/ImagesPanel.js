@@ -3,11 +3,11 @@ import PanelContainer from '../PanelContainer';
 import ImageSquare from './ImageSquare';
 
 const ColorsPanel = React.createClass({
-  renderImageSquares: function() {
+  renderImageSquares() {
     return this.props.data.map(imageUrl => <ImageSquare imageUrl={imageUrl} />);
   },
 
-  render: function() {
+  render() {
     const {title, toggle, isOpen} = this.props;
     return (
       <PanelContainer title={title} toggle={toggle} isOpen={isOpen}>

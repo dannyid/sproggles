@@ -8,7 +8,7 @@ import moment from 'moment';
 
 
 const SEOPanel = React.createClass({
-  render: function() {
+  render() {
     const {
       data,
       title,

@@ -38,7 +38,7 @@ const styles = {
 };
 
 const PanelHeader = React.createClass({
-  render: function() {
+  render() {
     const {toggle, isOpen, title} = this.props;
 
     const arrow = isOpen ? '▼' : '▲';

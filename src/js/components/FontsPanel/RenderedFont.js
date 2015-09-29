@@ -14,7 +14,7 @@ const styles = {
 };
 
 const RenderedFont = React.createClass({
-  render: function() {
+  render() {
     const font = {fontFamily: this.props.font};
     const linkTextStyle = {...styles.a, ...font};
 

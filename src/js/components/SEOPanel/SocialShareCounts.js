@@ -69,7 +69,7 @@ const styles = {
 };
 
 const SocialShareCounts = React.createClass({
-  loadingSpinnerIfSearching: function(network) {
+  loadingSpinnerIfSearching(network) {
     if (network.isSearching) {
       return (
         <LoadingSpinner />
@@ -78,7 +78,7 @@ const SocialShareCounts = React.createClass({
     return formatNum(network.count);
   },
 
-  render: function() {
+  render() {
     const {
       twitter,
       facebook,

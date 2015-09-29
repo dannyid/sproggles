@@ -16,7 +16,7 @@ const styles = {
 };
 
 const ImageSquare = React.createClass({
-  render: function() {
+  render() {
     const {imageUrl} = this.props;
 
     return (

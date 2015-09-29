@@ -75,7 +75,7 @@ const styles = {
 };
 
 const KeywordRow = React.createClass({
-  render: function() {
+  render() {
     const {keyword, rank, volume, lastUpdated} = this.props;
     const formattedVolume = formatNum(volume);
     const relativelastUpdated = moment(lastUpdated).fromNow();
@@ -93,17 +93,17 @@ const KeywordRow = React.createClass({
 });
 
 const KeywordInfo = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {inputtedKeywords: ''};
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     React.findDOMNode(this.refs.keywordInput).onkeydown = function(e) {
       e.stopPropagation();
     };
   },
 
-  handleClick: function(e) {
+  handleClick(e) {
     const {inputtedKeywords} = this.state;
     const {getKeywordInfo} = this.props;
 
@@ -115,11 +115,11 @@ const KeywordInfo = React.createClass({
     this.setState({inputtedKeywords: ''});
   },
 
-  handleChange: function(e) {
+  handleChange(e) {
     this.setState({inputtedKeywords: e.target.value});
   },
 
-  render: function() {
+  render() {
     const {getKeywordInfo, keywordInfo} = this.props;
     const keywordRows = keywordInfo.map(result => <KeywordRow {...result} />);
 

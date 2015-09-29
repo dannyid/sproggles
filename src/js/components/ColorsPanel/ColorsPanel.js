@@ -28,14 +28,14 @@ const styles = {
 };
 
 const ColorsPanel = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {
       selectedColor: null,
       timeout: null
     };
   },
 
-  copyColor: function(selectedColor) {
+  copyColor(selectedColor) {
     clearTimeout(this.state.timeout);
     const timeout = setTimeout(() => {
       this.setState({selectedColor: null, timeout: null});
@@ -46,7 +46,7 @@ const ColorsPanel = React.createClass({
     mixpanelEvents.colorCopied(selectedColor);
   },
 
-  renderCopiedMessage: function() {
+  renderCopiedMessage() {
     const {selectedColor} = this.state;
     if (selectedColor === null) {
       return null;
@@ -60,12 +60,12 @@ const ColorsPanel = React.createClass({
     );
   },
 
-  renderColorSquares: function() {
+  renderColorSquares() {
     const {data} = this.props;
     return data.map(color => <ColorSquare color={color} copyColor={this.copyColor} />);
   },
 
-  render: function() {
+  render() {
     const {title, toggle, isOpen} = this.props;
 
     return (

@@ -21,7 +21,7 @@ const styles = {
 };
 
 const PanelBody = React.createClass({
-  render: function() {
+  render() {
     const openCloseStyle =
       this.props.isOpen
       ? styles.panelBodyContainer.opened

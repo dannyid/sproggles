@@ -37,7 +37,7 @@ const styles = {
 };
 
 const Heading = React.createClass({
-  renderReloadArrow: function() {
+  renderReloadArrow() {
     const {reload} = this.props;
     if (reload === '') {
       return '';
@@ -46,7 +46,7 @@ const Heading = React.createClass({
     }
   },
 
-  render: function() {
+  render() {
     const {text, subtext} = this.props;
     return (
       <span style={styles.container}>

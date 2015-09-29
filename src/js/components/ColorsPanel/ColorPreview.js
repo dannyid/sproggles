@@ -11,7 +11,7 @@ const styles = {
 };
 
 const ColorPreview = React.createClass({
-  render: function() {
+  render() {
     const bgColor = {'backgroundColor': this.props.previewColor};
     const colorPreviewStyle = {...styles.colorPreview, ...bgColor};
 

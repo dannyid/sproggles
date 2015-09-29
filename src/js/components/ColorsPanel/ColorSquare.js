@@ -11,12 +11,12 @@ const styles = {
 };
 
 const ColorSquare = React.createClass({
-  handleClick: function(e) {
+  handleClick(e) {
     const {copyColor, color} = this.props;
     copyColor(color);
   },
 
-  render: function() {
+  render() {
     const bgColor = {'backgroundColor': this.props.color};
     const colorSquareStyle = {...styles.colorSquare, ...bgColor};
 
