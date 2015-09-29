@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import humanize from 'humanize';
 
 export function convertRgbToHex(color) {
   return '#' + color.slice(4, -1).split(',').map((i) => {
@@ -6,29 +6,6 @@ export function convertRgbToHex(color) {
     // if the hex value is < 10, add a leading 0
     return hexValue.length === 1 ? '0' + hexValue : hexValue;
   }).join('');
-}
-
-export function createSelectors() {
-  return {
-    $colorsTab: $('.tab-content #colors'),
-    $fontsTab: $('.tab-content #fonts'),
-    $imagesTab: $('.tab-content #images'),
-    $spinner: $('#spinner'),
-    $tabPanel: $('#tabpanel'),
-    $tabContent: $('.tab-content'),
-    $tab: $('ul.nav-tabs li a'),
-    $themeButton: $('span.dark-theme'),
-    $pleaseRefresh: $('#please-refresh'),
-    $twitterShareCount: $('.twitter-share-count'),
-    $facebookShareCount: $('.facebook-share-count'),
-    $linkedInShareCount: $('.linkedin-share-count'),
-    $pinterestShareCount: $('.pinterest-share-count'),
-    $feedbackButton: $('.feedback-button'),
-    $feedbackForm: $('.tab-content #feedback-form'),
-    $feedbackToolbar: $('#tabpanel .tab-pane-toolbar #feedback'),
-    $derivedKeywords: $('.derived-keywords'),
-    $keywordForm: $('.derived-keywords form')
-  };
 }
 
 export function completeImageUrl(imageUrl) {
@@ -47,3 +24,16 @@ export function generateUUID() {
   });
 }
 
+// Pulled from here: http://beeker.io/jquery-document-ready-equivalent-vanilla-javascript
+export function domReady(callback) {
+  const {readyState} = document;
+  if (readyState === "interactive" || readyState === "complete") {
+   callback();
+  } else {
+    document.addEventListener("DOMContentLoaded", callback);
+  }
+}
+
+export function formatNum(num) {
+  return humanize.numberFormat(num, 0);
+}

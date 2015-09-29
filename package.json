@@ -1,6 +1,6 @@
 {
   "name": "sproggles",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "The ultimate marketer's toolbelt",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,9 @@
   "license": "ISC",
   "repository": "git@github.com:HubLab/sproggles.git",
   "devDependencies": {
+    "babel": "^5.8.19",
+    "babel-core": "^5.8.19",
+    "babel-plugin-object-assign": "^1.2.1",
     "babelify": "^6.1.2",
     "browser-sync": "^2.7.13",
     "browserify": "^10.2.4",
@@ -26,6 +29,9 @@
   "dependencies": {
     "humanize": "0.0.9",
     "jquery": "^2.1.4",
-    "q": "^1.4.1"
+    "moment": "^2.10.6",
+    "q": "^1.4.1",
+    "react": "^0.13.3",
+    "react-draggable": "^0.8.1"
   }
 }

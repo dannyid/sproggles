@@ -1,41 +1,38 @@
-import $ from 'jquery';
-import {completeImageUrl} from './modules/utils';
-import reduceColorsAndFonts from './modules/reduceColorsAndFonts';
+import React from 'react';
+import {domReady} from './modules/utils'; // Replacement for jQuery's ready function
+import {CURRENT_EXTENSION_ID} from './modules/constants';
+import App from './components/App.js';
 
-$(() => {
-  // Only send gotten fonts and colors upon message from popup.js
+function mountApp() {
+  React.render(
+    <App />,
+    document.getElementById('sproggles-app-container')
+  );
+  return true;
+}
+
+function unmountApp() {
+  const appContainer = document.getElementById('sproggles-app-container');
+  // The below returns false is there's no React component mounted
+  return React.unmountComponentAtNode(appContainer);
+}
+
+domReady(() => {
+  // Inject app container div
+  const app = document.createElement('div');
+  app.id = 'sproggles-app-container';
+  document.body.appendChild(app);
+
+  const resetStyle = document.createElement('link');
+  resetStyle.type = 'text/css';
+  resetStyle.rel = 'stylesheet';
+  resetStyle.href = `chrome-extension://${CURRENT_EXTENSION_ID}/css/style.min.css`;
+  document.head.appendChild(resetStyle);
+
+  // Receive browserAction click event from background script and toggle app
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.get === "pageData") {
-      // Get fonts and colors on page load
-      const elements = $.makeArray($('body *').not('script, link, style'));
-      const images = $.makeArray($('body img'));
-
-      let reduced = reduceColorsAndFonts(elements);
-
-      // Sort fonts in alphabetical order
-      reduced.results.allFonts.sort((a, b) => {
-        return a.toLowerCase().localeCompare(b.toLowerCase());
-      });
-
-      // Derives all the images and adds them to the reduced result
-      images.forEach((i) => {
-        const imgSrc = $(i).attr('src') || '';
-        const imageUrl = completeImageUrl(imgSrc);
-
-        // Dedupe images and only add one of each
-        if (imageUrl && $.inArray(imageUrl, reduced.results.allImages) === -1) {
-          reduced.results.allImages.push(imageUrl);
-        }
-      });
-
-      console.log(reduced);
-      // Send data to popup.js
-      sendResponse({
-        colors: reduced.results.allColors,
-        fonts: reduced.results.allFonts,
-        images: reduced.results.allImages,
-        url: location.origin + (location.pathname || '')
-      });
+    if (request.action === "toggleApp") {
+      unmountApp() || mountApp();
     }
   });
 });

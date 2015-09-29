@@ -2,10 +2,22 @@ import searchGoogle from './modules/searchGoogle';
 import calculateRankFromSerp from './modules/calculateRankFromSerp';
 import {getSingleKeywordVolume} from './modules/getVolume';
 import {generateUUID} from './modules/utils';
+import {CURRENT_EXTENSION_ID} from './modules/constants';
 import Q from 'q';
 import * as chromeStorage from './modules/chromeStorage';
 import * as mixpanelEvents from './modules/mixpanelEvents';
 
+/*
+  When clicked, the browserAction sends a
+  message to the content script to toggle the App
+*/
+chrome.browserAction.onClicked.addListener(() => {
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+      chrome.tabs.sendMessage(tabs[0].id, {action: "toggleApp"});
+  });
+});
+
+/* When asked for keyword info from page, get it and send it back */
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === "getKeywordInfo") {
     const {keyword, url} = request;
@@ -26,8 +38,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-/* Assign UUID upon install if the user doesn't already have one */
 chrome.runtime.onInstalled.addListener(() => {
+  /* Open intro page upon install or update */
+  chrome.tabs.create({
+    url: `chrome-extension://${CURRENT_EXTENSION_ID}/html/intro.html`
+  });
+
+  /* Generate UUID or get the one that's already generated */
   chrome.storage.sync.get('uuid', storage => {
     if (typeof storage.uuid === 'undefined') {
       const newUUID = generateUUID();
