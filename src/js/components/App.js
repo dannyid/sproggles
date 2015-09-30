@@ -23,7 +23,7 @@ const styles = {
     boxShadow: '0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)',
     fontFamily: 'Helvetica',
     fontSize: 16,
-    left: 10,
+    right: 10,
     padding: 0,
     opacity: 0.98,
     overflow: 'show',
