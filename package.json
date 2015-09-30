@@ -1,8 +1,9 @@
 {
   "name": "sproggles",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "The ultimate marketer's toolbelt",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
