@@ -1,4 +1,11 @@
-#sproggles-app-container * {
+#sproggles-app-container *,
+#sproggles-app-container *::before,
+#sproggles-app-container *::after,
+#sproggles-app-container *:hover,
+#sproggles-app-container *:active,
+#sproggles-app-container *:visited,
+#sproggles-app-container *:checked,
+#sproggles-app-container *::-webkit-input-placeholder {
   all: initial;
   border-collapse: separate;
   border-spacing: 0;
@@ -28,4 +35,8 @@
   white-space: normal;
   widows: 2;
   word-spacing: normal
+}
+
+#sproggles-app-container input::-webkit-input-placeholder {
+  color: #CCC;
 }
