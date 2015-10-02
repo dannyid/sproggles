@@ -101,9 +101,9 @@ const App = React.createClass({
   componentWillMount() {
     // Add listener to save state before navigating away from page
     window.onbeforeunload = function() {
-      const data = {};
-      data[this.state.url] = this.state;
-      chromeStorage.set(data);
+      chromeStorage.set({
+       [this.state.url]: this.state
+      });
     }.bind(this);
 
     // If there's a saved state for this site, use it
@@ -115,9 +115,9 @@ const App = React.createClass({
 
   componentWillUnmount() {
     // Save data to Chrome storage upon app closing
-    const data = {};
-    data[this.state.url] = this.state;
-    chromeStorage.set(data);
+    chromeStorage.set({
+      [this.state.url]: this.state
+    });
 
     // Remove listener for navigating away from page
     window.onbeforeunload = null;
