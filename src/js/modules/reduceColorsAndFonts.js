@@ -5,13 +5,13 @@ export default (elements) => {
   const reduced = elements.reduce((prev, curr) => {
     // Derives all the colors
     Object.keys(prev.colors).forEach((prop) => {
-      // If rga, convert to hex
+      // If rgb, convert to hex
       const colorValue = ((colorCode) => {
-        if (colorCode && colorCode.indexOf('rgba') !== -1) {
-          return colorCode;
-        } else if (colorCode && colorCode.indexOf('rgb') !== -1) {
-          return convertRgbToHex(colorCode);
-        }
+        const isRGBA = colorCode.indexOf('rgba') !== -1;
+        const isRGB = colorCode.indexOf('rgb') !== -1;
+
+        if (colorCode && isRGBA) {return colorCode; }
+        else if (colorCode && isRGB) {return convertRgbToHex(colorCode); }
       })($(curr).css(prop));
 
       // Store colors in respective buckets
