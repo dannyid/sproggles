@@ -1,10 +1,18 @@
 import $ from 'jquery';
+import {convertRgbToHex} from './utils';
 
 export default (elements) => {
   const reduced = elements.reduce((prev, curr) => {
     // Derives all the colors
     Object.keys(prev.colors).forEach((prop) => {
-      const colorValue = $(curr).css(prop);
+      // If rgb, convert to hex
+      const colorValue = ((colorCode) => {
+        if (colorCode && colorCode.indexOf('rgba') !== -1) {
+          return colorCode;
+        } else if (colorCode && colorCode.indexOf('rgb') !== -1) {
+          return convertRgbToHex(colorCode);
+        }
+      })($(curr).css(prop));
 
       // Store colors in respective buckets
       if (colorValue && $.inArray(colorValue, prev.colors[prop]) === -1) {

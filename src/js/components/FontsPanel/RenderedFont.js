@@ -15,8 +15,9 @@ const styles = {
 
 const RenderedFont = React.createClass({
   render() {
-    const font = {fontFamily: this.props.font};
-    const linkTextStyle = {...styles.a, ...font};
+    const {font} = this.props;
+    const fontStyle = {fontFamily: font};
+    const linkTextStyle = {...styles.a, ...fontStyle};
 
     return (
       <li className="font" style={styles.li}>

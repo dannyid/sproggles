@@ -23,7 +23,7 @@ const styles = {
     boxShadow: '0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24)',
     fontFamily: 'Helvetica',
     fontSize: 16,
-    left: 10,
+    right: 10,
     padding: 0,
     opacity: 0.98,
     overflow: 'show',
@@ -101,9 +101,9 @@ const App = React.createClass({
   componentWillMount() {
     // Add listener to save state before navigating away from page
     window.onbeforeunload = function() {
-      const data = {};
-      data[this.state.url] = this.state;
-      chromeStorage.set(data);
+      chromeStorage.set({
+       [this.state.url]: this.state
+      });
     }.bind(this);
 
     // If there's a saved state for this site, use it
@@ -115,9 +115,9 @@ const App = React.createClass({
 
   componentWillUnmount() {
     // Save data to Chrome storage upon app closing
-    const data = {};
-    data[this.state.url] = this.state;
-    chromeStorage.set(data);
+    chromeStorage.set({
+      [this.state.url]: this.state
+    });
 
     // Remove listener for navigating away from page
     window.onbeforeunload = null;
