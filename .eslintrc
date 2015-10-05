@@ -9,11 +9,15 @@
     "jsx": true
   },
   "plugins": [
-    "react"
+    "react",
+    "babel"
   ],
   "globals": {
     "chrome": true,
     "hbspt": true
+  },
+  "ecmaFeatures": {
+    "experimentalObjectRestSpread": true
   },
   "rules": {
     "strict": 0,
@@ -21,6 +25,7 @@
     "no-unused-vars": 0,
     "camelcase": 0,
     "no-underscore-dangle": 0,
-    "new-cap": 0
+    "new-cap": 0,
+    "babel/object-shorthand": 1
   }
 }
