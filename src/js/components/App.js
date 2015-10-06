@@ -6,7 +6,7 @@ import SEOPanel from './SEOPanel/SEOPanel';
 import HelpIcon from './HelpIcon';
 import Draggable from 'react-draggable';
 import getColorsFontsAndImages from '../modules/getColorsFontsAndImages';
-import {createColorMap} from '../modules/domUtils';
+import {getColors} from '../modules/getColors';
 import getSerp from '../modules/getSerp';
 import {VERSION_NUMBER} from '../modules/constants';
 import * as chromeStorage from '../modules/chromeStorage';
@@ -48,7 +48,7 @@ const App = React.createClass({
     const panels = {...this.state.panels};
     const reducedResults = getColorsFontsAndImages();
 
-    panels.colorsPanel.data = createColorMap();
+    panels.colorsPanel.data = getColors();
     panels.fontsPanel.data = reducedResults.allFonts;
     panels.imagesPanel.data = reducedResults.allImages;
 
