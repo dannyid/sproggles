@@ -42,10 +42,10 @@
 }
 
 .sproggles-shadow {
-  box-shadow: 1px 8px 8px rgba(0,0,0,.25)!important;
-  z-index: 1000000000;
+  box-shadow: 1px 8px 8px rgba(0,0,0,.25) !important;
+  z-index: 1000000000 !important;
 }
 
 .sproggles-hover-element {
-  box-shadow: 1px 8px 8px rgba(0,0,0,.25)!important;
+  box-shadow: 1px 8px 8px rgba(0,0,0,.25) !important;
 }

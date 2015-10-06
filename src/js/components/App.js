@@ -6,8 +6,8 @@ import SEOPanel from './SEOPanel/SEOPanel';
 import HelpIcon from './HelpIcon';
 import Draggable from 'react-draggable';
 import getColorsFontsAndImages from '../modules/getColorsFontsAndImages';
-import {getColors} from '../modules/getColors';
-import {getFonts} from '../modules/getFonts';
+import getColors from '../modules/getColors';
+import getFonts from '../modules/getFonts';
 import getSerp from '../modules/getSerp';
 import {VERSION_NUMBER} from '../modules/constants';
 import * as chromeStorage from '../modules/chromeStorage';
@@ -217,7 +217,7 @@ const App = React.createClass({
       panels: {
         colorsPanel: {
           title: 'Colors',
-          isOpen: false,
+          isOpen: true,
           data: {}
         },
         fontsPanel: {
@@ -232,7 +232,7 @@ const App = React.createClass({
         },
         seoPanel: {
           title: 'SEO/Social',
-          isOpen: true,
+          isOpen: false,
           data: {
             googleResult: {
               isSearching: true,

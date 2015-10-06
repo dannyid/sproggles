@@ -1,6 +1,6 @@
 const domElements = [].slice.call(document.querySelectorAll('body *:not(script):not(style)'));
 
-export function getFonts() {
+export default () => {
   const fontMap = {};
 
   domElements.forEach(el => {
@@ -16,4 +16,4 @@ export function getFonts() {
     })
   });
   return fontMap;
-}
+};

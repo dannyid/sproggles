@@ -27,7 +27,7 @@ const cssProperties = [
 
 const domElements = [].slice.call(document.querySelectorAll('body *:not(script):not(style)'));
 
-export function getColors() {
+export default () => {
   const colorMap = {};
 
   domElements.forEach(el => {
@@ -46,4 +46,4 @@ export function getColors() {
     });
   });
   return colorMap;
-}
+};
