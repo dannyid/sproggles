@@ -38,15 +38,12 @@ export function getColors() {
       const colorArray = colorValue.split(') ').join(')|').split('|').filter(e => e !== '');
 
       colorArray.forEach(color => {
-        if (typeof colorMap[color] !== 'function') {
+        if (typeof colorMap[color] === 'undefined') {
           colorMap[color] = new Set();
         }
         colorMap[color].add(el);
       })
     });
-
   });
-
-  console.log(colorMap);
   return colorMap;
 }

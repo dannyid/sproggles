@@ -12,7 +12,7 @@ const styles = {
 
 const FontsPanel = React.createClass({
   renderFontList() {
-    return this.props.data.map((font, index) => <RenderedFont key={index} font={font} />);
+    return Object.keys(this.props.data).map((font, index) => <RenderedFont key={index} font={font} />);
   },
 
   render() {

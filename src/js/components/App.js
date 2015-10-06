@@ -7,6 +7,7 @@ import HelpIcon from './HelpIcon';
 import Draggable from 'react-draggable';
 import getColorsFontsAndImages from '../modules/getColorsFontsAndImages';
 import {getColors} from '../modules/getColors';
+import {getFonts} from '../modules/getFonts';
 import getSerp from '../modules/getSerp';
 import {VERSION_NUMBER} from '../modules/constants';
 import * as chromeStorage from '../modules/chromeStorage';
@@ -47,14 +48,14 @@ const App = React.createClass({
   scrapeDomAndSetState() {
     const panels = {...this.state.panels};
     const reducedResults = getColorsFontsAndImages();
-
+debugger;
     panels.colorsPanel.data = getColors();
-    panels.fontsPanel.data = reducedResults.allFonts;
+    panels.fontsPanel.data = getFonts();
     panels.imagesPanel.data = reducedResults.allImages;
 
     this.setState({panels});
-    this.getResult();
-    this.getSocialCounts();
+    // this.getResult();
+    // this.getSocialCounts();
   },
 
   closeAllPanels(panels) {
@@ -217,7 +218,7 @@ const App = React.createClass({
         colorsPanel: {
           title: 'Colors',
           isOpen: false,
-          data: []
+          data: {}
         },
         fontsPanel: {
           title: 'Fonts',
