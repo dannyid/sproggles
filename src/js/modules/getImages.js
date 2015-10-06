@@ -1,21 +1,17 @@
-import {completeImageUrl} from './utils';
+const domElements = [].slice.call(document.querySelectorAll('body *:not(script):not(style)'));
+
+const imageElementUrls = domElements
+  .filter(e => e.tagName === 'IMG') // Only grab <img> tags
+  .map(e => e.src)
+  .filter(e => e.indexOf('chrome-extension://') === -1); // Exclude images from chrome-extensions
+
+const bgImageUrls = domElements
+  .map(e => window.getComputedStyle(e).backgroundImage // Only grab elements with background-image
+  .slice(4, -1)) // remove url() wrapping
+  .filter(e => e !== '' && e.indexOf('chrome-extension://') === -1); // Exclude images from chrome-extensions
+
+const images = new Set([...imageElementUrls, ...bgImageUrls]); // This dedupes the images
 
 export default () => {
-  const images = [].slice.call(document.querySelectorAll('body img'));
-  const bgImages = [].slice.call(document.querySelectorAll('body img'))
-
-  images.forEach((i) => {
-    const imgSrc = $(i).attr('src') || '';
-    const imageUrl = completeImageUrl(imgSrc);
-    const imageNotDupe = $.inArray(imageUrl, reduced.results.allImages) === -1;
-    const imageNotFromExtension = imageUrl.indexOf('chrome-extension') === -1;
-
-    // Dedupe images and only add one of each
-    // Also exclude extension's own images
-    if (imageUrl && imageNotDupe && imageNotFromExtension) {
-      reduced.results.allImages.push(imageUrl);
-    }
-  });
-
-  return reduced.results;
+  return [...images]; // Convert back to array
 };

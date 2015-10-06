@@ -2,7 +2,7 @@ import React from 'react';
 import PanelContainer from '../PanelContainer';
 import ImageSquare from './ImageSquare';
 
-const ColorsPanel = React.createClass({
+const ImagesPanel = React.createClass({
   renderImageSquares() {
     return this.props.data.map((imageUrl, index) => <ImageSquare key={index} imageUrl={imageUrl} />);
   },
@@ -17,4 +17,4 @@ const ColorsPanel = React.createClass({
   }
 });
 
-export default ColorsPanel;
+export default ImagesPanel;

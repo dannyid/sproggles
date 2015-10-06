@@ -9,6 +9,7 @@ import getColorsFontsAndImages from '../modules/getColorsFontsAndImages';
 import getColors from '../modules/getColors';
 import getFonts from '../modules/getFonts';
 import getSerp from '../modules/getSerp';
+import getImages from '../modules/getImages';
 import {VERSION_NUMBER} from '../modules/constants';
 import * as chromeStorage from '../modules/chromeStorage';
 import * as mixpanelEvents from '../modules/mixpanelEvents';
@@ -51,7 +52,7 @@ const App = React.createClass({
 
     panels.colorsPanel.data = getColors();
     panels.fontsPanel.data = getFonts();
-    panels.imagesPanel.data = reducedResults.allImages;
+    panels.imagesPanel.data = getImages();
 
     this.setState({panels});
     // this.getResult();
@@ -217,17 +218,17 @@ const App = React.createClass({
       panels: {
         colorsPanel: {
           title: 'Colors',
-          isOpen: true,
+          isOpen: false,
           data: {}
         },
         fontsPanel: {
           title: 'Fonts',
           isOpen: false,
-          data: []
+          data: {}
         },
         imagesPanel: {
           title: 'Images',
-          isOpen: false,
+          isOpen: true,
           data: []
         },
         seoPanel: {

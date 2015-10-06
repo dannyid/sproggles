@@ -2,10 +2,19 @@ import searchGoogle from './modules/searchGoogle';
 import calculateRankFromSerp from './modules/calculateRankFromSerp';
 import {getSingleKeywordVolume} from './modules/getVolume';
 import {generateUUID} from './modules/utils';
-import {CURRENT_EXTENSION_ID} from './modules/constants';
+import {CURRENT_EXTENSION_ID, VERSION_NUMBER} from './modules/constants';
 import Q from 'q';
 import * as chromeStorage from './modules/chromeStorage';
 import * as mixpanelEvents from './modules/mixpanelEvents';
+
+// Delete state if prior to version 0.3.5
+if (+VERSION_NUMBER.split('.')[1] <= 3 && +VERSION_NUMBER.split('.')[2] < 5) {
+  chrome.storage.local.get(result => {
+    Object.keys(result).forEach(entry => {
+      chrome.storage.local.remove(entry);
+    })
+  });
+}
 
 /*
   When clicked, the browserAction sends a
