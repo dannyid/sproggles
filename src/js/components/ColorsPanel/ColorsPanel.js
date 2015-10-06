@@ -63,7 +63,16 @@ const ColorsPanel = React.createClass({
 
   renderColorSquares() {
     const {data} = this.props;
-    return Object.keys(data).map((color, index) => <ColorSquare key={index} color={color} copyColor={this.copyColor} />);
+    return Object.keys(data).map((color, index) => {
+      return (
+        <ColorSquare
+          key={index}
+          color={color}
+          copyColor={this.copyColor}
+          matchingElements={data[color]}
+        />
+      );
+    });
   },
 
   render() {
