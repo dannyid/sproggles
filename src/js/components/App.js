@@ -278,8 +278,6 @@ const App = React.createClass({
       });
     }.bind(this);
 
-    createColorMap();
-
     // If there's a saved state for this site, use it
     // Otherwise generate all the data anew
     chromeStorage
