@@ -43,8 +43,9 @@
 
 .sproggles-shadow {
   box-shadow: 1px 8px 8px rgba(0,0,0,.25)!important;
+  z-index: 1000000000;
 }
 
 .sproggles-hover-element {
-  border: 2px solid red;
+  box-shadow: 1px 8px 8px rgba(0,0,0,.25)!important;
 }
