@@ -2,16 +2,16 @@ const domElements = [].slice.call(document.querySelectorAll('body *:not(script):
 
 const imageElementUrls = domElements
   .filter(e => e.tagName === 'IMG') // Only grab <img> tags
-  .map(e => e.src)
-  .filter(e => e.indexOf('chrome-extension://') === -1); // Exclude images from chrome-extensions
+  .map(e => e.src);
 
 const bgImageUrls = domElements
   .map(e => window.getComputedStyle(e).backgroundImage // Only grab elements with background-image
-  .slice(4, -1)) // remove url() wrapping
-  .filter(e => e !== '' && e.indexOf('chrome-extension://') === -1); // Exclude images from chrome-extensions
+  .slice(4, -1)); // remove url() wrapping
 
-const images = new Set([...imageElementUrls, ...bgImageUrls]); // This dedupes the images
+const filteredImages = [...imageElementUrls, ...bgImageUrls].filter(e => e !== '' && e.indexOf('chrome-extension://') === -1); // Exclude images from chrome-extensions
+
+const dedupedImages = new Set(filteredImages);
 
 export default () => {
-  return [...images]; // Convert back to array
+  return [...dedupedImages]; // Convert back to array
 };
