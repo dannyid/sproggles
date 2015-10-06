@@ -6,6 +6,7 @@ import SEOPanel from './SEOPanel/SEOPanel';
 import HelpIcon from './HelpIcon';
 import Draggable from 'react-draggable';
 import getColorsFontsAndImages from '../modules/getColorsFontsAndImages';
+import {createColorMap} from '../modules/domUtils';
 import getSerp from '../modules/getSerp';
 import {VERSION_NUMBER} from '../modules/constants';
 import * as chromeStorage from '../modules/chromeStorage';
@@ -35,98 +36,6 @@ const styles = {
 };
 
 const App = React.createClass({
-  getInitialState() {
-    const now = new Date().getTime();
-
-    return {
-      version: VERSION_NUMBER,
-      url: window.location.origin + (window.location.pathname || ''),
-      panels: {
-        colorsPanel: {
-          title: 'Colors',
-          isOpen: false,
-          data: []
-        },
-        fontsPanel: {
-          title: 'Fonts',
-          isOpen: false,
-          data: []
-        },
-        imagesPanel: {
-          title: 'Images',
-          isOpen: false,
-          data: []
-        },
-        seoPanel: {
-          title: 'SEO/Social',
-          isOpen: true,
-          data: {
-            googleResult: {
-              isSearching: true,
-              lastUpdated: now,
-              resultJson: {
-                title: '',
-                link: '',
-                description: ''
-              }
-            },
-            shareCounts: {
-              lastUpdated: now,
-              networks: {
-                twitter: {
-                  count: 0,
-                  isSearching: true
-                },
-                facebook: {
-                  count: 0,
-                  isSearching: true
-                },
-                linkedIn: {
-                  count: 0,
-                  isSearching: true
-                },
-                pinterest: {
-                  count: 0,
-                  isSearching: true
-                }
-              }
-            },
-            keywordInfo: []
-          }
-        }
-      }
-    };
-  },
-
-  componentWillMount() {
-    // Add listener to save state before navigating away from page
-    window.onbeforeunload = function() {
-      chromeStorage.set({
-       [this.state.url]: this.state
-      });
-    }.bind(this);
-
-    // If there's a saved state for this site, use it
-    // Otherwise generate all the data anew
-    chromeStorage
-    .get(this.state.url)
-    .then(this.injectInitialAppState);
-  },
-
-  componentWillUnmount() {
-    // Save data to Chrome storage upon app closing
-    chromeStorage.set({
-      [this.state.url]: this.state
-    });
-
-    // Remove listener for navigating away from page
-    window.onbeforeunload = null;
-  },
-
-  componentDidMount() {
-    mixpanelEvents.popupOpened(this.state.url);
-  },
-
   injectInitialAppState(savedState) {
     if (Object.keys(savedState).length > 0) {
       this.setState(savedState[this.state.url]);
@@ -139,7 +48,7 @@ const App = React.createClass({
     const panels = {...this.state.panels};
     const reducedResults = getColorsFontsAndImages();
 
-    panels.colorsPanel.data = reducedResults.allColors;
+    panels.colorsPanel.data = createColorMap();
     panels.fontsPanel.data = reducedResults.allFonts;
     panels.imagesPanel.data = reducedResults.allImages;
 
@@ -296,6 +205,100 @@ const App = React.createClass({
 
       this.setState({panels});
     }.bind(this));
+  },
+
+  getInitialState() {
+    const now = new Date().getTime();
+
+    return {
+      version: VERSION_NUMBER,
+      url: window.location.origin + (window.location.pathname || ''),
+      panels: {
+        colorsPanel: {
+          title: 'Colors',
+          isOpen: false,
+          data: []
+        },
+        fontsPanel: {
+          title: 'Fonts',
+          isOpen: false,
+          data: []
+        },
+        imagesPanel: {
+          title: 'Images',
+          isOpen: false,
+          data: []
+        },
+        seoPanel: {
+          title: 'SEO/Social',
+          isOpen: true,
+          data: {
+            googleResult: {
+              isSearching: true,
+              lastUpdated: now,
+              resultJson: {
+                title: '',
+                link: '',
+                description: ''
+              }
+            },
+            shareCounts: {
+              lastUpdated: now,
+              networks: {
+                twitter: {
+                  count: 0,
+                  isSearching: true
+                },
+                facebook: {
+                  count: 0,
+                  isSearching: true
+                },
+                linkedIn: {
+                  count: 0,
+                  isSearching: true
+                },
+                pinterest: {
+                  count: 0,
+                  isSearching: true
+                }
+              }
+            },
+            keywordInfo: []
+          }
+        }
+      }
+    };
+  },
+
+  componentWillMount() {
+    // Add listener to save state before navigating away from page
+    window.onbeforeunload = function() {
+      chromeStorage.set({
+       [this.state.url]: this.state
+      });
+    }.bind(this);
+
+    createColorMap();
+
+    // If there's a saved state for this site, use it
+    // Otherwise generate all the data anew
+    chromeStorage
+    .get(this.state.url)
+    .then(this.injectInitialAppState);
+  },
+
+  componentWillUnmount() {
+    // Save data to Chrome storage upon app closing
+    chromeStorage.set({
+      [this.state.url]: this.state
+    });
+
+    // Remove listener for navigating away from page
+    window.onbeforeunload = null;
+  },
+
+  componentDidMount() {
+    mixpanelEvents.popupOpened(this.state.url);
   },
 
   render() {
