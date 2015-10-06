@@ -48,7 +48,7 @@ const App = React.createClass({
 
   scrapeDomAndSetState() {
     const panels = {...this.state.panels};
-    const domElements = [].slice.call(document.querySelectorAll('body *:not(script):not(style)'));
+    const domElements = [].slice.call(document.querySelectorAll('body > *:not(#sproggles-app-container) *:not(script), body > *:not(#sproggles-app-container) *:not(style)'));
 
     panels.colorsPanel.data = getColors(domElements);
     panels.fontsPanel.data = getFonts(domElements);
