@@ -31,7 +31,10 @@ const ColorSquare = React.createClass({
     if (this.state.isHovered) {
       return 'sproggles-shadow'
     }
-    return '';
+  },
+
+  hoverIcon() {
+
   },
 
   getInitialState() {

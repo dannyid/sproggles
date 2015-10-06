@@ -27,8 +27,8 @@
   "web_accessible_resources": [
     "img/loading-spinner.gif",
     "img/help-icon-128.png",
-    "css/style.min.css",
-    "html/intro.html"
+    "img/eye.svg",
+    "css/style.min.css"
   ],
 
   "permissions": [

@@ -25,9 +25,7 @@ const cssProperties = [
   "webkitTextStrokeColor"
 ];
 
-const domElements = [].slice.call(document.querySelectorAll('body *:not(script):not(style)'));
-
-export default () => {
+export default domElements => {
   const colorMap = {};
 
   domElements.forEach(el => {
