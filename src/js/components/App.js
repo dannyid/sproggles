@@ -48,7 +48,7 @@ const App = React.createClass({
   scrapeDomAndSetState() {
     const panels = {...this.state.panels};
     const reducedResults = getColorsFontsAndImages();
-debugger;
+
     panels.colorsPanel.data = getColors();
     panels.fontsPanel.data = getFonts();
     panels.imagesPanel.data = reducedResults.allImages;
