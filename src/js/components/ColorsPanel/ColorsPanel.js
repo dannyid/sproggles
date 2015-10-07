@@ -3,6 +3,7 @@ import PanelContainer from '../PanelContainer';
 import ColorSquare from './ColorSquare';
 import copyToClipboard from '../../modules/copyToClipboard';
 import * as mixpanelEvents from '../../modules/mixpanelEvents';
+import {convertRgbToHex} from '../../modules/utils';
 
 const styles = {
   colorCopiedContainer: {
@@ -43,7 +44,7 @@ const ColorsPanel = React.createClass({
     }, 1200);
 
     this.setState({selectedColor, timeout});
-    copyToClipboard(selectedColor);
+    copyToClipboard(convertRgbToHex(selectedColor));
     mixpanelEvents.colorCopied(selectedColor);
   },
 
@@ -55,7 +56,7 @@ const ColorsPanel = React.createClass({
     return (
       <div style={styles.colorCopiedContainer}>
         <span style={styles.colorCopiedMessage}>
-          {'Copied: ' + selectedColor}
+          {'Copied: ' + convertRgbToHex(selectedColor)}
         </span>
       </div>
     );

@@ -1,6 +1,8 @@
 import humanize from 'humanize';
 
 export function convertRgbToHex(color) {
+  if (color.indexOf('rgba') !== -1) {return color; }
+
   return '#' + color.slice(4, -1).split(',').map((i) => {
     var hexValue = parseInt(i, 10).toString(16).toUpperCase();
     // if the hex value is < 10, add a leading 0
