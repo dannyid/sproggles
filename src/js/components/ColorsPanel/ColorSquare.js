@@ -1,5 +1,5 @@
 import React from 'react';
-import {highlightColors} from '../../modules/highlightColors';
+import {highlightElements} from '../../modules/highlightElements';
 
 const styles = {
   colorSquare: {
@@ -19,12 +19,12 @@ const ColorSquare = React.createClass({
 
   handleMouseEnter(e) {
     this.setState({isHovered: true});
-    highlightColors(this.props.matchingElements, true);
+    highlightElements(this.props.matchingElements, true);
   },
 
   handleMouseLeave(e) {
     this.setState({isHovered: false});
-    highlightColors(this.props.matchingElements, false);
+    highlightElements(this.props.matchingElements, false);
   },
 
   hoverClass() {
