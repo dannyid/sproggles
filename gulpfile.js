@@ -22,23 +22,29 @@ var paths = {
       './src/css/libs/*.css',
       './src/css/**/*.css'
     ],
-    js: [
-      './src/js/**/*.js'
+    html: [
+      './src/html/*.html'
     ],
     img: [
       './src/img/**/*'
     ],
-    contentScript: [
-      './src/js/contentScript.js'
+    js: [
+      './src/js/**/*.js'
     ],
     background: [
       './src/js/background.js'
     ],
+    contentScript: [
+      './src/js/contentScript.js'
+    ],
     intro: [
       './src/js/intro.js'
     ],
-    html: [
-      './src/html/*.html'
+    components: [
+      './src/js/components/**/*.js'
+    ],
+    modules: [
+      './src/js/modules/**/*.js'
     ],
     manifest: [
       './src/manifest.json'
@@ -47,9 +53,12 @@ var paths = {
   dest: {
     dist: './dist',
     css: './dist/css',
-    js: './dist/js',
+    html: './dist/html',
     img: './dist/img',
-    html: './dist/html'
+    js: './dist/js',
+    background: './dist/js/background.js',
+    contentScript: './dist/js/contentScript.js',
+    intro: './dist/js/intro.js'
   }
 };
 
@@ -68,66 +77,6 @@ gulp.task('css', ['clean:css'], function() {
     .pipe(concat('style.min.css'))
     .pipe(gulp.dest(paths.dest.css));
 });
-
-
-/********************
-******** JS *********
-********************/
-
-gulp.task('clean:js', function(done) {
-  del(['./dist/js/**/*.js'], done);
-});
-
-gulp.task('js:contentScript', ['clean:js'], function() {
-  return browserify({
-    entries: paths.src.contentScript,
-    extensions: ['.js'],
-    debug: true
-  })
-  .transform(babelify.configure({
-    optional: ["es7.objectRestSpread"]
-  }))
-  .bundle()
-  .pipe(source('contentScript.js'))
-  // .pipe(buffer())
-  // .pipe(uglify())
-  .pipe(gulp.dest(paths.dest.js));
-});
-
-gulp.task('js:background', ['clean:js'], function() {
-  return browserify({
-    entries: paths.src.background,
-    extensions: ['.js'],
-    debug: true
-  })
-  .transform(babelify.configure({
-    optional: ["es7.objectRestSpread"]
-  }))
-  .bundle()
-  .pipe(source('background.js'))
-  // .pipe(buffer())
-  // .pipe(uglify())
-  .pipe(gulp.dest(paths.dest.js));
-});
-
-gulp.task('js:intro', ['clean:js'], function() {
-  return browserify({
-    entries: paths.src.intro,
-    extensions: ['.js'],
-    debug: true
-  })
-  .transform(babelify.configure({
-    optional: ["es7.objectRestSpread"]
-  }))
-  .bundle()
-  .pipe(source('intro.js'))
-  // .pipe(buffer())
-  // .pipe(uglify())
-  .pipe(gulp.dest(paths.dest.js));
-});
-
-
-gulp.task('js', ['js:contentScript', 'js:background', 'js:intro']);
 
 
 /********************
@@ -159,6 +108,81 @@ gulp.task('img', ['clean:img'], function() {
 
 
 /********************
+******** JS *********
+********************/
+
+gulp.task('clean:js', function(done) {
+  del(['./dist/js/**/*.js'], done);
+});
+
+gulp.task('clean:js:background', function(done) {
+  del([paths.dest.background], done);
+});
+
+gulp.task('clean:js:contentScript', function(done) {
+  del([paths.dest.contentScript], done);
+});
+
+gulp.task('clean:js:intro', function(done) {
+  del(paths.dest.intro, done);
+});
+
+gulp.task('js', ['clean:js']);
+
+gulp.task('js:background', ['clean:js:background'], function() {
+  return browserify({
+    entries: paths.src.background,
+    extensions: ['.js'],
+    debug: true
+  })
+  .transform(babelify.configure({
+    optional: ["es7.objectRestSpread"]
+  }))
+  .bundle()
+  .pipe(source('background.js'))
+  // .pipe(buffer())
+  // .pipe(uglify())
+  .pipe(gulp.dest(paths.dest.js));
+});
+
+gulp.task('js:contentScript', ['clean:js:contentScript'], function() {
+  return browserify({
+    entries: paths.src.contentScript,
+    extensions: ['.js'],
+    debug: true
+  })
+  .transform(babelify.configure({
+    optional: ["es7.objectRestSpread"]
+  }))
+  .bundle()
+  .pipe(source('contentScript.js'))
+  // .pipe(buffer())
+  // .pipe(uglify())
+  .pipe(gulp.dest(paths.dest.js));
+});
+
+gulp.task('js:intro', ['clean:js:intro'], function() {
+  return browserify({
+    entries: paths.src.intro,
+    extensions: ['.js'],
+    debug: true
+  })
+  .transform(babelify.configure({
+    optional: ["es7.objectRestSpread"]
+  }))
+  .bundle()
+  .pipe(source('intro.js'))
+  // .pipe(buffer())
+  // .pipe(uglify())
+  .pipe(gulp.dest(paths.dest.js));
+});
+
+gulp.task('js:components', ['js:contentScript'], function() {});
+
+gulp.task('js:modules', ['js:background', 'js:contentScript', 'js:intro'], function() {});
+
+
+/********************
 ***** MANIFEST ******
 ********************/
 
@@ -178,9 +202,13 @@ gulp.task('manifest', ['clean:manifest'], function() {
 
 gulp.task('watch', ['build'], function() {
     gulp.watch(paths.src.css, ['css']);
-    gulp.watch(paths.src.js, ['js']);
-    gulp.watch(paths.src.img, ['img']);
     gulp.watch(paths.src.html, ['html']);
+    gulp.watch(paths.src.img, ['img']);
+    gulp.watch(paths.src.background, ['js:background']);
+    gulp.watch(paths.src.contentScript, ['js:contentScript']);
+    gulp.watch(paths.src.intro, ['js:intro']);
+    gulp.watch(paths.src.components, ['js:components']);
+    gulp.watch(paths.src.modules, ['js:modules']);
     gulp.watch(paths.src.manifest, ['manifest']);
 });
 
@@ -189,6 +217,6 @@ gulp.task('watch', ['build'], function() {
 ******* BUILD *******
 ********************/
 
-gulp.task('build', ['html', 'js', 'css', 'img', 'manifest']);
+gulp.task('build', ['js:background', 'js:contentScript', 'js:intro', 'img', 'html', 'css', 'manifest']);
 
 gulp.task('default', ['build']);
