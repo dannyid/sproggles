@@ -6,7 +6,7 @@
 #sproggles-app-container *:visited,
 #sproggles-app-container *:checked,
 #sproggles-app-container *::-webkit-input-placeholder {
-  all: initial;
+  all: unset;
   border-collapse: separate;
   border-spacing: 0;
   box-sizing: border-box;
@@ -39,11 +39,6 @@
 
 #sproggles-app-container input::-webkit-input-placeholder {
   color: #CCC;
-}
-
-.sproggles-shadow {
-  box-shadow: 1px 8px 8px rgba(0,0,0,.25) !important;
-  z-index: 1000000000 !important;
 }
 
 .sproggles-hover-element {

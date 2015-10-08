@@ -37,3 +37,21 @@ export function domReady(callback) {
 export function formatNum(num) {
   return humanize.numberFormat(num, 0);
 }
+
+export function getContrastYIQ(color, colorType){
+  let r, g, b;
+  const start = color.indexOf('#') === 0 ? 1 : 0;
+
+  if (colorType === 'hex') {
+    r = parseInt(color.substr(start, 2), 16);
+    g = parseInt(color.substr(start + 2, 2), 16);
+    b = parseInt(color.substr(start + 4, 2), 16);
+  } else if (colorType == 'rgb') {
+    [r, g, b] = color.slice(4, -1).split(',').map(str => +str);
+  } else {
+    throw Error(`Incorrect color type given. Expected 'hex' or 'rgb', but saw '${colorType}'`);
+  }
+
+  const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+  return (yiq >= 128) ? 'black' : 'white';
+}
