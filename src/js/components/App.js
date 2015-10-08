@@ -5,7 +5,6 @@ import ImagesPanel from './ImagesPanel/ImagesPanel';
 import SEOPanel from './SEOPanel/SEOPanel';
 import HelpIcon from './HelpIcon';
 import Draggable from 'react-draggable';
-import getColorsFontsAndImages from '../modules/getColorsFontsAndImages';
 import getColors from '../modules/getColors';
 import getFonts from '../modules/getFonts';
 import getSerp from '../modules/getSerp';
