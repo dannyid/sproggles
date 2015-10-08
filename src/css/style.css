@@ -1,3 +1,7 @@
+@keyframes pulsate {
+  50% { transform: scale(1.03); }
+}
+
 #sproggles-app-container *,
 #sproggles-app-container *::before,
 #sproggles-app-container *::after,
@@ -42,5 +46,6 @@
 }
 
 .sproggles-hover-element {
-  box-shadow: 1px 8px 8px rgba(0,0,0,.25) !important;
+  /*animation: pulsate 0.6s infinite !important;*/
+  outline: 1px solid;
 }
