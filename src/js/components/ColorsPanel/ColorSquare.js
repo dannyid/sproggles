@@ -18,6 +18,7 @@ const styles = {
     left: '50%',
     maxHeight: 16,
     maxWidth: 16,
+    pointerEvents: 'none',
     position: 'absolute',
     top: '50%',
     transform: 'translate(-50%, -50%)'
