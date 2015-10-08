@@ -10,7 +10,8 @@ const styles = {
     float: 'left',
     paddingTop: `${1 / 12 * 100}%`, // This is a trick for height to match width
     position: 'relative',
-    width: `${1 / 12 * 100}%`
+    width: `${1 / 12 * 100}%`,
+    zIndex: 0
   },
 
   eyeball: {

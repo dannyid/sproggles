@@ -14,7 +14,8 @@ const styles = {
     justifyContent: 'center',
     pointerEvents: 'none',
     position: 'absolute',
-    width: '100%'
+    width: '100%',
+    zIndex: 2
   },
 
   colorCopiedMessage: {
