@@ -1,6 +1,4 @@
-const domElements = [].slice.call(document.querySelectorAll('body *:not(script):not(style)'));
-
-export default () => {
+export default domElements => {
   const fontMap = {};
 
   domElements.forEach(el => {
@@ -15,5 +13,6 @@ export default () => {
       fontMap[font].add(el);
     })
   });
+
   return fontMap;
 };
