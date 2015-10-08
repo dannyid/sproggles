@@ -40,7 +40,7 @@ export function formatNum(num) {
   return humanize.numberFormat(num, 0);
 }
 
-export function getContrastYIQ(color, colorType){
+export function getOverlayColor(color, colorType){
   let r, g, b;
   const start = color.indexOf('#') === 0 ? 1 : 0;
 
@@ -55,5 +55,5 @@ export function getContrastYIQ(color, colorType){
   }
 
   const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-  return (yiq >= 128) ? 'black' : 'white';
+  return (yiq >= 128) ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, .8)';
 }

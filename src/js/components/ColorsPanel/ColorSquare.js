@@ -1,7 +1,7 @@
 import React from 'react';
 import {highlightElements} from '../../modules/highlightElements';
 import {CURRENT_EXTENSION_ID} from '../../modules/constants';
-import {getContrastYIQ} from '../../modules/utils';
+import {getOverlayColor} from '../../modules/utils';
 
 const styles = {
   colorSquare: {
@@ -50,7 +50,7 @@ const ColorSquare = React.createClass({
 
   hoverIcon() {
     const imageUrl = `chrome-extension://${CURRENT_EXTENSION_ID}/img/eye.svg`;
-    const overlayColor = {'color': getContrastYIQ(this.props.color, 'rgb')};
+    const overlayColor = {'color': getOverlayColor(this.props.color, 'rgb')};
     const eyeballStyle = {...styles.eyeball, ...overlayColor};
 
     if (this.state.isHovered) {
