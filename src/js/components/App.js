@@ -212,7 +212,6 @@ const App = React.createClass({
     const now = new Date().getTime();
 
     return {
-      version: VERSION_NUMBER,
       url: window.location.origin + (window.location.pathname || ''),
       panels: {
         colorsPanel: {
