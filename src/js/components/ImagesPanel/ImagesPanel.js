@@ -4,7 +4,7 @@ import ImageSquare from './ImageSquare';
 
 const ImagesPanel = React.createClass({
   renderImageSquares() {
-    return this.props.data.map((imageUrl, index) => <ImageSquare key={index} imageUrl={imageUrl} />);
+    return this.props.images.map((imageUrl, index) => <ImageSquare key={index} imageUrl={imageUrl} />);
   },
 
   render() {

@@ -49,9 +49,9 @@ const App = React.createClass({
     const panels = {...this.state.panels};
     const domElements = [...document.querySelectorAll('body > *:not(#sproggles-app-container) *:not(script), body > *:not(#sproggles-app-container) *:not(style)')];
 
-    panels.colorsPanel.data = getColors(domElements);
-    panels.fontsPanel.data = getFonts(domElements);
-    panels.imagesPanel.data = getImages(domElements);
+    panels.colorsPanel.colors = getColors(domElements);
+    panels.fontsPanel.fonts = getFonts(domElements);
+    panels.imagesPanel.images = getImages(domElements);
 
     this.setState({panels});
     // this.getResult();
@@ -218,17 +218,17 @@ const App = React.createClass({
         colorsPanel: {
           title: 'Colors',
           isOpen: false,
-          data: {}
+          colors: {}
         },
         fontsPanel: {
           title: 'Fonts',
           isOpen: false,
-          data: {}
+          fonts: {}
         },
         imagesPanel: {
           title: 'Images',
           isOpen: true,
-          data: {}
+          images: []
         },
         seoPanel: {
           title: 'SEO/Social',

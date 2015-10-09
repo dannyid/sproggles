@@ -12,7 +12,7 @@ const styles = {
 
 const FontsPanel = React.createClass({
   renderFontList() {
-    return Object.keys(this.props.data)
+    return Object.keys(this.props.fonts)
       .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
       .map((font, index) => <RenderedFont key={index} font={font} />);
   },

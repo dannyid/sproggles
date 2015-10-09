@@ -64,14 +64,14 @@ const ColorsPanel = React.createClass({
   },
 
   renderColorSquares() {
-    const {data} = this.props;
-    return Object.keys(data).map((color, index) => {
+    const {colors} = this.props;
+    return Object.keys(colors).map((color, index) => {
       return (
         <ColorSquare
           key={index}
           color={color}
           copyColor={this.copyColor}
-          matchingElements={data[color]}
+          matchingElements={colors[color]}
         />
       );
     });
