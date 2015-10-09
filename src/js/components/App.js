@@ -228,7 +228,7 @@ const App = React.createClass({
         imagesPanel: {
           title: 'Images',
           isOpen: true,
-          data: []
+          data: {}
         },
         seoPanel: {
           title: 'SEO/Social',
