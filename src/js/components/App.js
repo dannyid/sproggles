@@ -193,24 +193,9 @@ const App = React.createClass({
     return {
       url: window.location.origin + (window.location.pathname || ''),
       panels: {
-        colorsPanel: {
-          title: 'Colors',
-          isOpen: false,
-          colors: {}
-        },
-        fontsPanel: {
-          title: 'Fonts',
-          isOpen: false,
-          fonts: {}
-        },
-        imagesPanel: {
-          title: 'Images',
-          isOpen: true,
-          images: []
-        },
         seoPanel: {
           title: 'SEO/Social',
-          isOpen: false,
+          isOpen: true,
           data: {
             googleResult: {
               isSearching: true,
@@ -244,6 +229,21 @@ const App = React.createClass({
             },
             keywordInfo: []
           }
+        },
+        colorsPanel: {
+          title: 'Colors',
+          isOpen: false,
+          colors: {}
+        },
+        fontsPanel: {
+          title: 'Fonts',
+          isOpen: false,
+          fonts: {}
+        },
+        imagesPanel: {
+          title: 'Images',
+          isOpen: false,
+          images: []
         }
       }
     };
@@ -310,9 +310,6 @@ const App = React.createClass({
     return (
       <Draggable handle='.drag-handle'>
         <div className="sproggles-app" style={styles.app}>
-          <ColorsPanel {...colorsPanel} toggle={this.togglePanel('colorsPanel')} />
-          <FontsPanel {...fontsPanel} toggle={this.togglePanel('fontsPanel')} />
-          <ImagesPanel {...imagesPanel} toggle={this.togglePanel('imagesPanel')} />
           <SEOPanel
             {...seoPanel}
             toggle={this.togglePanel('seoPanel')}
@@ -320,6 +317,9 @@ const App = React.createClass({
             getSocialCounts={this.getSocialCounts}
             getKeywordInfo={this.getKeywordInfo}
           />
+          <ColorsPanel {...colorsPanel} toggle={this.togglePanel('colorsPanel')} />
+          <FontsPanel {...fontsPanel} toggle={this.togglePanel('fontsPanel')} />
+          <ImagesPanel {...imagesPanel} toggle={this.togglePanel('imagesPanel')} />
         </div>
       </Draggable>
     );
