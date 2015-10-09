@@ -7,8 +7,9 @@ import Q from 'q';
 import * as chromeStorage from './modules/chromeStorage';
 import * as mixpanelEvents from './modules/mixpanelEvents';
 
-// Delete state if prior to version 0.3.5
-if (+VERSION_NUMBER.split('.')[1] <= 3 && +VERSION_NUMBER.split('.')[2] < 5) {
+// Delete state if prior to version 0.3.4
+// At 0.3.4 the formatting of the data saved to Chrome storage changed
+if (+VERSION_NUMBER.split('.')[1] <= 3 && +VERSION_NUMBER.split('.')[2] < 4) {
   chrome.storage.local.get(result => {
     Object.keys(result).forEach(entry => {
       chrome.storage.local.remove(entry);
