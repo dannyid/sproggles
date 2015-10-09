@@ -37,27 +37,6 @@ const styles = {
 };
 
 const App = React.createClass({
-  injectInitialAppState(savedState) {
-    if (Object.keys(savedState).length > 0) {
-      this.setState(savedState[this.state.url]);
-    } else {
-      this.scrapeDomAndSetState();
-    }
-  },
-
-  scrapeDomAndSetState() {
-    const panels = {...this.state.panels};
-    const domElements = [...document.querySelectorAll('body > *:not(#sproggles-app-container) *:not(script), body > *:not(#sproggles-app-container) *:not(style)')];
-
-    panels.colorsPanel.colors = getColors(domElements);
-    panels.fontsPanel.fonts = getFonts(domElements);
-    panels.imagesPanel.images = getImages(domElements);
-
-    this.setState({panels});
-    // this.getResult();
-    // this.getSocialCounts();
-  },
-
   closeAllPanels(panels) {
     Object.keys(panels).forEach(panel => {
       panels[panel].isOpen = false;
@@ -271,24 +250,42 @@ const App = React.createClass({
   },
 
   componentWillMount() {
+    const panels = {...this.state.panels};
+    const domElements = [...document.querySelectorAll('body > *:not(#sproggles-app-container) *:not(script), body > *:not(#sproggles-app-container) *:not(style)')];
+
     // Add listener to save state before navigating away from page
     window.onbeforeunload = function() {
       chromeStorage.set({
-       [this.state.url]: this.state
+       [this.state.url]: this.state.panels.seoPanel.data
       });
     }.bind(this);
 
-    // If there's a saved state for this site, use it
+    panels.colorsPanel.colors = getColors(domElements);
+    panels.fontsPanel.fonts = getFonts(domElements);
+    panels.imagesPanel.images = getImages(domElements);
+
+    this.setState({panels});
+
+    // If there's a saved SEOPanel data for this site, use it
     // Otherwise generate all the data anew
     chromeStorage
     .get(this.state.url)
-    .then(this.injectInitialAppState);
+    .then(savedState => {
+      const panels = {...this.state.panels};
+      if (Object.keys(savedState).length > 0) {
+        panels.seoPanel.data = savedState[this.state.url]
+        this.setState({panels});
+      } else {
+        this.getResult();
+        this.getSocialCounts();
+      }
+    });
   },
 
   componentWillUnmount() {
     // Save data to Chrome storage upon app closing
     chromeStorage.set({
-      [this.state.url]: this.state
+      [this.state.url]: this.state.panels.seoPanel.data
     });
 
     // Remove listener for navigating away from page
