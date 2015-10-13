@@ -28,7 +28,8 @@
     "img/loading-spinner.gif",
     "img/help-icon-128.png",
     "img/eye.svg",
-    "css/style.min.css"
+    "css/style.min.css",
+    "html/intro.html"
   ],
 
   "permissions": [
