@@ -25,6 +25,16 @@ const styles = {
     justifyContent: 'center'
   },
 
+  noResultText: {
+    alignItems: 'center',
+    color: 'rgba(0, 0, 0, 0.4)',
+    display: 'flex',
+    fontSize: 13,
+    fontStyle: 'italic',
+    height: '100%',
+    justifyContent: 'center'
+  },
+
   h3: {
     fontWeight: 500,
     lineHeight: 1.1,
@@ -67,6 +77,14 @@ const SearchResult = React.createClass({
       return (
         <div style={styles.centerLoader}>
           <LoadingSpinner />
+        </div>
+      );
+    }
+
+    if (Object.keys(resultJson).length === 0) {
+      return (
+        <div style={styles.noResultText}>
+          No result found for this page URL
         </div>
       );
     }

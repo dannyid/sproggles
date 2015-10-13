@@ -103,12 +103,18 @@ const App = React.createClass({
 
     return getSerp(url)
     .done(resultData => {
+      console.log(resultData);
       const panels = {...this.state.panels};
       const {googleResult} = panels.seoPanel.data;
 
-      googleResult.resultJson.title = resultData.title;
-      googleResult.resultJson.link = resultData.link;
-      googleResult.resultJson.description = resultData.description;
+      if (Object.keys(resultData).length > 0) {
+        googleResult.resultJson.title = resultData.title;
+        googleResult.resultJson.link = resultData.link;
+        googleResult.resultJson.description = resultData.description;
+      } else {
+        googleResult.resultJson = {};
+      }
+
       googleResult.isSearching = false;
       googleResult.lastUpdated = new Date().getTime();
 
