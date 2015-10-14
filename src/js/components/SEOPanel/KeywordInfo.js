@@ -16,19 +16,34 @@ const styles = {
   },
 
   input: {
-    border: '1px solid #AAA',
-    borderRadius: 2,
-    margin: '0 10px',
-    minWidth: 230,
-    outline: 'none',
-    padding: 5
+    base: {
+      border: '1px solid #AAA',
+      borderRadius: 2,
+      margin: '0 10px',
+      minWidth: 230,
+      outline: 'none',
+      padding: 5
+    },
+
+    invalid: {
+      boxShadow: '0 0 3px red'
+    }
   },
 
   button: {
-    backgroundColor: '#DDD',
-    border: '1px solid #AAA',
-    borderRadius: 2,
-    padding: 5
+    base: {
+      backgroundColor: '#DDD',
+      border: '1px solid #AAA',
+      borderRadius: 2,
+      cursor: 'pointer',
+      padding: 5
+    },
+
+    invalid: {
+      border: '1px solid #DDD',
+      color: '#BBB',
+      cursor: 'auto'
+    }
   },
 
   table: {
@@ -94,7 +109,10 @@ const KeywordRow = React.createClass({
 
 const KeywordInfo = React.createClass({
   getInitialState() {
-    return {inputtedKeywords: ''};
+    return {
+      inputtedKeywords: '',
+      invalid: false
+    };
   },
 
   componentDidMount() {
@@ -109,13 +127,28 @@ const KeywordInfo = React.createClass({
 
     e.preventDefault();
 
-    // This allows you to paste in comma separated keywords;
-    inputtedKeywords.split(',').forEach(getKeywordInfo);
-    this.setState({inputtedKeywords: ''});
+    if (inputtedKeywords.trim().length > 0) {
+      // This allows you to paste in comma separated keywords;
+      inputtedKeywords.split(',').forEach(getKeywordInfo);
+      this.setState({
+        inputtedKeywords: '',
+        invalid: false
+      });
+    }
   },
 
   handleChange(e) {
-    this.setState({inputtedKeywords: e.target.value});
+    if (e.target.value.length === 0 || e.target.value.trim().length > 0) {
+      this.setState({
+        inputtedKeywords: e.target.value,
+        invalid: false
+      });
+    } else if (e.target.value.trim().length === 0) {
+      this.setState({
+        inputtedKeywords: e.target.value,
+        invalid: true
+      });
+    }
   },
 
   renderKeywordRows() {
@@ -123,6 +156,11 @@ const KeywordInfo = React.createClass({
   },
 
   render() {
+    const validationStyle = this.state.invalid ? styles.input.invalid : null;
+    const buttonValidationStyle = this.state.invalid ? styles.button.invalid : null;
+    const inputStyle = {...styles.input.base, ...validationStyle};
+    const buttonStyle = {...styles.button.base, ...buttonValidationStyle};
+
     return (
       <div style={styles.keywordsSection}>
         <form>
@@ -133,12 +171,12 @@ const KeywordInfo = React.createClass({
               name="keyword"
               type="text"
               placeholder="comma, separated, keywords"
-              style={styles.input}
+              style={inputStyle}
               onChange={this.handleChange}
               value={this.state.inputtedKeywords}
             />
           </label>
-          <button type="submit" style={styles.button} onClick={this.handleClick}>
+          <button type="submit" style={buttonStyle} onClick={this.handleClick}>
             Search
           </button>
         </form>
